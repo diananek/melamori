@@ -1,0 +1,201 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background: #FFF;
+    height: 64px;
+    width: 100%;
+    @media (min-width: 1366px) {
+        height: 93px;
+    }
+    @media (min-width: 1920px) {
+        height: 107px;
+    }
+    &__body {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        @media (min-width: 768px) {
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 21px 0 12px 0;
+        }
+        @media (min-width: 1366px) {
+            padding: 0;
+            align-items: center;
+        }
+    }
+    &__logo {
+        display: none;
+        @media (min-width: 768px) {
+            display: block;
+            width: 184px;
+            height: 41px;
+            align-self: flex-end;
+        }
+        @media (min-width: 1366px) {
+            align-self: center;
+            order: 1;
+            img {
+                width: 100%;
+            }
+        }
+        @media (min-width: 1536px) {
+            width: 224px;
+            height: 50px;
+        }
+        @media (min-width: 1920px) {
+            width: 267px;
+            height: 60px;
+        }
+    }
+    &__nav {
+        @media (min-width: 1366px) {
+            order: 2;
+        }
+    }
+    &__favorites {
+        margin: 0 18px 0 0;
+    }
+    &__basket {
+        margin: 0 9px 0 0;
+    }
+    &__actions {
+        display: flex;
+        height: 26px;
+        align-items: center;
+        @media (min-width: 1366px) {
+            order: 3;
+        }
+    }
+    &__prod-info {
+        font-size: 16px;
+        line-height: 22px;
+        margin: 0 110px 0 0;
+        @media(min-width: 768px) {
+            display: none;
+        }
+    }
+    &__title {
+        font-size: 16px;
+        color: #03257C;
+    }
+    &__arrow {
+        width: 26px;
+        height: 26px;
+        margin: 0 31px 0 0;
+        background: no-repeat center url("data:image/svg+xml,%3Csvg width='26' height='18' viewBox='0 0 26 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M26 10.4444H5.53225L10.7106 15.6228L8.66667 17.6667L0 9.00002L8.66667 0.333355L10.7106 2.37727L5.53225 7.5556H26V10.4444Z' fill='%23020D2B'/%3E%3C/svg%3E%0A");
+        @media(min-width: 768px) {
+            display: none;
+        }
+    }
+}
+
+//----------------------------------------------------------------------------------
+.menu {
+    display: none;
+    @media(min-width: 768px) {
+        display: block;
+    }
+    &__list {
+        position: fixed;
+        left: -100%;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        padding: 100px 30px 0px 30px;
+        overflow: auto;
+        transition: left 0.3s ease 0s;
+        z-index: 4;
+        @media (min-width: 1366px) {
+            padding: 0;
+            position: static;
+            background: 0;
+            overflow: hidden;
+        }
+        &._active {
+            left: 0;
+        }
+        li {
+            margin: 0 0 30px 0;
+            display: flex;
+            justify-content: center;
+            &:last-child {
+                margin: 0;
+            }
+            @media (min-width: 1366px) {
+                display: inline-block;
+                margin: 0 40px 0 0;
+                a {
+                    font-size: 18px;
+                    color: #020D2B;
+                    line-height: 25px;
+                }
+            }
+        }
+    }
+    &__link {
+        padding: 10px 0;
+        color: #FFF;
+        font-size: 30px;
+    }
+    &__icon {
+        margin: 5px;
+        z-index: 5;
+        display: block;
+        position: relative;
+        width: 28px;
+        height: 21px;
+        cursor: pointer;
+        margin: 0 24px 0 0;
+        &._active {
+            &::before,
+            &::after,
+            span {
+                background: #FFF;
+            }
+            span {
+                transform: scale(0) translate(0, -50%);
+            }
+            &::before {
+                bottom: 50%;
+                transform: rotate(45deg) translate(0, 50%);
+            }
+            &::after {
+                top: 50%;
+                width: 100%;
+                transform: rotate(-45deg) translate(0, -50%);
+            }
+        }
+        &::before,
+        &::after,
+        span {
+            left: 0;
+            position: absolute;
+            height: 3px;
+            transition: all 0.3s ease 0s;
+            background-color: #020D2B;
+        }
+        &::before {
+            content: "";
+            bottom: 0;
+            width: 100%;
+        }
+        &::after {
+            content: "";
+            top: 0;
+            width: 25px;
+        }
+        span {
+            top: 50%;
+            transform: scale(1) translate(0, -50%);
+            width: 19px;
+        }
+        @media (min-width: 1366px) {
+            display: none;
+        }
+    }
+}
