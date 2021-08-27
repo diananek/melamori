@@ -1,12 +1,33 @@
 .footer {
+    @media (min-width: 1366px) {
+        height: 341px;
+    }
     &__container {
         padding: 23px 0 0 0;
         border-top: 1px solid #B7CBD9;
+        @media (min-width: 768px) {
+            padding: 45px 0 0 0;
+        }
+        @media (min-width: 1366px) {
+            height: 341px;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            padding: 55px 0 0 0;
+        }
     }
     &__logo {
-        min-width: 321px;
-        min-height: 28px;
+        max-width: 321px;
+        max-height: 28px;
         margin: 0 0 44px 0;
+        img {
+            width: 100%;
+        }
+        @media (min-width: 768px) {
+            max-width: 461px;
+            max-height: 44px;
+            margin: 0 0 64px 0;
+        }
     }
     &__section-title {
         font-weight: 600;
@@ -26,6 +47,9 @@
     }
     &__cooperation {
         margin: 0 0 50px 0;
+        @media (min-width: 768px) {
+            margin: 0;
+        }
     }
 }
 
@@ -40,8 +64,29 @@
 //----------------------------------------------------------------------------------
 .contacts {
     padding: 0 0 50px 0;
+    @media (min-width: 768px) {
+        display: flex;
+        align-items: center;
+    }
+    @media (min-width: 1366px) {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    &__item {
+        @media (min-width: 768px) {
+            margin: 0 40px 0 0;
+        }
+    }
+    &__items {
+        @media (min-width: 768px) {
+            display: flex;
+        }
+    }
     &__mail {
         margin: 0 0 24px 0;
+        @media (min-width: 768px) {
+            margin: 0;
+        }
     }
     &__subtitle {
         margin: 0 0 6px 0;
@@ -59,6 +104,5 @@
     }
     &__link {
         color: #16E7F4;
-        ;
     }
 }
