@@ -40,7 +40,8 @@
     &__img {
         width: 100%;
         min-height: 266px;
-        background: no-repeat center/ cover url(../img/bed/Adel_1.jpg);
+        // background: no-repeat center/ cover url(../img/bed/Adel_1.jpg);
+        background: no-repeat center/ cover url(../img/mattress/Vega.jpg);
         @media (min-width: 768px) {
             background: #FFFFFF;
             margin: 0 auto 0 auto;
@@ -304,12 +305,12 @@
             background: #D5F9FF;
             border-radius: 2px;
             color: #03257C;
-            @media(min-width: 768px) {}
+            margin-right: 16px;
         }
     }
     &__option {
-        margin: 0 5px 0 0;
-        padding: 0 8px 0 9px;
+        margin: 0 8px 0 0;
+        padding: 0 8px 0 8px;
         display: inline-flex;
         flex: 0 0 auto;
         height: 32px;
@@ -319,9 +320,6 @@
         cursor: pointer;
         &:last-child {
             margin: 0 50px 0 0;
-        }
-        @media(min-width: 768px) {
-            margin: 0 24px 0 0;
         }
     }
     &__checkbox {
