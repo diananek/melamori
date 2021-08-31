@@ -236,6 +236,9 @@
         height: 48px;
         margin: 27px 0 43px 0;
     }
+    &__materials {
+        margin: 32px 0 100px 0;
+    }
 }
 
 //----------------------------------------------------------------------------------
@@ -300,7 +303,6 @@
             background: #D5F9FF;
             border-radius: 2px;
             color: #03257C;
-            margin-right: 16px;
         }
     }
     &__option {
@@ -402,5 +404,38 @@
                 margin: 0 0 16px 0;
             }
         }
+    }
+}
+
+//----------------------------------------------------------------------------------
+.materials {
+    &__item {
+        display: flex;
+        margin: 0 0 40px 0;
+        &:last-child {
+            margin: 0;
+        }
+    }
+    &__dscr {
+        font-size: 16px;
+        color: #020D2B;
+        align-self: flex-end;
+    }
+    &__name {
+        font-weight: 600;
+        margin: 12px 0 7px 0;
+    }
+    &__img {
+        border-radius: 50%;
+        width: 64px;
+        height: 64px;
+        margin: 0 15px 0 0;
+        align-self: flex-start;
+    }
+    &__title {
+        margin: 0 0 48px 0;
+    }
+    &__props {
+        line-height: 24px;
     }
 }
