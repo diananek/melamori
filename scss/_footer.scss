@@ -15,6 +15,7 @@
             padding: 45px 0 0 0;
         }
         @media (min-width: 1366px) {
+            height: 100%;
             display: flex;
             flex-direction: column;
             flex-wrap: wrap;
@@ -91,7 +92,7 @@
     padding: 0 0 50px 0;
     @media (min-width: 768px) {
         display: flex;
-        align-items: center;
+        align-items: flex-end;
     }
     @media (min-width: 1366px) {
         flex-direction: column;
