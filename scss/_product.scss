@@ -9,12 +9,13 @@
             margin-right: 152px;
         }
     }
-    &__container {
-        @media (min-width: 1366px) {
-            display: grid;
+    &__grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-areas: "item1" "item2" "item3" "item4" "item5" "item6" "item7";
+        @media (min-width: 768px) {
             grid-template-columns: 1fr 1fr;
-            grid-column-gap: 24px;
-            justify-items: center;
+            grid-template-areas: "item1 item1" "item2 item2" "item3 item3" "item4 item6" "item5 item5" "item7 item7";
         }
     }
     &__content {
@@ -30,6 +31,7 @@
     }
     &__img {
         min-height: 266px;
+        grid-area: item1;
         // background: no-repeat center/ cover url(../img/bed/Adel_1.jpg);
         background: no-repeat center/ cover url(../img/mattress/Vega.jpg);
         @media (min-width: 768px) {
@@ -55,6 +57,9 @@
                 width: 100%;
             }
         }
+    }
+    &__dscr {
+        grid-area: item2;
     }
     &__title {
         font-size: 32px;
@@ -177,12 +182,20 @@
         }
     }
     &__caution {
+        grid-area: item3;
         margin: 35px 0 0 0;
         padding: 18px 0 27px 0;
         background: #D5F9FF;
         font-size: 16px;
         line-height: 24px;
         color: #04184F;
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+        @media(min-width: 768px) {
+            margin: 40px 0 48px 0;
+            width: auto;
+            padding: 16px 0 17px 22px;
+        }
         @media(min-width: 1366px) {
             padding: 18px 36px 24px 24px;
             margin: 28px 0 18px 0;
@@ -194,6 +207,7 @@
         }
     }
     &__info {
+        grid-area: item4;
         margin: 22px 0 21px 0;
         font-size: 18px;
         color: #020D2B;
@@ -204,8 +218,7 @@
             }
         }
         @media (min-width: 768px) {
-            margin: 46px 0 0 0;
-            padding: 0 0 38px 0;
+            margin: 0;
         }
         @media (min-width: 1366px) {
             padding: 0;
@@ -223,12 +236,24 @@
     &__materials {
         margin: 32px 0 100px 0;
     }
-    &__dscr {
-        // @media (min-width: 768px) {
-        //     display: grid;
-        //     grid-template-columns: 1fr 1fr;
-        //     grid-auto-flow: row;
-        // }
+    &__features {
+        grid-area: item5;
+        min-width: 0;
+        @media(min-width: 768px) {
+            margin: 30px 0 0 0;
+        }
+    }
+    &__extra {
+        grid-area: item6;
+        @media(min-width: 768px) {
+            .features__item {
+                padding: 0;
+                border: none;
+            }
+        }
+    }
+    &__props {
+        grid-area: item7;
     }
 }
 
@@ -279,14 +304,16 @@
             }
         }
         @media(min-width: 768px) {
-            padding: 22px 0 24px 0;
+            padding: 30px 0 24px 0;
         }
+    }
+    &__name {
+        margin: 0 0 18px 0;
     }
     &__options {
         display: flex;
         overflow: scroll;
         -ms-overflow-style: none;
-        padding: 18px 0 0 0;
         &::-webkit-scrollbar {
             width: 0;
         }
@@ -325,7 +352,8 @@
     }
     &__checkbox {
         display: inline-block;
-        margin: 18px 0 0 0;
+        margin: 0 0 6px 0;
+        font-size: 18px;
     }
     &__shadow {
         position: absolute;
@@ -446,5 +474,16 @@
     }
     &__props {
         line-height: 24px;
+    }
+}
+
+.dscr {
+    &__grid {
+        @media (min-width: 768px) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-auto-flow: row;
+            column-gap: 28px;
+        }
     }
 }
