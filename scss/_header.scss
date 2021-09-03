@@ -18,11 +18,11 @@
         align-items: center;
         justify-content: space-between;
         @media (min-width: 768px) {
-            justify-content: space-between;
             align-items: flex-start;
             padding: 21px 0 12px 0;
         }
         @media (min-width: 1366px) {
+            justify-content: flex-start;
             padding: 0;
             align-items: center;
         }
@@ -54,6 +54,7 @@
     &__nav {
         @media (min-width: 1366px) {
             order: 2;
+            margin: 0 0 0 56px;
         }
     }
     &__favorites {
@@ -68,6 +69,7 @@
         align-items: center;
         @media (min-width: 1366px) {
             order: 3;
+            margin-left: auto;
         }
     }
     &__prod-info {
