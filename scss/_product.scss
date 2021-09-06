@@ -20,6 +20,9 @@
             grid-template-areas: "img dscr" "info features" "extra features" ". features" ". props";
             align-items: start;
         }
+        @media (min-width: 1536px) {
+            grid-template-areas: "img dscr" "img features" "info features" "extra features" ". props";
+        }
     }
     &__content {
         @media (min-width: 1366px) {
@@ -245,6 +248,9 @@
         }
         @media (min-width: 1366px) {
             margin: 0;
+        }
+        @media (min-width: 1536px) {
+            margin: 32px 0 0 0;
         }
     }
     &__extra {
