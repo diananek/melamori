@@ -13,11 +13,11 @@
         @media (min-width: 768px) {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            grid-template-areas: "item1 item1" "item2 item2" "item3 item3" "item4 item6" "item5 item5" "item7 item7";
+            grid-template-areas: "img img" "dscr dscr" "info extra" "features features" "props props";
         }
         @media (min-width: 1366px) {
             column-gap: 24px;
-            grid-template-areas: "item1 item2" "item1 item3" "item4 item5" "item4 item5" "item6 item5" "item6 item5" ". item7";
+            grid-template-areas: "img dscr" "info features" "extra features" ". features" ". props";
             align-items: start;
         }
     }
@@ -34,7 +34,7 @@
     }
     &__img {
         min-height: 266px;
-        grid-area: item1;
+        grid-area: img;
         // background: no-repeat center/ cover url(../img/bed/Adel_1.jpg);
         background: no-repeat center/ cover url(../img/mattress/Vega.jpg);
         @media (min-width: 768px) {
@@ -62,7 +62,7 @@
         }
     }
     &__dscr {
-        grid-area: item2;
+        grid-area: dscr;
     }
     &__title {
         font-size: 32px;
@@ -187,7 +187,6 @@
         }
     }
     &__caution {
-        grid-area: item3;
         margin: 35px 0 0 0;
         padding: 18px 0 27px 0;
         background: #D5F9FF;
@@ -212,7 +211,7 @@
         }
     }
     &__info {
-        grid-area: item4;
+        grid-area: info;
         margin: 22px 0 21px 0;
         font-size: 18px;
         color: #020D2B;
@@ -240,7 +239,7 @@
         margin: 32px 0 100px 0;
     }
     &__features {
-        grid-area: item5;
+        grid-area: features;
         min-width: 0;
         @media(min-width: 768px) {
             margin: 30px 0 0 0;
@@ -250,7 +249,7 @@
         }
     }
     &__extra {
-        grid-area: item6;
+        grid-area: extra;
         @media(min-width: 768px) {
             .features__item {
                 padding: 0;
@@ -259,7 +258,7 @@
         }
     }
     &__props {
-        grid-area: item7;
+        grid-area: props;
     }
 }
 
