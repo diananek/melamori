@@ -202,12 +202,12 @@
         }
         @media(min-width: 1366px) {
             padding: 18px 36px 24px 24px;
-            margin: 40px 0 27px 0;
+            margin: 40px 0 0 0;
             font-size: 18px;
         }
         @media(min-width: 1920px) {
             padding: 20px 32px 27px 24px;
-            margin: 36px 0 38px 0;
+            margin: 36px 0 0 0;
         }
     }
     &__info {
@@ -254,6 +254,9 @@
                 padding: 0;
                 border: none;
             }
+        }
+        @media(min-width: 768px) {
+            margin-top: 56px;
         }
     }
     &__props {
