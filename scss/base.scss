@@ -10,26 +10,22 @@ body {
 
 //----------------------------------------------------------------------------------
 .container {
-    max-width: 328px;
+    width: 326/360 *100%;
     margin: 0 auto;
-    @media (min-width: 768px) {
-        max-width: 696px;
-        &_target {
-            display: flex;
-            align-items: flex-start;
-        }
-    }
+    // @media (min-width: 768px) {
+    //     width: 696px;
+    // }
     @media (min-width: 1366px) {
-        max-width: 1224px;
+        width: 1224/1366 *100%;
         &_target {
             flex-direction: column;
         }
     }
     @media (min-width: 1536px) {
-        max-width: 1410px;
+        width: 1409/1536*100%;
     }
     @media (min-width: 1920px) {
-        max-width: 1792px;
+        width: 1792/1920 *100%;
     }
 }
 
