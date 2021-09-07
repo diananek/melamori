@@ -26,7 +26,7 @@
         @media (min-width: 1920px) {
             grid-template-columns: 5fr 4fr 3fr;
             column-gap: 32px;
-            grid-template-areas: "img dscr dscr" "img features caution" "img features info" "img props extra" ". props extra" ". props .";
+            grid-template-areas: "img dscr dscr" "img features caution" "img features caution" "img features info" "img features info" "img features ." "img props extra" ". props extra" ". props .";
         }
     }
     &__content {
@@ -98,6 +98,7 @@
             grid-column: 1/-1;
         }
         @media (min-width: 1920px) {
+            margin: 0;
             grid-column: 1/2;
         }
     }
@@ -159,7 +160,7 @@
         @media(min-width: 1920px) {
             grid-column: 2/3;
             grid-row: 2/3;
-            margin: 40px 0 0 0;
+            margin: 37px 0 0 0;
         }
     }
     &__btn {
@@ -224,7 +225,7 @@
         @media(min-width: 1920px) {
             grid-area: caution;
             padding: 20px 32px 27px 24px;
-            margin: 36px 0 0 0;
+            margin: 36px 0 38px 0;
         }
     }
     &__info {
@@ -238,19 +239,19 @@
             }
         }
         @media (min-width: 1366px) {
-            margin: 32px 0 0 0;
+            margin: 0;
             padding: 0;
         }
     }
     &__offer {
         line-height: 27px;
     }
-    &__tablet-wrapper {
-        display: flex;
-        align-items: center;
-        height: 48px;
-        margin: 27px 0 43px 0;
-    }
+    // &__tablet-wrapper {
+    //     display: flex;
+    //     align-items: center;
+    //     height: 48px;
+    //     margin: 27px 0 43px 0;
+    // }
     &__materials {
         margin: 32px 0 100px 0;
     }
@@ -266,6 +267,9 @@
         @media (min-width: 1536px) {
             margin: 32px 0 0 0;
         }
+        @media (min-width: 1920px) {
+            margin: 0;
+        }
     }
     &__extra {
         grid-area: extra;
@@ -277,6 +281,9 @@
         }
         @media(min-width: 768px) {
             margin-top: 56px;
+        }
+        @media (min-width: 1920px) {
+            margin-top: 29px;
         }
     }
     &__props {
@@ -503,6 +510,7 @@
             grid-template-columns: 4fr 3fr;
             grid-template-rows: min-content min-content;
             column-gap: 32px;
+            align-items: center;
         }
     }
 }
