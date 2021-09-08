@@ -10,22 +10,22 @@ body {
 
 //----------------------------------------------------------------------------------
 .container {
-    width: 326/360 *100%;
+    max-width: 326px;
     margin: 0 auto;
     @media (min-width: 768px) {
-        width: 696/768 * 100%;
+        max-width: 696px;
     }
     @media (min-width: 1366px) {
-        width: 1224/1366 *100%;
+        max-width: 1224px;
         &_target {
             flex-direction: column;
         }
     }
     @media (min-width: 1536px) {
-        width: 1409/1536*100%;
+        max-width: 1409px;
     }
     @media (min-width: 1920px) {
-        width: 1792/1920 *100%;
+        max-width: 1729px;
     }
 }
 
