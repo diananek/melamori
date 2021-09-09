@@ -592,6 +592,20 @@
             &:last-child {
                 display: block;
             }
+            overflow: hidden;
+            position: relative;
+            &:hover {
+                padding-bottom: 24px;
+                box-shadow: 0px 16px 32px -16px rgba(2, 13, 42, 0.3);
+                border-radius: 2px;
+                transition: border-radius 0.2s, box-shadow 0.5s ease;
+                .similar-products__actions {
+                    display: block;
+                    height: auto;
+                    visibility: visible;
+                    opacity: 1;
+                }
+            }
         }
         @media(min-width: 1536px) {
             margin: 0 16px;
@@ -729,9 +743,28 @@
     }
     &__hard {
         margin: 12px 0 0 0;
-        @media (min-width: 1536px) {
+        @media (min-width: 1366px) {
             display: inline;
         }
+    }
+    &__actions {
+        display: hidden;
+        visibility: hidden;
+        opacity: 0;
+        height: 0;
+        transition: visibility 0s, opacity 0.5s ease;
+        margin: 27px 0 0 14px;
+    }
+    &__add {
+        width: 181px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #03257C;
+        border: 1px solid #03257C;
+        border-radius: 2px;
+        font-size: 16px;
     }
 }
 
