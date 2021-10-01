@@ -28,6 +28,13 @@
             &_mattr {
                 grid-template-areas: "img dscr" "img features" "info features" "extra props" ". props";
             }
+            &_sofa {
+                grid-template-areas: "img dscr" "img features" "info features" "info props";
+                .props {
+                    grid-row: 3/4;
+                    padding-top: 50px;
+                }
+            }
         }
         @media (min-width: 1920px) {
             grid-template-columns: 5fr 4fr 3fr;
@@ -35,6 +42,16 @@
             grid-template-areas: "img dscr dscr" "img features caution" "img features caution" "img features info" "img features info" "img features ." "img props extra" ". props extra" ". props .";
             &_mattr {
                 grid-template-areas: "img dscr dscr" "img features caution" "img features caution" "img features info" "img features info" "img props info" "img props extra" ". props extra" ". props .";
+            }
+            &_sofa {
+                grid-template-areas: "img dscr dscr" "img features caution" "img props caution" "img props info" "img props info" "img props .";
+                .props {
+                    grid-row: props/-1;
+                    padding-top: 17px;
+                    &__item {
+                        grid-template-columns: 246/544 *100% 388/544 *100%;
+                    }
+                }
             }
         }
     }
