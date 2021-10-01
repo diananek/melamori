@@ -22,6 +22,9 @@
             &_mattr {
                 grid-template-areas: "img dscr" "info features" "extra features" ". props";
             }
+            &_plw {
+                grid-template-areas: "img dscr" "info props";
+            }
         }
         @media (min-width: 1536px) {
             grid-template-areas: "img dscr" "img features" "info features" "info features" "extra features" ". props";
@@ -33,6 +36,12 @@
                 .props {
                     grid-row: 3/4;
                     padding-top: 50px;
+                }
+            }
+            &_plw {
+                grid-template-areas: "img dscr" "img props" "info props" ". props";
+                .props {
+                    padding-top: 38px;
                 }
             }
         }
@@ -52,6 +61,9 @@
                         grid-template-columns: 246/544 *100% 388/544 *100%;
                     }
                 }
+            }
+            &_plw {
+                grid-template-areas: "img dscr dscr" "img props caution" "img props caution" "img props info" "img . info" "img . info" "img . .";
             }
         }
     }
@@ -476,6 +488,7 @@
             grid-template-rows: 1fr;
             grid-template-columns: 152/544 *100% 388/544 *100%;
             grid-column-gap: 54/544 * 100%;
+            margin: 0 0 28px 0;
         }
     }
     &__val {
