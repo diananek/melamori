@@ -578,12 +578,14 @@
 
 //----------------------------------------------------------------------------------
 .similar-products {
-    padding: 86px 0 59px 0;
-    @media(min-width: 768px) {
-        padding: 89px 0 95px 0;
-    }
     @media(min-width: 1366px) {
-        padding: 64px 0 88px 0;
+        height: 456px;
+    }
+    @media(min-width: 1536px) {
+        height: 506px;
+    }
+    @media(min-width: 1920px) {
+        height: 594px;
     }
     //Заменить на элементы этого блока
     .price_cur {
