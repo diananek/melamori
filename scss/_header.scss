@@ -6,6 +6,15 @@
     background: #FFF;
     height: 64px;
     width: 100%;
+    &_catalog {
+        bottom: 0;
+        top: auto;
+        box-shadow: 0px -2px 24px rgba(4, 3, 31, 0.15);
+        border-radius: 20px 20px 0px 0px;
+        .menu {
+            display: block;
+        }
+    }
     @media (min-width: 1366px) {
         height: 93px;
     }
@@ -63,16 +72,37 @@
             margin: 0 0 0 183px;
         }
     }
+    &__filters {
+        width: 24px;
+        height: 24px;
+        background: no-repeat center url(../img/header/filters.svg);
+    }
     &__favorites {
         margin: 0 18px 0 0;
+        width: 24px;
+        height: 24px;
+        background: no-repeat center url(../img/header/Favorites.svg);
+        &_catalog {
+            margin: 0;
+        }
     }
     &__basket {
         margin: 0 9px 0 0;
+        width: 24px;
+        height: 28px;
+        background: no-repeat center url(../img/header/basket.svg);
+        &_catalog {
+            margin: 0;
+        }
     }
     &__actions {
         display: flex;
         height: 26px;
         align-items: center;
+        &_catalog {
+            width: 200px;
+            justify-content: space-between;
+        }
         @media (min-width: 1366px) {
             order: 3;
             margin-left: auto;
