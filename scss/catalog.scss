@@ -1,0 +1,29 @@
+@import '_offers.scss';
+.catalog {
+    &__sorting {
+        margin: 0 0 46px 0;
+    }
+}
+
+.sorting {
+    display: flex;
+    &__item {
+        font-weight: 500;
+        font-size: 18px;
+        color: #58778D;
+        margin: 0 24px 0 0;
+        &_active {
+            font-weight: 600;
+            color: #03257C;
+            display: flex;
+            align-items: center;
+        }
+    }
+    &__arrow {
+        display: block;
+        background: no-repeat center url("data:image/svg+xml,%3Csvg width='10' height='7' viewBox='0 0 10 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M5 4.07107L8.53553 0.535534L9.94975 1.94975L5 6.89949L0.0502526 1.94975L1.46447 0.535534L5 4.07107Z' fill='%2303257C'/%3E%3C/svg%3E");
+        width: 10px;
+        height: 7px;
+        margin-left: 4px;
+    }
+}
