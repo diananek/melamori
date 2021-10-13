@@ -1,7 +1,6 @@
 @import '_header.scss';
 @import '_product.scss';
 @import '_footer.scss';
-@import '_offers.scss';
 body {
     font-family: 'Manrope', sans-serif;
     &._lock {
@@ -34,7 +33,6 @@ body {
 .wrapper {
     display: flex;
     flex-direction: column;
-    overflow: hidden;
     height: 100%;
     min-height: inherit;
 }
@@ -42,6 +40,24 @@ body {
 //----------------------------------------------------------------------------------
 .page {
     flex: 1 1 auto;
+    &__offers {
+        margin: 30px 0 0 0;
+    }
+    &__name {
+        display: flex;
+        align-items: flex-end;
+        margin: 17px 0 0 0;
+    }
+    &__title {
+        font-weight: 600;
+        font-size: 24px;
+        color: #020D2B;
+        margin: 0 8px 0 0;
+    }
+    &__goods-count {
+        font-size: 16px;
+        color: #58778D;
+    }
 }
 
 //----------------------------------------------------------------------------------
