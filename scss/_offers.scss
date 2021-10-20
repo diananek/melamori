@@ -1,7 +1,4 @@
 .offers {
-    display: flex;
-    overflow: scroll;
-    -ms-overflow-style: none;
     &::before {
         content: "";
         display: inline-block;
