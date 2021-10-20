@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/null.css">
     <link rel="stylesheet" href="css/base.min.css">
     <link rel="stylesheet" href="css/catalog.min.css">
+    <link rel="stylesheet" href="css/slick.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -71,8 +72,8 @@
                 </div>
             </div>
             <div class="container">
-                <ul class="page__offers offers">
-                    <li class="offers__item offers__item_dark">
+                <ul class="page__offers offers slider">
+                    <li class="offers__item offers__item_dark slider__item">
                         <div class="offers__img">
                             <img src="img/offers/clock.png">
                         </div>
@@ -81,7 +82,7 @@
                             <div class="offers__dscr">-5% на матрац при покупке кровати</div>
                         </div>
                     </li>
-                    <li class="offers__item offers__item_light">
+                    <li class="offers__item offers__item_light slider__item">
                         <div class="offers__img">
                             <img src="img/offers/glasses.png">
                         </div>
@@ -90,7 +91,7 @@
                             <div class="offers__dscr">Скидка 5% на все товары</div>
                         </div>
                     </li>
-                    <li class="offers__item offers__item_dark">
+                    <li class="offers__item offers__item_dark slider__item">
                         <div class="offers__img">
                             <img src="img/offers/ruler.png">
                         </div>
@@ -99,7 +100,7 @@
                             <div class="offers__dscr">Изготовление товаров любого размера</div>
                         </div>
                     </li>
-                    <li class="offers__item offers__item_dark">
+                    <li class="offers__item offers__item_dark slider__item">
                         <div class="offers__img">
                             <img src="img/offers/gift.png">
                         </div>
@@ -108,7 +109,7 @@
                             <div class="offers__dscr">Скидка 5% именинникам </div>
                         </div>
                     </li>
-                    <li class="offers__item offers__item_light">
+                    <li class="offers__item offers__item_light slider__item">
                         <div class="offers__img">
                             <img src="img/offers/phone.png ">
                         </div>
@@ -117,7 +118,7 @@
                             <div class="offers__dscr ">Скидка 2% для новых подписчиков в Instagram</div>
                         </div>
                     </li>
-                    <li class="offers__item offers__item_light">
+                    <li class="offers__item offers__item_light slider__item">
                         <div class="offers__img">
                             <img src="img/offers/rings.png">
                         </div>
@@ -144,10 +145,12 @@
                             </li>
                         </ul>
                         <form class="catalog__filters filters">
-                            <div class="filter__title">Фильтры</div>
-                            <div class="filters__item">
-                                <label for="price"></label>
-                                <input type="text" class="filters__price" id="price">
+                            <div class="container">
+                                <div class="filter__title">Фильтры</div>
+                                <div class="filters__item">
+                                    <label for="price"></label>
+                                    <input type="text" class="filters__price" id="price">
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -369,8 +372,11 @@
 
         </footer>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="js/dynamic-adapt.js"></script>
     <script src="js/script.js "></script>
+    <script src="slick/js/slick.min.js"></script>
+    <script src="slick/js/script.js"></script>
 </body>
 
 </html>
