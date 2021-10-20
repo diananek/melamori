@@ -5,7 +5,7 @@ $(document).ready(function() {
         speed: 1000,
         arrows: false,
         dots: false,
-        touchThreshold: 8,
+        touchThreshold: 20,
         infinite: true,
         variableWidth: true,
     });
