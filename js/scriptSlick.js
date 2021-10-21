@@ -5,8 +5,8 @@ $(document).ready(function() {
         speed: 1000,
         arrows: false,
         dots: false,
-        touchThreshold: 20,
         infinite: true,
-        variableWidth: true,
+        centerMode: true,
+
     });
 });
