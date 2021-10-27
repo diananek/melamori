@@ -1,4 +1,6 @@
 .offers {
+    width: 100vw;
+    display: flex;
     &::before {
         content: "";
         display: inline-block;
