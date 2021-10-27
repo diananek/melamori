@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,WAAW,AAAC,CACR,QAAQ,CAAE,MAAM,CAChB,KAAK,CAAE,iCAAiC,CAC3C,AAKD,AAAA,YAAY,AAAC,CACT,OAAO,CAAE,IAAI,CACb,WAAW,CAAE,UAAU,CAC1B",
-    "sources": [
-        "../scss/slick.scss"
-    ],
-    "names": [],
-    "file": "slick.min.css"
-}
