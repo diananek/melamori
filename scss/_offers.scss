@@ -1,7 +1,8 @@
 .offers {
     width: 100vw;
     display: flex;
-    overflow: scroll;
+    cursor: grab;
+    overflow: auto;
     &::-webkit-scrollbar {
         width: 0;
     }
