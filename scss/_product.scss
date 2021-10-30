@@ -403,11 +403,6 @@
             overflow: hidden;
             flex-wrap: wrap;
         }
-        ._selected {
-            background: #D5F9FF;
-            border-radius: 2px;
-            color: #03257C;
-        }
     }
     &__option {
         margin: 0 12px 0 0;
@@ -419,6 +414,11 @@
         align-items: center;
         font-size: 16px;
         cursor: pointer;
+        &_selected {
+            background: #D5F9FF;
+            border-radius: 2px;
+            color: #03257C;
+        }
         &:last-child {
             margin-right: 50px;
             @media(min-width: 1366px) {
