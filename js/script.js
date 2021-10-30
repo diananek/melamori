@@ -29,8 +29,24 @@
     function selectOption() {
 
         let options = document.body.querySelectorAll('.features__options');
-        for (let option of options) {
-            option.addEventListener('click', () => handler(event, option));
+        if (options) {
+            for (let option of options) {
+                option.addEventListener('click', () => handler(event, option));
+            }
+        }
+    }
+
+    function selectMenuItem() {
+
+        let menu = document.body.querySelector('.menu');
+        if (menu) {
+            function menuHandler(e) {
+                if (e.target.classList.contains('menu__link')) {
+                    document.querySelector('.menu__link_selected').classList.remove('menu__link_selected');
+                    e.target.classList.add('menu__link_selected');
+                }
+            }
+            menu.addEventListener('click', menuHandler);
         }
     }
 
@@ -79,6 +95,7 @@
         }
     }
     window.main = function() {
+        selectMenuItem();
         menuBurger();
         selectOption();
         offersScroll();
