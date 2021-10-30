@@ -180,37 +180,57 @@
             background: 0;
             overflow: hidden;
         }
-        &._active {
+        &_active {
             left: 0;
         }
         li {
-            margin: 0 0 48px 0;
+            margin: 0 0 46px 0;
             &:last-child {
                 margin: 0;
+            }
+            @media (min-width:768px) {
+                margin: 0 0 70px 0;
             }
             @media (min-width: 1366px) {
                 display: inline-block;
                 margin: 0 40px 0 0;
-                a {
-                    font-size: 18px;
-                    color: #020D2B;
-                    line-height: 25px;
-                }
             }
         }
     }
-    &__item {
-        a {
-            font-weight: 600;
-            font-size: 32px;
-            line-height: 44px;
-            color: #020D2B;
-        }
-    }
     &__link {
-        padding: 10px 0;
-        color: #FFF;
-        font-size: 30px;
+        position: relative;
+        font-weight: 600;
+        font-size: 32px;
+        line-height: 44px;
+        color: #020D2B;
+        &_selected {
+            color: #03257C;
+            &::after {
+                left: 105%;
+                top: 20px;
+                content: '';
+                position: absolute;
+                z-index: 10;
+                width: 8px;
+                height: 8px;
+                background: #03257C;
+                border-radius: 50%;
+                @media (min-width: 768px) {
+                    width: 12px;
+                    height: 12px;
+                    top: 36px;
+                    left: 110%;
+                }
+            }
+        }
+        @media (min-width:768px) {
+            font-size: 56px;
+        }
+        @media (min-width:1366px) {
+            font-size: 18px;
+            color: #020D2B;
+            line-height: 25px;
+        }
     }
     &__icon {
         margin: 5px;
@@ -221,23 +241,6 @@
         height: 21px;
         cursor: pointer;
         margin: 0 24px 0 0;
-        &._active {
-            position: fixed;
-            top: 36px;
-            left: 16px;
-            span {
-                transform: scale(0) translate(0, -50%);
-            }
-            &::before {
-                bottom: 50%;
-                transform: rotate(45deg) translate(0, 50%);
-            }
-            &::after {
-                top: 47%;
-                width: 100%;
-                transform: rotate(-45deg) translate(0, -50%);
-            }
-        }
         &::before,
         &::after,
         span {
@@ -261,6 +264,23 @@
             top: 50%;
             transform: scale(1) translate(0, -50%);
             width: 19px;
+        }
+        &_active {
+            position: fixed;
+            top: 36px;
+            left: 16px;
+            span {
+                transform: scale(0) translate(0, -50%);
+            }
+            &::before {
+                bottom: 50%;
+                transform: rotate(45deg) translate(0, 50%);
+            }
+            &::after {
+                top: 47%;
+                width: 100%;
+                transform: rotate(-45deg) translate(0, -50%);
+            }
         }
         @media (min-width: 1366px) {
             display: none;
