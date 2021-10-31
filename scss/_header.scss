@@ -233,14 +233,12 @@
         }
     }
     &__icon {
-        margin: 5px;
         z-index: 5;
         display: block;
         position: relative;
         width: 28px;
         height: 21px;
         cursor: pointer;
-        margin: 0 24px 0 0;
         &::before,
         &::after,
         span {
