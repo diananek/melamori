@@ -43,23 +43,18 @@
         align-items: center;
         justify-content: space-between;
         @media (min-width: 768px) {
+            justify-content: stretch;
             align-items: flex-start;
             padding: 21px 0 12px 0;
         }
         @media (min-width: 1366px) {
-            justify-content: flex-start;
             padding: 0;
             align-items: center;
-        }
-        &_catalog {
-            @media (min-width: 768px) {
-                justify-content: stretch;
-            }
         }
     }
     &__logo {
         display: none;
-        @media (min-width: 768px) {
+        @media(min-width: 768px) {
             display: block;
             width: 184px;
             height: 41px;
@@ -67,32 +62,22 @@
             img {
                 width: 100%;
             }
+            margin-right: 167px;
         }
-        @media (min-width: 1366px) {
+        @media(min-width: 1366px) {
+            margin-right: 56px;
             align-self: center;
             order: 1;
         }
-        @media (min-width: 1536px) {
+        @media(min-width: 1536px) {
+            margin-right: 136px;
             width: 224px;
             height: 50px;
         }
-        @media (min-width: 1920px) {
+        @media(min-width: 1920px) {
+            margin-right: 183px;
             width: 267px;
             height: 60px;
-        }
-        &_catalog {
-            @media(min-width: 768px) {
-                margin-right: 167px;
-            }
-            @media(min-width: 1366px) {
-                margin-right: 56px;
-            }
-            @media(min-width: 1536px) {
-                margin-right: 136px;
-            }
-            @media(min-width: 1920px) {
-                margin-right: 183px;
-            }
         }
     }
     &__nav {
@@ -317,13 +302,11 @@
                 transform: rotate(-45deg) translate(0, -50%);
             }
         }
+        @media(min-width: 768px) {
+            margin-right: 228px;
+        }
         @media (min-width: 1366px) {
             display: none;
-        }
-        &_catalog {
-            @media(min-width: 768px) {
-                margin-right: 228px;
-            }
         }
     }
 }
