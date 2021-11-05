@@ -14,7 +14,7 @@
         }
     }
 
-    function handler(event, option) {
+    function selectOptionHandler(event, option) {
         let target = event.target.closest('.features__option');
 
         if (!target) return;
@@ -31,13 +31,12 @@
         let options = document.body.querySelectorAll('.features__options');
         if (options) {
             for (let option of options) {
-                option.addEventListener('click', () => handler(event, option));
+                option.addEventListener('click', () => selectOptionHandler(event, option));
             }
         }
     }
 
     function selectMenuItem() {
-
         let menu = document.body.querySelector('.menu');
         if (menu) {
             function menuHandler(e) {
