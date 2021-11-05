@@ -35,4 +35,7 @@
         display: flex;
         justify-content: right;
     }
+    @media(min-width: 768px) {
+        display: none;
+    }
 }
