@@ -40,12 +40,29 @@
         let menu = document.body.querySelector('.menu');
         if (menu) {
             function menuHandler(e) {
-                if (e.target.classList.contains('menu__link')) {
+                if (e.target.classList.contains('menu__link') && document.querySelector('.menu__link_selected')) {
                     document.querySelector('.menu__link_selected').classList.remove('menu__link_selected');
                     e.target.classList.add('menu__link_selected');
                 }
             }
             menu.addEventListener('click', menuHandler);
+        }
+    }
+
+
+    function sortingItemClick() {
+        let sortingBlock = document.body.querySelector('.sorting');
+        if (sortingBlock) {
+            function sortingHandler(e) {
+                let activeSortingItem = document.querySelector('.sorting__item_active');
+                let targetItem = e.target;
+                activeSortingItem.classList.remove('sorting__item_active');
+                targetItem.classList.add('sorting__item_active');
+
+                let arrow = activeSortingItem.querySelector('.sorting__arrow');
+                targetItem.append(arrow);
+            }
+            sortingBlock.addEventListener('click', sortingHandler);
         }
     }
 
@@ -98,5 +115,6 @@
         menuBurger();
         selectOption();
         offersScroll();
+        sortingItemClick();
     }
 })()
