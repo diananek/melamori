@@ -56,11 +56,13 @@
             function sortingHandler(e) {
                 let activeSortingItem = document.querySelector('.sorting__item_active');
                 let targetItem = e.target;
-                activeSortingItem.classList.remove('sorting__item_active');
-                targetItem.classList.add('sorting__item_active');
+                if (targetItem.classList.contains('sorting__item')) {
+                    activeSortingItem.classList.remove('sorting__item_active');
+                    targetItem.classList.add('sorting__item_active');
 
-                let arrow = activeSortingItem.querySelector('.sorting__arrow');
-                targetItem.append(arrow);
+                    let arrow = activeSortingItem.querySelector('.sorting__arrow');
+                    targetItem.append(arrow);
+                }
             }
             sortingBlock.addEventListener('click', sortingHandler);
         }
