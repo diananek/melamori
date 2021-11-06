@@ -7,11 +7,15 @@
         width: 0;
     }
     &__item {
-        height: 200px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        min-height: 200px;
         border-radius: 10px;
         margin: 0 16px 0 0;
         flex: 0 0 152px;
         overflow: hidden;
+        padding: 0 10px;
         @media(min-width: 768px) {
             display: flex;
             height: 126px;
@@ -49,7 +53,6 @@
     &__title {
         font-weight: bold;
         font-size: 18px;
-        margin: 9px 0 0 0;
         @media(min-width: 768px) {
             font-size: 20px;
             margin: 13px 0 0 0;
@@ -72,6 +75,13 @@
         @media(min-width: 1536px) {
             font-size: 18px;
             margin: 6px 0 0 0;
+        }
+    }
+    &__img {
+        width: 100px;
+        height: 100px;
+        img {
+            width: 100%;
         }
     }
 }
