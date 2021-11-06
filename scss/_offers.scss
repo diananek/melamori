@@ -21,16 +21,14 @@
             flex-direction: row;
             align-items: stretch;
             min-height: 126px;
-            padding: 0 0 0 0;
+            padding: 0;
             flex: 0 0 336px;
         }
         @media(min-width: 1366px) {
-            padding: 6px 47px 14px 20px;
             flex: 0 0 392px;
             margin: 0 24px 0 0;
         }
-        @media(min-width: 1366px) {
-            padding: 6px 45px 14px 20px;
+        @media(min-width: 1536px) {
             flex: 0 0 424px;
             height: 152px;
             margin: 0 32px 0 0;
@@ -64,7 +62,7 @@
         }
         @media(min-width: 1536px) {
             font-size: 24px;
-            margin: 22px 0 0 0;
+            margin: 32px 0 0 0;
         }
     }
     &__dscr {
@@ -81,11 +79,17 @@
     }
     &__img {
         flex: 0 0 100px;
+        height: 100px;
         img {
             width: 100%;
         }
         @media (min-width: 768px) {
             flex: 0 0 125px;
+            height: 125px;
+        }
+        @media (min-width: 1536px) {
+            flex: 0 0 150px;
+            height: 150px;
         }
     }
 }
