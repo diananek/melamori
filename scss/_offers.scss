@@ -11,6 +11,7 @@
         border-radius: 10px;
         margin: 0 16px 0 0;
         flex: 0 0 152px;
+        overflow: hidden;
         @media(min-width: 768px) {
             display: flex;
             height: 126px;
