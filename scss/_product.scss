@@ -768,30 +768,15 @@
     }
     &__img {
         position: relative;
-        width: 160px;
-        height: 112px;
+        width: 100%;
+        height: auto;
         img {
             width: 100%;
         }
         @media(min-width: 768px) {
-            width: 216px;
-            height: 151px;
             .product-card__discount {
                 display: none;
             }
-        }
-        @media(min-width: 1366px) {
-            width: 288px;
-            height: 201px;
-            // grid-area: img;
-        }
-        @media(min-width: 1536px) {
-            width: 328px;
-            height: 228px;
-        }
-        @media(min-width: 1920px) {
-            width: 424px;
-            height: 296px;
         }
     }
     &__name {
