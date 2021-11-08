@@ -219,6 +219,7 @@
         font-size: 32px;
         line-height: 44px;
         color: #020D2B;
+        transition: color 0.3s ease;
         &_selected {
             color: #03257C;
             &::after {
@@ -243,6 +244,9 @@
                     display: none;
                 }
             }
+        }
+        &:hover {
+            color: #58778D;
         }
         @media (min-width:768px) {
             font-size: 56px;
