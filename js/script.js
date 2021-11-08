@@ -68,6 +68,17 @@
         }
     }
 
+    function favClick() {
+        let favList = document.querySelectorAll('.product-card__fav');
+        if (favList) {
+            [].map.call(favList, (fav) => {
+                fav.addEventListener('click', () => {
+                    fav.classList.toggle('product-card__fav_active');
+                })
+            })
+        }
+    }
+
     function offersScroll() {
         const ele = document.querySelector('.page__offers');
 
@@ -118,5 +129,6 @@
         selectOption();
         offersScroll();
         sortingItemClick();
+        favClick();
     }
 })()
