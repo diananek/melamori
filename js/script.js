@@ -70,11 +70,17 @@
 
     function favClick() {
         let favList = document.querySelectorAll('.product-card__fav');
+        let favIcon = document.querySelector('.product__favorites');
         if (favList) {
             [].map.call(favList, (fav) => {
                 fav.addEventListener('click', () => {
                     fav.classList.toggle('product-card__fav_active');
                 })
+            })
+        }
+        if (favIcon) {
+            favIcon.addEventListener('click', () => {
+                favIcon.classList.toggle('product__favorites_active');
             })
         }
     }
