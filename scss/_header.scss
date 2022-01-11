@@ -134,6 +134,9 @@
         &_basket {
             display: none;
         }
+        @media (min-width: 768px) {
+            display: flex;
+        }
         @media (min-width: 1366px) {
             order: 3;
             margin-left: auto;
