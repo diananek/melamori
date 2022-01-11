@@ -1,0 +1,58 @@
+.basket {
+    &__block {
+        padding: 24px 24px 34px 24px;
+        border: 1px solid #B7CBD9;
+        border-radius: 5px;
+        margin-bottom: 24px;
+    }
+    &__order-form {
+        margin-top: 27px;
+        position: relative;
+    }
+    &__total-price {
+        font-size: 40px;
+        border-bottom: 1px solid #B7CBD9;
+        padding-bottom: 10px;
+        span {
+            color: #58778D;
+        }
+    }
+    &__discount {
+        margin-top: 17px;
+        font-size: 18px;
+        line-height: 25px;
+        color: #58778D;
+    }
+    &__form-label {
+        font-weight: 600;
+        font-size: 18px;
+    }
+    &__input {
+        display: block;
+        border: 1px solid #B7CBD9;
+        border-radius: 2px;
+        padding: 17px 30px 15px 18px;
+        font-size: 18px;
+        margin-top: 5px;
+    }
+    &__btn {
+        width: 280px;
+        height: 56px;
+        color: #FFF;
+        background: #020D2B;
+        border-radius: 2px;
+        font-weight: 600;
+        font-size: 18px;
+        margin: 16px 0 32px 0;
+    }
+}
+
+.discount {
+    &__item {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__value {
+        text-align: right;
+    }
+}
