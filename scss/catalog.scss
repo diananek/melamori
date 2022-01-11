@@ -29,6 +29,9 @@
         margin: 46px -4px 0 -4px;
         display: flex;
         flex-wrap: wrap;
+        &_actions {
+            margin-top: 31px;
+        }
         @media (min-width: 768px) {
             margin: 64px -12px 0 -12px;
         }
