@@ -42,6 +42,15 @@ body {
 //----------------------------------------------------------------------------------
 .page {
     flex: 1 1 auto;
+    @media(min-width: 1366px) {
+        padding: 67px 0 0 0;
+    }
+    @media (min-width: 1536px) {
+        padding: 77px 0 0 0;
+    }
+    @media (min-width: 1920px) {
+        padding: 91px 0 0 0;
+    }
     &__offers {
         margin: 30px 0 0 0;
         @media (min-width: 768px) {
@@ -65,10 +74,16 @@ body {
             margin: 25px 0 0 0;
         }
         @media (min-width: 768px) {
-            margin: 0 0 44px 0;
+            margin: 50px 0 34px 0;
         }
         @media (min-width: 1366px) {
-            margin: 0;
+            margin: 67px 0 38px 0;
+        }
+        @media (min-width: 1536px) {
+            margin: 61px 0 55px 0;
+        }
+        @media (min-width: 1920px) {
+            margin: 75px 0 85px 0;
         }
     }
     &__title {
