@@ -29,6 +29,7 @@
     }
     &__input {
         display: block;
+        width: 100%;
         border: 1px solid #B7CBD9;
         border-radius: 2px;
         padding: 17px 30px 15px 18px;
@@ -44,6 +45,26 @@
         font-weight: 600;
         font-size: 18px;
         margin: 16px 0 32px 0;
+    }
+    &__checkbox {
+        display: flex;
+        font-size: 18px;
+    }
+    &__extra-form {
+        position: relative;
+    }
+    &__block-name {
+        font-weight: 600;
+        font-size: 18px;
+        margin-bottom: 18px;
+    }
+    &__block-text {
+        font-size: 18px;
+        line-height: 27px;
+        margin-bottom: 16px;
+        &:last-child {
+            margin-bottom: 0;
+        }
     }
 }
 
