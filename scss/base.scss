@@ -42,6 +42,9 @@ body {
 //----------------------------------------------------------------------------------
 .page {
     flex: 1 1 auto;
+    @media(min-width: 768px) {
+        padding: 62px 0 0 0;
+    }
     @media(min-width: 1366px) {
         padding: 67px 0 0 0;
     }
@@ -69,9 +72,9 @@ body {
     &__name {
         display: flex;
         align-items: flex-end;
-        margin: 17px 0 0 0;
+        margin: 17px 0 31px 0;
         &_actions {
-            margin: 25px 0 0 0;
+            margin: 25px 0 31px 0;
         }
         @media (min-width: 768px) {
             margin: 50px 0 34px 0;
