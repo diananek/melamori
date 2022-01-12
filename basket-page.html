@@ -70,7 +70,7 @@
                 </div>
                 <div class="basket">
                     <section class="basket__catalog catalog">
-                        <div class="catalog__container container">
+                        <div class="catalog__container catalog__container_basket container">
                             <div class="catalog__grid catalog__grid_actions">
                                 <article class="catalog__item product-card">
                                     <div class="product-card__img">
@@ -146,19 +146,21 @@
                     </section>
                     <section class="basket__order-section">
                         <div class="basket__block">
-                            <div class="basket__total-price">
-                                114 190 <span>₽</span>
+                            <div class="basket__dscr">
+                                <div class="basket__total-price">
+                                    114 190 <span>₽</span>
+                                </div>
+                                <ul class="basket__discount discount">
+                                    <li class="discount__item">
+                                        <span class="discount__title">Без скидки</span>
+                                        <span class="discount__value">200 000 ₽</span>
+                                    </li>
+                                    <li class="discount__item">
+                                        <span class="discount__title">Без скидки</span>
+                                        <span class="discount__value">200 000 ₽</span>
+                                    </li>
+                                </ul>
                             </div>
-                            <ul class="basket__discount discount">
-                                <li class="discount__item">
-                                    <span class="discount__title">Без скидки</span>
-                                    <span class="discount__value">200 000 ₽</span>
-                                </li>
-                                <li class="discount__item">
-                                    <span class="discount__title">Без скидки</span>
-                                    <span class="discount__value">200 000 ₽</span>
-                                </li>
-                            </ul>
                             <!-- Написать значение action -->
                             <form action="#" class="basket__order-form">
                                 <label class="basket__form-label" for="user-tel">
@@ -168,7 +170,7 @@
                                 <button class="basket__btn">Подтвердить заказ</button>
                                 <label class="basket__checkbox checkbox">
                                     <input class="checkbox__input" type="checkbox">
-                                    <span class="checkbox__box"></span>
+                                    <span class="basket__checkbox-box checkbox__box"></span>
                                     Я согласен на обработку моих персональных данных
                                 </label>
                             </form>
@@ -187,7 +189,7 @@
                             <form class="basket__extra-form">
                                 <label class="basket__checkbox checkbox">
                                     <input class="checkbox__input" type="checkbox">
-                                    <span class="checkbox__box"></span>
+                                    <span class="basket__checkbox-box checkbox__box"></span>
                                     Сборка и установка
                                 </label>
                             </form>
