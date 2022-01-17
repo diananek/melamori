@@ -1,1 +1,4 @@
-main();
+window.addEventListener('DOMContentLoaded', () => {
+    main();
+    start();
+})
