@@ -90,13 +90,13 @@
     &__filters {
         width: 24px;
         height: 24px;
-        background: no-repeat center url(../img/header/filters.svg);
+        background: no-repeat center url(../../public/img/header/filters.svg);
     }
     &__favorites {
         margin: 0 18px 0 0;
         width: 24px;
         height: 24px;
-        background: no-repeat center url(../img/header/Favorites.svg);
+        background: no-repeat center url(../../public/img/header/Favorites.svg);
         &_catalog {
             margin: 0;
             @media (min-width: 768px) {
@@ -114,7 +114,7 @@
             div {
                 width: 100%;
                 height: 100%;
-                background: no-repeat center url(../img/header/favorites_active.svg);
+                background: no-repeat center url(../../public/img/header/favorites_active.svg);
             }
         }
     }
@@ -122,7 +122,7 @@
         margin: 0 9px 0 0;
         width: 24px;
         height: 28px;
-        background: no-repeat center url(../img/header/basket.svg);
+        background: no-repeat center url(../../public/img/header/basket.svg);
         &_catalog {
             margin: 0;
             @media (min-width: 1366px) {
@@ -137,7 +137,7 @@
             div {
                 width: 100%;
                 height: 100%;
-                background: no-repeat center url(../img/header/basket_active.svg);
+                background: no-repeat center url(../../public/img/header/basket_active.svg);
             }
         }
     }
