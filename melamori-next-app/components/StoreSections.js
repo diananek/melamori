@@ -6,30 +6,30 @@ export default function StoreSections() {
             <div className="container store-sections__container">
                 <li className="store-sections__item">
                     <div className="store-sections__title store-sections__title_right">Кровати</div>
-                    <Image src="../melamori-next-app/public/img/store-sections/bed.png" alt="Кровать" layout="fill"/>
+                    <Image src="/img/store-sections/bed.png" alt="Кровать" width={301} height={136}/>
                 </li>
                 <li className="store-sections__item">
                     <div className="store-sections__title">Матрацы</div>
                     <div className="store-sections__img">
-                        <Image src="../melamori-next-app/public/img/store-sections/mattr.png" alt="Матрацы" layout="fill"/>
+                        <Image src="/img/store-sections/mattr.png" alt="Матрацы"  width={153} height={110}/>
                     </div>
                 </li>
                 <li className="store-sections__item">
                     <div className="store-sections__title">Мягкая мебель</div>
                     <div className="store-sections__img">
-                        <Image src="../melamori-next-app/public/img/store-sections/sofa.png" alt="Мягкая мебель" layout="fill"/>
+                        <Image src="/img/store-sections/sofa.png" alt="Мягкая мебель" width={153} height={110}/>
                     </div>
                 </li>
                 <li className="store-sections__item">
                     <div className="store-sections__title">Одеяла и подушки</div>
                     <div className="store-sections__img">
-                        <Image src="../melamori-next-app/public/img/store-sections/pillow.png" alt="Подушка" layout="fill"/>
+                        <Image src="/img/store-sections/pillow.png" alt="Подушка" width={153} height={110}/>
                     </div>
                 </li>
                 <li className="store-sections__item">
                     <div className="store-sections__title">Уход за матрацем</div>
                     <div className="store-sections__img">
-                        <Image src="../melamori-next-app/public/img/store-sections/care.png" alt="Матрац" layout="fill"/>
+                        <Image src="/img/store-sections/care.png" alt="Матрац" width={153} height={110}/>
                     </div>
                 </li>
             </div>
