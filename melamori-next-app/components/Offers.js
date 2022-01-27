@@ -1,8 +1,9 @@
 
 export default function Offers (){
     let pos = { top: 0, left: 0, x: 0, y: 0 };
+    let element;
     const mouseDownHandler = function(e) {
-        const element = e.target.closest(".offers");
+        element = e.target.closest(".offers");
         element.style.cursor = 'grabbing';
         element.style.userSelect = 'none';
         pos = {
@@ -18,8 +19,6 @@ export default function Offers (){
     };
 
     const mouseMoveHandler = function(e) {
-        const element = e.target.closest(".offers");
-
         const dx = e.clientX - pos.x;
         const dy = e.clientY - pos.y;
 
@@ -30,7 +29,6 @@ export default function Offers (){
     };
 
     const mouseUpHandler = function(e) {
-        const element = e.target.closest(".offers");
         document.removeEventListener('mousemove', mouseMoveHandler);
         document.removeEventListener('mouseup', mouseUpHandler);
 
@@ -41,7 +39,7 @@ export default function Offers (){
         <ul className="page__offers offers" onMouseDown={mouseDownHandler}>
             <li className="offers__item offers__item_dark ">
                 <div className="offers__img">
-                    <img src="img/offers/clock.png"/>
+                    <img draggable="false" src="img/offers/clock.png"/>
                 </div>
                 <div className="offers__text">
                     <div className="offers__title">Комплект</div>
@@ -50,7 +48,7 @@ export default function Offers (){
             </li>
             <li className="offers__item offers__item_light">
                 <div className="offers__img">
-                    <img src="img/offers/glasses.png"/>
+                    <img draggable="false" src="img/offers/glasses.png"/>
                 </div>
                 <div className="offers__text offers__text_dark">
                     <div className="offers__title">Пенсионерам</div>
@@ -59,7 +57,7 @@ export default function Offers (){
             </li>
             <li className="offers__item offers__item_dark">
                 <div className="offers__img">
-                    <img src="img/offers/ruler.png"/>
+                    <img draggable="false" src="img/offers/ruler.png"/>
                 </div>
                 <div className="offers__text">
                     <div className="offers__title">Свой размер</div>
@@ -68,7 +66,7 @@ export default function Offers (){
             </li>
             <li className="offers__item offers__item_dark">
                 <div className="offers__img">
-                    <img src="img/offers/gift.png"/>
+                    <img draggable="false" src="img/offers/gift.png"/>
                 </div>
                 <div className="offers__text">
                     <div className="offers__title">С днём рождения!</div>
@@ -77,7 +75,7 @@ export default function Offers (){
             </li>
             <li className="offers__item offers__item_light">
                 <div className="offers__img">
-                    <img src="img/offers/phone.png"/>
+                    <img draggable="false" src="img/offers/phone.png"/>
                 </div>
                 <div className="offers__text offers__text_dark">
                     <div className="offers__title">Подпишись!</div>
@@ -86,7 +84,7 @@ export default function Offers (){
             </li>
             <li className="offers__item offers__item_light">
                 <div className="offers__img">
-                    <img src="img/offers/rings.png"/>
+                    <img draggable="false" src="img/offers/rings.png"/>
                 </div>
                 <div className="offers__text offers__text_dark">
                     <div className="offers__title">На свадьбу</div>
