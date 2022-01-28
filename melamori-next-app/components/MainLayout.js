@@ -1,4 +1,5 @@
 import Head from "next/head";
+import MenuList from "./MenuList";
 
 export default function MainLayout({children, title = "Next App"}) {
     return(
@@ -16,33 +17,7 @@ export default function MainLayout({children, title = "Next App"}) {
                             <div className="menu__icon">
                                 <span> </span>
                             </div>
-                            <ul className="menu__list menu__list_catalog">
-                                <li className="menu__item">
-                                    <a href="catalog.html" className=" menu__link menu__link_selected">
-                                        Кровати
-                                    </a>
-                                </li>
-                                <li className="menu__item ">
-                                    <a href="#" className="menu__link ">
-                                        Матрацы
-                                    </a>
-                                </li>
-                                <li className="menu__item ">
-                                    <a href="#" className="menu__link ">
-                                        Мягкая мебель
-                                    </a>
-                                </li>
-                                <li className="menu__item ">
-                                    <a href="#" className="menu__link ">
-                                        Одеяла и подушки
-                                    </a>
-                                </li>
-                                <li className="menu__item ">
-                                    <a href="#" className="menu__link ">
-                                        Уход за матрацем
-                                    </a>
-                                </li>
-                            </ul>
+                            <MenuList className={"menu__list_catalog"}/>
                         </nav>
                         <a className="header__logo" className="header__logo" href="index.html">
                             <img src="img/logo.svg" alt="Логотип Me Lamori"/>
