@@ -10,7 +10,7 @@
         bottom: 0;
         top: auto;
         box-shadow: 0px -2px 24px rgba(4, 3, 31, 0.15);
-        border-radius: 20px 20px 0px 0px;
+        border-radius: 20px 20px 0 0;
         padding: 0 19px;
         .menu {
             display: block;
@@ -57,6 +57,7 @@
     &__logo {
         display: none;
         @media(min-width: 768px) {
+            position: relative;
             display: block;
             width: 184px;
             height: 41px;
