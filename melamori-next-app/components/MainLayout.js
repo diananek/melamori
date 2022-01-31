@@ -1,5 +1,11 @@
 import Head from "next/head";
 import MenuList from "./MenuList";
+import logo from "../public/img/logo.svg";
+import Image from "next/image";
+import Link from "next/link";
+import footerLogo from "../public/img/footer/footer__logo.svg";
+import instagramIcon from "../public/img/footer/foooter__inst.svg"
+import Header from "./Header";
 
 export default function MainLayout({children, title = "MeLamori"}) {
     return(
@@ -15,25 +21,35 @@ export default function MainLayout({children, title = "MeLamori"}) {
                 <footer className="footer">
                     <div className="container footer__container ">
                         <div className="footer__logo ">
-                            <img src="img/footer/footer__logo.svg " alt="Логотип "/>
+                            <Image src={footerLogo} layout={"fill"}/>
                         </div>
                         <section className="footer__section goods ">
                             <div className="footer__section-title ">Товары</div>
                             <ul className="footer__categories ">
                                 <li>
-                                    <a href="# " className="footer__item goods__item ">Кровати</a>
+                                    <Link href="/catalog/beds">
+                                        <a className="footer__item goods__item ">Кровати</a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="# " className="footer__item goods__item ">Матрацы</a>
+                                    <Link href="/catalog/mattresses">
+                                        <a className="footer__item goods__item ">Матрасы</a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="# " className="footer__item goods__item ">Мягкая мебель</a>
+                                    <Link href="/catalog/sofas">
+                                        <a className="footer__item goods__item ">Мягкая мебель</a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="# " className="footer__item goods__item ">Одеяла и подушки</a>
+                                    <Link href="/catalog/pillows">
+                                        <a className="footer__item goods__item ">Одеяла и подушки</a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="# " className="footer__item goods__item ">Уход за матрацем</a>
+                                    <Link href="/catalog/care">
+                                        <a className="footer__item goods__item ">Уход за матрацем</a>
+                                    </Link>
                                 </li>
                             </ul>
                         </section>
@@ -56,10 +72,11 @@ export default function MainLayout({children, title = "MeLamori"}) {
 
                         </section>
                         <div className="footer__social ">
-                            <a href="# "><img src="img/footer/foooter__inst.svg " alt="Instagram icon "
-                                              className="contacts__icon "/></a>
+                            <a href="https://www.instagram.com/me.lamorii/" className="contacts__icon">
+                                <Image src={instagramIcon} alt="Instagram icon" />
+                            </a>
                             <div className="contacts__text ">
-                                Подпишитесь на наш <a href="# " className="contacts__link ">инстаграм</a>,<br/> чтобы не
+                                Подпишитесь на наш <a href="https://www.instagram.com/me.lamorii/" className="contacts__link ">инстаграм</a>,<br/> чтобы не
                                 пропустить акции!
                             </div>
                         </div>
