@@ -1,3 +1,11 @@
+import Image from "next/image";
+import Offers1 from "../public/img/offers/clock.png"
+import Offers2 from "../public/img/offers/glasses.png"
+import Offers3 from "../public/img/offers/ruler.png"
+import Offers4 from "../public/img/offers/gift.png"
+import Offers5 from "../public/img/offers/phone.png"
+import Offers6 from "../public/img/offers/rings.png"
+
 
 export default function Offers (){
     let pos = { top: 0, left: 0, x: 0, y: 0 };
@@ -39,7 +47,7 @@ export default function Offers (){
         <ul className="page__offers offers" onMouseDown={mouseDownHandler}>
             <li className="offers__item offers__item_dark ">
                 <div className="offers__img">
-                    <img draggable="false" src="img/offers/clock.png"/>
+                    <Image draggable="false" src={Offers1} />
                 </div>
                 <div className="offers__text">
                     <div className="offers__title">Комплект</div>
@@ -48,7 +56,8 @@ export default function Offers (){
             </li>
             <li className="offers__item offers__item_light">
                 <div className="offers__img">
-                    <img draggable="false" src="img/offers/glasses.png"/>
+                    <Image draggable="false" src={Offers2} />
+
                 </div>
                 <div className="offers__text offers__text_dark">
                     <div className="offers__title">Пенсионерам</div>
@@ -57,7 +66,7 @@ export default function Offers (){
             </li>
             <li className="offers__item offers__item_dark">
                 <div className="offers__img">
-                    <img draggable="false" src="img/offers/ruler.png"/>
+                    <Image draggable="false" src={Offers3} />
                 </div>
                 <div className="offers__text">
                     <div className="offers__title">Свой размер</div>
@@ -66,7 +75,7 @@ export default function Offers (){
             </li>
             <li className="offers__item offers__item_dark">
                 <div className="offers__img">
-                    <img draggable="false" src="img/offers/gift.png"/>
+                    <Image draggable="false" src={Offers4} />
                 </div>
                 <div className="offers__text">
                     <div className="offers__title">С днём рождения!</div>
@@ -75,7 +84,7 @@ export default function Offers (){
             </li>
             <li className="offers__item offers__item_light">
                 <div className="offers__img">
-                    <img draggable="false" src="img/offers/phone.png"/>
+                    <Image draggable="false" src={Offers5} />
                 </div>
                 <div className="offers__text offers__text_dark">
                     <div className="offers__title">Подпишись!</div>
@@ -84,7 +93,7 @@ export default function Offers (){
             </li>
             <li className="offers__item offers__item_light">
                 <div className="offers__img">
-                    <img draggable="false" src="img/offers/rings.png"/>
+                    <Image draggable="false" src={Offers6} />
                 </div>
                 <div className="offers__text offers__text_dark">
                     <div className="offers__title">На свадьбу</div>
