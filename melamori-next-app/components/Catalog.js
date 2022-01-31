@@ -1,10 +1,10 @@
 import FavoritesBtn from "./FavoritesBtn";
 
-export default function Catalog() {
+export default function Catalog({title}) {
     return(
         <div className="catalog">
             <div className="catalog__container container">
-                <div className="catalog__title">Популярное</div>
+                <div className="catalog__title">{title}</div>
                 <div className="catalog__grid">
                     <article className="catalog__item product-card">
                         <div className="product-card__img">
