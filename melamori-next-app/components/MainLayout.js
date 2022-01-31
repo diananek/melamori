@@ -1,7 +1,7 @@
 import Head from "next/head";
 import MenuList from "./MenuList";
 
-export default function MainLayout({children, title = "Next App"}) {
+export default function MainLayout({children, title = "MeLamori"}) {
     return(
         <>
             <Head>
