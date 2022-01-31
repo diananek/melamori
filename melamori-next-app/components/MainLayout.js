@@ -8,23 +8,7 @@ export default function MainLayout({children, title = "MeLamori"}) {
                 <title>{title}</title>
             </Head>
             <div className="wrapper">
-                <header className="header header_catalog">
-                    <div className="header__body container">
-                        <nav className="header__nav menu">
-                            <div className="menu__icon">
-                                <span> </span>
-                            </div>
-                            <MenuList className={"menu__list_catalog"}/>
-                        </nav>
-                        <a className="header__logo" className="header__logo" href="index.html">
-                            <img src="img/logo.svg" alt="Логотип Me Lamori"/>
-                        </a>
-                        <a href="favorites-page.html" className="header__favorites header__favorites_catalog">
-                        </a>
-                        <a href="basket-page.html" className="header__basket header__basket_catalog">
-                        </a>
-                    </div>
-                </header>
+                <Header/>
                 <main className="page">
                     {children}
                 </main>
