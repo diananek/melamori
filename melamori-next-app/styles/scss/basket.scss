@@ -122,6 +122,14 @@
             display: block;
             flex: 0 0 288px;
         }
+        @media (min-width: 1536px) {
+            flex: 0 0 328px;
+
+        }
+        @media (min-width: 1920px) {
+            flex: 0 0 424px;
+
+        }
     }
     &__dscr {
         @media (min-width: 768px) {
