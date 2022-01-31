@@ -44,15 +44,15 @@
     }
     &__logo {
         position: relative;
-        max-width: 321px;
-        max-height: 28px;
+        width: 321px;
+        height: 28px;
         margin: 0 0 44px 0;
         img {
             width: 100%;
         }
         @media (min-width: 768px) {
-            max-width: 461px;
-            max-height: 44px;
+            width: 461px;
+            height: 44px;
             margin: 0 0 64px 0;
             grid-column: 1/-1;
         }
