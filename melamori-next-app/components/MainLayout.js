@@ -6,9 +6,6 @@ export default function MainLayout({children, title = "Next App"}) {
         <>
             <Head>
                 <title>{title}</title>
-                <meta charSet="UTF-8"/>
-                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-                <meta httpEquiv="X-UA-Compatible" content="IE=edge"/>
             </Head>
             <div className="wrapper">
                 <header className="header header_catalog">
