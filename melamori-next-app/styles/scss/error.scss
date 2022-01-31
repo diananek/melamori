@@ -1,0 +1,48 @@
+.error {
+    color: #03257C;
+    margin: 79px 0 0 0;
+    &__num{
+        font-weight: 800;
+        font-size: 160px;
+        @media (min-width: 768px) {
+            font-size: 240px;
+        }
+        @media (min-width: 1920px) {
+            font-size: 320px;
+        }
+    }
+    &__circle{
+        width: 312px;
+        height: 312px;
+        background: #D5F9FF;
+        border-radius: 50%;
+        position: absolute;
+        z-index: -1;
+        @media (min-width: 768px) {
+            width: 408px;
+            height: 408px;
+        }
+        @media (min-width: 1920px) {
+            width: 520px;
+            height: 520px;
+        }
+    }
+    &__msg{
+        font-weight: 600;
+        font-size: 40px;
+        line-height: 55px;
+        text-align: center;
+        @media (min-width: 768px) {
+            font-size: 56px;
+        }
+        @media (min-width: 1920px) {
+            font-size: 64px;
+        }
+    }
+    @media (min-width: 768px) {
+        margin: 109px 0 0 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
