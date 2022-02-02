@@ -201,10 +201,13 @@
         height: 100%;
         width: 100%;
         background: #FFFFFF;
-        padding: 89px 0 0 16px;
+        padding: 112px 0 0 16px;
         overflow: auto;
         transition: left 0.3s ease 0s;
         z-index: 4;
+        @media(min-width: 768px) {
+            padding: 170px 0 0 36px;
+        }
         @media (min-width: 1366px) {
             padding: 0;
             position: static;
@@ -215,12 +218,12 @@
             left: 0;
         }
         li {
-            margin: 0 0 46px 0;
+            margin: 0 0 48px 0;
             &:last-child {
                 margin: 0;
             }
             @media (min-width:768px) {
-                margin: 0 0 70px 0;
+                margin: 0 0 72px 0;
             }
             @media (min-width: 1366px) {
                 display: inline-block;
@@ -252,6 +255,10 @@
         line-height: 44px;
         color: #020D2B;
         transition: color 0.3s ease;
+        @media (min-width: 768px) {
+            font-size: 56px;
+            line-height: 76px;
+        }
         &_selected {
             color: #03257C;
             &::after {
@@ -303,6 +310,7 @@
             height: 3px;
             transition: all 0.3s ease 0s;
             background-color: #020D2B;
+
         }
         &::before {
             content: "";
@@ -329,11 +337,23 @@
             &::before {
                 bottom: 50%;
                 transform: rotate(45deg) translate(0, 50%);
+                @media(min-width: 768px) {
+                    width: 41px;
+                    height: 5px;
+                }
             }
             &::after {
                 top: 47%;
                 width: 100%;
                 transform: rotate(-45deg) translate(0, -50%);
+                @media(min-width: 768px) {
+                    width: 41px;
+                    height: 5px;
+                }
+            }
+            @media(min-width: 768px) {
+                top: 63px;
+                left: 36px;
             }
         }
         @media(min-width: 768px) {
