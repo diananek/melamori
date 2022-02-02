@@ -1,11 +1,10 @@
 import Head from "next/head";
-import MenuList from "./MenuList";
-import logo from "../public/img/logo.svg";
 import Image from "next/image";
 import Link from "next/link";
 import footerLogo from "../public/img/footer/footer__logo.svg";
 import instagramIcon from "../public/img/footer/foooter__inst.svg"
 import Header from "./Header";
+import CookieWindow from "./CookieWindow";
 
 export default function MainLayout({children, title = "MeLamori"}) {
     return(
@@ -17,6 +16,7 @@ export default function MainLayout({children, title = "MeLamori"}) {
                 <Header/>
                 <main className="page">
                     {children}
+                    <CookieWindow/>
                 </main>
                 <footer className="footer">
                     <div className="container footer__container ">
