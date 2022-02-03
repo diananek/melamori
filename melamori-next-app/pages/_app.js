@@ -5,9 +5,20 @@ import "../styles/scss/basket.scss"
 import "../styles/scss/error.scss"
 import "../styles/scss/cookie.scss"
 import "../styles/scss/thanks.scss"
-function MyApp({ Component, pageProps }) {
+import {ApolloClient, InMemoryCache, ApolloProvider} from "@apollo/client";
 
-  return <Component {...pageProps} />
+const apolloClient = new ApolloClient({
+    uri: "https://service.melamori-mebel.ru/graphql",
+    cache: new InMemoryCache(),
+})
+
+function MyApp({ Component, pageProps }) {
+  return(
+      <ApolloProvider client={apolloClient}>
+          <Component {...pageProps} />
+      </ApolloProvider>
+      )
+
 }
 
 export default MyApp
