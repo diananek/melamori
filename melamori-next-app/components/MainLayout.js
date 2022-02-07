@@ -5,6 +5,7 @@ import footerLogo from "../public/img/footer/footer__logo.svg";
 import instagramIcon from "../public/img/footer/foooter__inst.svg"
 import Header from "./Header";
 import CookieWindow from "./CookieWindow";
+import DynamicAdapt from "../components/dynamicAdapt";
 
 export default function MainLayout({children, title = "MeLamori"}) {
     return(
@@ -83,6 +84,7 @@ export default function MainLayout({children, title = "MeLamori"}) {
                     </div>
                 </footer>
             </div>
+            <DynamicAdapt/>
         </>
     )
 }
