@@ -14,8 +14,14 @@ export default function ProductCard({productData, keys}) {
     const sizeData = priceData[keys.sizeRelation]
     const router = useRouter()
     const pageUrl = router.asPath === '/' ? 'catalog/' : './'
+
+    const handler = (event)=>{
+        if(event.target.closest(".product-card__dscr") || event.target.closest(".product-card__img")) {
+            router.push(pageUrl + id)
+        }
+    }
     return(
-        <article key={id} className="catalog__item product-card" onClick={()=> router.push(pageUrl + id)}>
+        <article key={id} className="catalog__item product-card" onClick={(e)=> handler(e)}>
             <div className="product-card__img">
                 <a  href="#">
                     <img src={serverUrl+imageId}
