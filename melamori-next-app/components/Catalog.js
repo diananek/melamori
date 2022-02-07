@@ -1,199 +1,43 @@
-import FavoritesBtn from "./FavoritesBtn";
+import ProductCard from "./ProductCard";
+import {useRouter} from "next/router";
+import {getKeys} from "../lib/getKeys";
+import Sorting from "./Sorting";
 
-export default function Catalog({title}) {
+
+export default function Catalog({title, productsData, status, collectionName}) {
+    if(status === "loading") {
+        return "LOADING...."
+    }
+    if(status === "error") {
+        return "ERROR!"
+    }
+
+    let products = productsData[collectionName]
+    const keys = getKeys(collectionName)
+    const path = useRouter().asPath
+
     return(
         <div className="catalog">
             <div className="catalog__container container">
-                <div className="catalog__title">{title}</div>
+                <div className="catalog__dscr">
+                    <div className={"catalog__name"}>
+                        <div className="catalog__title">{title}</div>
+                        {path !== "/" ?
+                            <div className={"catalog__goods-count"}>56 товаров</div>
+                            : undefined}
+                    </div>
+                    {path !== "/" ? <Sorting/> : undefined}
+                </div>
                 <div className="catalog__grid">
-                    <article className="catalog__item product-card">
-                        <div className="product-card__img">
-                            <a href="#">
-                                <img src="/img/product/product_similar/Bed-Afina.png"
-                                     alt="Кровать Афина"/>
-                            </a>
-                            <FavoritesBtn/>
-                            <div className="product-card__discount">-10%</div>
-                        </div>
-                        <div className="product-card__prices">
-                            <div className="product-card__price product-card__price_cur">125 550 <span>₽</span></div>
-                            <div className="product-card__price product-card__price_old">238 990</div>
-                            <div className="product-card__discount">-10%</div>
-                            <div className="product-card__size">140 x 200</div>
-                        </div>
-                        <div className="product-card__dscr">
-                            <div className="product-card__name">Афина</div>
-                            <div className="product-card__size">140 x 200</div>
-                        </div>
-                        <div className="product-card__actions">
-                            <button className="product-card__add">Добавить в заказ</button>
-                            <FavoritesBtn className="product-card__fav_grey"> </FavoritesBtn>
-                        </div>
-                    </article>
-                    <article className="catalog__item product-card">
-                        <div className="product-card__img">
-                            <a href="#">
-                                <img src="/img/product/product_similar/matr-braun.png"
-                                     alt="Матрац Браун"/>
-                            </a>
-                            <FavoritesBtn/>
-                            <div className="product-card__discount">-10%</div>
-                        </div>
-                        <div className="product-card__prices">
-                            <div className="product-card__price product-card__price_cur">125 550 <span>₽</span></div>
-                            <div className="product-card__price product-card__price_old">238 990</div>
-                            <div className="product-card__discount">-10%</div>
-                            <div className="product-card__size">140 x 200</div>
-                        </div>
-                        <div className="product-card__dscr">
-                            <div className="product-card__name">Браун</div>
-                            <div className="product-card__size">140 x 200</div>
-                            <div className="product-card__hard matr-hard"> Средний / жёсткий</div>
-                        </div>
-                        <div className="product-card__actions">
-                            <button className="product-card__add">Добавить в заказ</button>
-                            <FavoritesBtn className="product-card__fav_grey"> </FavoritesBtn>
-                        </div>
-                    </article>
-                    <article className="catalog__item product-card">
-                        <div className="product-card__img">
-                            <a href="#">
-                                <img src="/img/product/product_similar/sofa-Afina.png"
-                                     alt="Софа Афина"/>
-                            </a>
-                            <FavoritesBtn/>
-                            <div className="product-card__discount">-10%</div>
-                        </div>
-                        <div className="product-card__prices">
-                            <div className="product-card__price product-card__price_cur">125 550 <span>₽</span></div>
-                            <div className="product-card__price product-card__price_old">238 990</div>
-                            <div className="product-card__discount">-10%</div>
-                        </div>
-                        <div className="product-card__dscr">
-                            <div className="product-card__name">Афина</div>
-                        </div>
-                        <div className="product-card__actions">
-                            <button className="product-card__add">Добавить в заказ</button>
-                            <FavoritesBtn className="product-card__fav_grey"> </FavoritesBtn>
-                        </div>
-                    </article>
-                    <article className="catalog__item product-card ">
-                        <div className="product-card__img ">
-                            <a href="#">
-                                <img src="/img/product/product_similar/pillow-wave.png "
-                                     alt="Подушка Волна"/>
-                            </a>
-                            <FavoritesBtn/>
-                            <div className="product-card__discount ">-10%</div>
-                        </div>
-                        <div className="product-card__prices ">
-                            <div className="product-card__price product-card__price_cur ">125 550 <span>₽</span></div>
-                            <div className="product-card__price product-card__price_old ">238 990</div>
-                            <div className="product-card__discount ">-10%</div>
-                        </div>
-                        <div className="product-card__dscr ">
-                            <div className="product-card__name ">Волна</div>
-                        </div>
-                        <div className="product-card__actions ">
-                            <button className="product-card__add ">Добавить в заказ</button>
-                            <FavoritesBtn className="product-card__fav_grey"> </FavoritesBtn>
-                        </div>
-                    </article>
-                    <article className="catalog__item product-card ">
-                        <div className="product-card__img ">
-                            <a href="#">
-                                <img src="/img/product/product_similar/Bed-Afina.png"
-                                     alt="Кровать Афина"/>
-                            </a>
-                            <FavoritesBtn/>
-                            <div className="product-card__discount ">-10%</div>
-                        </div>
-                        <div className="product-card__prices ">
-                            <div className="product-card__price product-card__price_cur ">125 550 <span>₽</span></div>
-                            <div className="product-card__price product-card__price_old ">238 990</div>
-                            <div className="product-card__discount ">-10%</div>
-                            <div className="product-card__size ">140 x 200</div>
-                        </div>
-                        <div className="product-card__dscr ">
-                            <div className="product-card__name ">Афина</div>
-                            <div className="product-card__size ">140 x 200</div>
-                        </div>
-                        <div className="product-card__actions ">
-                            <button className="product-card__add ">Добавить в заказ</button>
-                            <FavoritesBtn className="product-card__fav_grey"> </FavoritesBtn>
-                        </div>
-                    </article>
-                    <article className="catalog__item product-card ">
-                        <div className="product-card__img ">
-                            <a href="#">
-                                <img src="/img/product/product_similar/matr-braun.png"
-                                     alt="Матрац Браун"/>
-                            </a>
-                            <FavoritesBtn/>
-                            <div className="product-card__discount ">-10%</div>
-                        </div>
-                        <div className="product-card__prices ">
-                            <div className="product-card__price product-card__price_cur ">125 550 <span>₽</span></div>
-                            <div className="product-card__price product-card__price_old ">238 990</div>
-                            <div className="product-card__discount ">-10%</div>
-                            <div className="product-card__size ">140 x 200</div>
-                        </div>
-                        <div className="product-card__dscr ">
-                            <div className="product-card__name ">Браун</div>
-                            <div className="product-card__size ">140 x 200</div>
-                            <div className="product-card__hard matr-hard "> Средний / жёсткий</div>
-                        </div>
-                        <div className="product-card__actions ">
-                            <button className="product-card__add ">Добавить в заказ</button>
-                            <FavoritesBtn className="product-card__fav_grey"> </FavoritesBtn>
-                        </div>
-                    </article>
-                    <article className="catalog__item product-card ">
-                        <div className="product-card__img ">
-                            <a href="#">
-                                <img src="/img/product/product_similar/sofa-Afina.png"
-                                     alt="Софа Афина"/>
-                            </a>
-                            <FavoritesBtn/>
-                            <div className="product-card__discount ">-10%</div>
-                        </div>
-                        <div className="product-card__prices ">
-                            <div className="product-card__price product-card__price_cur ">125 550 <span>₽</span></div>
-                            <div className="product-card__price product-card__price_old ">238 990</div>
-                            <div className="product-card__discount ">-10%</div>
-                        </div>
-                        <div className="product-card__dscr ">
-                            <div className="product-card__name ">Афина</div>
-                        </div>
-                        <div className="product-card__actions ">
-                            <button className="product-card__add ">Добавить в заказ</button>
-                            <FavoritesBtn className="product-card__fav_grey"> </FavoritesBtn>
-                        </div>
-                    </article>
-                    <article className="catalog__item product-card ">
-                        <div className="product-card__img ">
-                            <a href="#">
-                                <img src="/img/product/product_similar/pillow-wave.png "
-                                     alt="Подушка Волна"/>
-                            </a>
-                            <FavoritesBtn/>
-                            <div className="product-card__discount ">-10%</div>
-                        </div>
-                        <div className="product-card__prices ">
-                            <div className="product-card__price product-card__price_cur ">125 550 <span>₽</span></div>
-                            <div className="product-card__price product-card__price_old ">238 990</div>
-                            <div className="product-card__discount ">-10%</div>
-                        </div>
-                        <div className="product-card__dscr ">
-                            <div className="product-card__name ">Волна</div>
-                        </div>
-                        <div className="product-card__actions ">
-                            <button className="product-card__add ">Добавить в заказ</button>
-                            <FavoritesBtn className="product-card__fav_grey"> </FavoritesBtn>
-                        </div>
-                    </article>
+                    {
+                        products.map((item) =>
+                            <ProductCard key={item.id} productData={item} keys={keys}/>
+                        )
+                    }
                 </div>
             </div>
         </div>
     )
+
+
 }
