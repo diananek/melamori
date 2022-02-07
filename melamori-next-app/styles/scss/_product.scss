@@ -667,9 +667,6 @@
 //---------------------------------------
 .product-card {
     width: calc(50% - 8px);
-    &:hover {
-        cursor: pointer;
-    }
     @media(min-width: 768px) {
         width: calc(1/3*100% - 24px);
     }
@@ -736,6 +733,9 @@
     }
     &__dscr {
         padding: 0 0 0 5px;
+        &:hover {
+            cursor: pointer;
+        }
         @media (min-width: 1366px) {
             .product-card__size {
                 display: none;
