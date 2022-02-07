@@ -1,8 +1,8 @@
 import {useRouter} from "next/router";
-import {getPageData} from "../../lib/getPageData";
+import {getPageData} from "../../../lib/getPageData";
 import {useQuery} from "@apollo/client";
-import {sofaCollection} from "../../graphql/queries";
-import CatalogPage from "../../components/CatalogPage";
+import {sofaCollection} from "../../../graphql/queries";
+import CatalogPage from "../../../components/CatalogPage";
 
 export default function Sofas() {
     const pathname = useRouter().asPath
