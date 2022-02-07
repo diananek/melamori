@@ -1,6 +1,6 @@
 import {useEffect} from "react";
 
-export default function dynamicAdapt() {
+export default function DynamicAdapt() {
     useEffect(() => {
         const type = "min";
         // массив объектов
@@ -12,14 +12,17 @@ export default function dynamicAdapt() {
             // наполнение оbjects объктами
             nodes.forEach((node) => {
                 const data = node.dataset.da.trim();
+
                 const dataArray = data.split(',');
+
                 const object = {};
                 object.element = node;
                 object.parent = node.parentNode;
-                object.destination = document.querySelector(`${dataArray[0].trim()}`);
+                const selector = dataArray[0].trim();
+                object.destination = document.querySelector(selector);
                 object.breakpoint = dataArray[1] ? dataArray[1].trim() : '767';
                 object.place = dataArray[2] ? dataArray[2].trim() : 'last';
-                object.index = this.indexInParent(object.parent, object.element);
+                object.index = indexInParent(object.parent, object.element);
                 objects.push(object);
             });
 
@@ -29,7 +32,7 @@ export default function dynamicAdapt() {
             let mediaQueries = objects
                 .map(({
                           breakpoint
-                      }) => `(${this.type}-width: ${breakpoint}px),${breakpoint}`)
+                      }) => `(${type}-width: ${breakpoint}px),${breakpoint}`)
                 .filter((item, index, self) => self.indexOf(item) === index);
 
             // навешивание слушателя на медиа-запрос
@@ -40,7 +43,7 @@ export default function dynamicAdapt() {
                 const mediaBreakpoint = mediaSplit[1];
 
                 // массив объектов с подходящим брейкпоинтом
-                const objectsFilter = this.objects.filter(
+                const objectsFilter = objects.filter(
                     ({
                          breakpoint
                      }) => breakpoint === mediaBreakpoint
@@ -136,11 +139,12 @@ export default function dynamicAdapt() {
                 });
             }
         }
-        init()
+            init()
+
         }, []
     )
 
     return(
-        <></>
+        <> </>
     )
 }
