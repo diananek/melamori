@@ -1,7 +1,7 @@
 import ProductCardFavoritesBtn from "./ProductCardFavoritesBtn";
 import {useRouter} from "next/router";
 
-export default function ProductCard({productData, keys}) {
+export default function ProductCard({productData, keys, className}) {
     const serverUrl = process.env.serverUrl
     const id = productData.id
     const imageId = productData.image.id
@@ -21,7 +21,7 @@ export default function ProductCard({productData, keys}) {
         }
     }
     return(
-        <article key={id} className="catalog__item product-card" onClick={(e)=> handler(e)}>
+        <article key={id} className={className + " product-card"} onClick={(e)=> handler(e)}>
             <div className="product-card__img">
                 <img src={serverUrl+imageId}
                      alt={imageTitle}/>
