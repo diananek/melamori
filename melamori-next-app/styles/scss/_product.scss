@@ -211,6 +211,10 @@
         font-weight: 600;
         font-size: 18px;
         color: #FFFFFF;
+        transition: background 0.3s ease;
+        &:hover {
+            background: #03257C;
+        }
         @media(min-width: 768px) {
             width: 215px;
         }
