@@ -2,7 +2,7 @@ import ProductCardFavoritesBtn from "./ProductCardFavoritesBtn";
 import {useRouter} from "next/router";
 
 export default function ProductCard({productData, keys}) {
-    const serverUrl = "https://service.melamori-mebel.ru/assets/"
+    const serverUrl = process.env.serverUrl
     const id = productData.id
     const imageId = productData.image.id
     const imageTitle = productData.image.title
