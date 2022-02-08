@@ -1,7 +1,7 @@
 import {gql} from "@apollo/client";
 
-export const bedCollection = gql`{
-       bed_collection {
+export const bedCollection = gql`query myQuery($offset: Int){
+       bed_collection (offset: $offset){
            image {
       id
       title
