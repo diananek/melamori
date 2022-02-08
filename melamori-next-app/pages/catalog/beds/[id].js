@@ -1,24 +1,30 @@
 import MainLayout from "../../../components/MainLayout";
-import {bedCollectionById} from "../../../graphql/queries";
+import {bedCollection, bedCollectionById} from "../../../graphql/queries";
 import {useRouter} from "next/router";
 import {useQuery} from "@apollo/client";
 import ProductFavoritesBtn from "../../../components/ProductFavoritesBtn";
+import ProductCard from "../../../components/ProductCard";
+import {getKeys} from "../../../lib/getKeys";
 
 export default function CatalogItem() {
     const serverUrl = process.env.serverUrl
     const productId = useRouter().asPath.split('/').pop()
-    const { loading, error, data } = useQuery(bedCollectionById, {
+    const { loading: itemLoading, error: itemError, data: itemData } = useQuery(bedCollectionById, {
         variables: { id: productId },
     })
 
-    if(loading) {
+    const { loading: collectionLoading, error: collectionError, data: collectionData } = useQuery(bedCollection, {
+        variables: { offset: 4 },
+    })
+
+    if(itemLoading || collectionLoading) {
         return "LOADING...."
     }
-    if(error) {
+    if(itemError || collectionError) {
         return "ERROR!"
     }
 
-    const productData = data.bed_collection_by_id
+    const productData = itemData.bed_collection_by_id
 
     const priceList = productData.price_list[0].bed_prices_id
 
@@ -33,6 +39,9 @@ export default function CatalogItem() {
 
     const saleStatus = priceList.status
     const price = priceList.price
+
+    const collection = collectionData.bed_collection
+    const keys = getKeys("bed_collection")
     return(
         <MainLayout>
                 <div className="product">
@@ -91,7 +100,7 @@ export default function CatalogItem() {
 
                             <div className="features__item ">
                                 <div className="features__name name">Украшения</div>
-                                <div className="features__options ">
+                                <div className="features__options">
                                     <button className="features__option features__option_selected ">Пуговицы</button>
                                     <button className="features__option ">Стразы</button>
                                 </div>
@@ -102,7 +111,7 @@ export default function CatalogItem() {
                                 <div className="features__name name">Доп. услуги</div>
                                 <label className="features__checkbox checkbox">
                                     <input className="checkbox__input" type="checkbox"/>
-                                        <span className="checkbox__box"></span>
+                                        <span className="checkbox__box"> </span>
                                         Подъёмный механизм
                                 </label>
                             </div>
@@ -135,99 +144,13 @@ export default function CatalogItem() {
                 <section className="similar-products">
                     <div className="container">
                         <div className="similar-products__title">Похожие товары</div>
-                        <ul className="similar-products__items">
-                            <li className="similar-products__item product-card">
-                                <div className="product-card__img">
-                                    <img src="../melamori-next-app/public/img/product/product_similar/Bed-Afina.png"
-                                         alt="Кровать Афина"/>
-                                        <button className="product-card__fav"></button>
-                                        <div className="product-card__discount">-10%</div>
-                                </div>
-                                <div className="product-card__prices">
-                                    <div className="product-card__price product-card__price_cur">125 550 <span>₽</span>
-                                    </div>
-                                    <div className="product-card__price product-card__price_old">238 990</div>
-                                    <div className="product-card__discount">-10%</div>
-                                    <div className="product-card__size">140 x 200</div>
-                                </div>
-                                <div className="product-card__dscr">
-                                    <div className="product-card__name">Афина</div>
-                                    <div className="product-card__size">140 x 200</div>
-                                </div>
-                                <div className="product-card__actions">
-                                    <button className="product-card__add">Добавить в заказ</button>
-                                    <button className="product-card__fav product-card__fav_grey"></button>
-                                </div>
-                            </li>
-                            <li className="similar-products__item product-card">
-                                <div className="product-card__img">
-                                    <img src="../melamori-next-app/public/img/product/product_similar/matr-braun.png"
-                                         alt="Матрац Браун"/>
-                                        <button className="product-card__fav"></button>
-                                        <div className="product-card__discount">-10%</div>
-                                </div>
-                                <div className="product-card__prices">
-                                    <div className="product-card__price product-card__price_cur">125 550 <span>₽</span>
-                                    </div>
-                                    <div className="product-card__price product-card__price_old">238 990</div>
-                                    <div className="product-card__discount">-10%</div>
-                                    <div className="product-card__size">140 x 200</div>
-                                </div>
-                                <div className="product-card__dscr">
-                                    <div className="product-card__name">Браун</div>
-                                    <div className="product-card__size">140 x 200</div>
-                                    <div className="product-card__hard matr-hard"> Средний / жёсткий</div>
-                                </div>
-                                <div className="product-card__actions">
-                                    <button className="product-card__add">Добавить в заказ</button>
-                                    <button className="product-card__fav product-card__fav_grey"></button>
-                                </div>
-
-                            </li>
-                            <li className="similar-products__item product-card">
-                                <div className="product-card__img">
-                                    <img src="../melamori-next-app/public/img/product/product_similar/sofa-Afina.png"
-                                         alt="Софа Афина"/>
-                                        <button className="product-card__fav"></button>
-                                        <div className="product-card__discount">-10%</div>
-                                </div>
-                                <div className="product-card__prices">
-                                    <div className="product-card__price product-card__price_cur">125 550 <span>₽</span>
-                                    </div>
-                                    <div className="product-card__price product-card__price_old">238 990</div>
-                                    <div className="product-card__discount">-10%</div>
-                                </div>
-                                <div className="product-card__dscr">
-                                    <div className="product-card__name">Афина</div>
-                                </div>
-                                <div className="product-card__actions">
-                                    <button className="product-card__add">Добавить в заказ</button>
-                                    <button className="product-card__fav product-card__fav_grey"></button>
-                                </div>
-                            </li>
-                            <li className="similar-products__item product-card">
-                                <div className="product-card__img">
-                                    <img src="../melamori-next-app/public/img/product/product_similar/pillow-wave.png"
-                                         alt="Кровать Афина"/>
-                                        <button className="product-card__fav"></button>
-                                        <div className="product-card__discount">-10%</div>
-                                </div>
-                                <div className="product-card__prices">
-                                    <div className="product-card__price product-card__price_cur">125 550 <span>₽</span>
-                                    </div>
-                                    <div className="product-card__price product-card__price_old">238 990</div>
-                                    <div className="product-card__discount">-10%</div>
-                                </div>
-                                <div className="product-card__dscr">
-                                    <div className="product-card__name">Волна</div>
-                                </div>
-                                <div className="product-card__actions">
-                                    <button className="product-card__add">Добавить в заказ</button>
-                                    <button className="product-card__fav product-card__fav_grey"></button>
-                                </div>
-                            </li>
-
-                        </ul>
+                        <div className="similar-products__items">
+                            {
+                                collection.map((item) =>
+                                    <ProductCard key={item.id} productData={item} keys={keys} className={"catalog__item"}/>
+                                )
+                            }
+                        </div>
                     </div>
                 </section>
         </MainLayout>
