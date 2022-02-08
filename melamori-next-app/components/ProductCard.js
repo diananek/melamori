@@ -1,4 +1,4 @@
-import FavoritesBtn from "./FavoritesBtn";
+import ProductCardFavoritesBtn from "./ProductCardFavoritesBtn";
 import {useRouter} from "next/router";
 
 export default function ProductCard({productData, keys}) {
@@ -23,11 +23,9 @@ export default function ProductCard({productData, keys}) {
     return(
         <article key={id} className="catalog__item product-card" onClick={(e)=> handler(e)}>
             <div className="product-card__img">
-                <a  href="#">
-                    <img src={serverUrl+imageId}
-                         alt={imageTitle}/>
-                </a>
-                <FavoritesBtn/>
+                <img src={serverUrl+imageId}
+                     alt={imageTitle}/>
+                <ProductCardFavoritesBtn/>
                 {priceData.status !== "non-active" ? <div className="product-card__discount">-10%</div> : undefined}
             </div>
             <div className="product-card__prices">
@@ -42,7 +40,7 @@ export default function ProductCard({productData, keys}) {
             </div>
             <div className="product-card__actions">
                 <button className="product-card__add">Добавить в заказ</button>
-                <FavoritesBtn className="product-card__fav_grey"> </FavoritesBtn>
+                <ProductCardFavoritesBtn className="product-card__fav_grey"> </ProductCardFavoritesBtn>
             </div>
         </article>
     )

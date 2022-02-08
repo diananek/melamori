@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-export default function FavoritesBtn(props) {
+export default function ProductCardFavoritesBtn(props) {
     let [isPressed, setPressed] = useState(false);
 
     let classNames = require('classnames');
