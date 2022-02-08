@@ -31,7 +31,7 @@ export default function Catalog({title, productsData, status, collectionName}) {
                 <div className="catalog__grid">
                     {
                         products.map((item) =>
-                            <ProductCard key={item.id} productData={item} keys={keys}/>
+                            <ProductCard key={item.id} productData={item} keys={keys} className={"catalog__item"}/>
                         )
                     }
                 </div>
