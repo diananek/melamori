@@ -12,6 +12,7 @@ export const bedCollection = gql`{
       bed_prices_id {
         price
         status
+          sale_percentage
           bed_size_relation {
               bed_size
               sleep_size
@@ -34,6 +35,7 @@ export const sofaCollection = gql`{
             sofa_prices_id {
                 price
                 status
+                sale_percentage
                 sofa_size_relation {
                     sleep_size
                     sofa_size
@@ -56,6 +58,7 @@ export const mattressCollection = gql`{
             mattresses_prices_id {
                 price
                 status
+                sale_percentage
                 mattress_size_relation {
                     sleep_size
                 }
@@ -71,6 +74,25 @@ export const bedCollectionById = gql`query myQuery($id:ID!){
         image {
             id
             title
+        }
+        price_list {
+            bed_prices_id {
+                bed_cloth_category_relation {
+                    category
+                }
+                bed_size_relation {
+                    sleep_size
+                    bed_size
+                }
+                price
+                status
+                sale_percentage
+            }
+        }
+        additional_options {
+            additional_options_id {
+                title
+            }
         }
     }
 }
