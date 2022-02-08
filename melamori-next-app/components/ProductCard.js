@@ -13,7 +13,7 @@ export default function ProductCard({productData, keys}) {
 
     const sizeData = priceData[keys.sizeRelation]
     const router = useRouter()
-    const pageUrl = router.asPath === '/' ? 'catalog/' : './'
+    const pageUrl = '/catalog/beds/'
 
     const handler = (event)=>{
         if(event.target.closest(".product-card__dscr") || event.target.closest(".product-card__img")) {
