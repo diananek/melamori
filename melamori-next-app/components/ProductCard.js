@@ -1,7 +1,7 @@
 import ProductCardFavoritesBtn from "./ProductCardFavoritesBtn";
 import {useRouter} from "next/router";
 
-export default function ProductCard({productData, keys, className}) {
+export default function ProductCard({productData, keys, className, collectionName}) {
     const serverUrl = process.env.serverUrl
     const id = productData.id
     const imageId = productData.image.id
