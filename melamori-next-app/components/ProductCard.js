@@ -13,8 +13,18 @@ export default function ProductCard({productData, keys, className}) {
 
     const sizeData = priceData[keys.sizeRelation]
     const router = useRouter()
-    const pageUrl = '/catalog/beds/'
-
+    const getPageUrl = (collectionName) => {
+        if(collectionName === 'bed_collection') {
+            return '/catalog/beds/'
+        }
+        if(collectionName === 'sofa_collection') {
+            return '/catalog/sofas/'
+        }
+        if(collectionName === 'mattresses') {
+            return '/catalog/mattresses/'
+        }
+    }
+    const pageUrl = getPageUrl(collectionName)
     const handler = (event)=>{
         if(event.target.closest(".product-card__dscr") || event.target.closest(".product-card__img")) {
             router.push(pageUrl + id)
