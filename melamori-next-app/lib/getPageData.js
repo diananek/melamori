@@ -5,7 +5,7 @@ export function getPageData(path) {
             title = "Кровати"
             break;
         case '/catalog/sofas':
-            title = "Диваны"
+            title = "Мягкая мебель"
             break;
         case '/catalog/mattresses':
             title = "Матрасы"
