@@ -34,7 +34,6 @@
             &_sofa {
                 grid-template-areas: "img dscr" "img features" "info features" "info props";
                 .props {
-                    grid-row: 3/4;
                     padding-top: 50px;
                 }
             }
@@ -81,8 +80,6 @@
     &__img {
         min-height: 266px;
         grid-area: img;
-        // background: no-repeat center/ cover url(../img/bed/Adel_1.jpg);
-        background: no-repeat center/ cover url(../../public/img/mattress/Vega.jpg);
         @media (min-width: 768px) {
             background: #FFFFFF;
             margin: 0 auto 0 auto;
