@@ -5,17 +5,30 @@ import "../styles/scss/error.scss"
 import "../styles/scss/cookie.scss"
 import "../styles/scss/thanks.scss"
 import {ApolloClient, InMemoryCache, ApolloProvider} from "@apollo/client";
+import {offsetLimitPagination} from "@apollo/client/utilities";
+import {AppWrapper} from "../context/state";
 
 const apolloClient = new ApolloClient({
     uri: "https://service.melamori-mebel.ru/graphql",
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({
+        typePolicies: {
+            Query: {
+                fields: {
+                    feed:
+                        offsetLimitPagination()
+                },
+            },
+        },
+    }),
 })
 
 function MyApp({ Component, pageProps }) {
   return(
-      <ApolloProvider client={apolloClient}>
-          <Component {...pageProps} />
-      </ApolloProvider>
+      <AppWrapper>
+          <ApolloProvider client={apolloClient}>
+              <Component {...pageProps} />
+          </ApolloProvider>
+      </AppWrapper>
       )
 
 }
