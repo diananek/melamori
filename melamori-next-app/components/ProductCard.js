@@ -15,17 +15,7 @@ export default function ProductCard({productData, keys, className, collectionNam
 
     const sizeData = priceData[keys.sizeRelation]
     const router = useRouter()
-    const getPageUrl = (collectionName) => {
-        if(collectionName === 'bed_collection') {
-            return '/catalog/beds/'
-        }
-        if(collectionName === 'sofa_collection') {
-            return '/catalog/sofas/'
-        }
-        if(collectionName === 'mattresses') {
-            return '/catalog/mattresses/'
-        }
-    }
+
     const pageUrl = getPageUrl(collectionName)
     const handler = (event)=>{
         if(event.target.closest(".product-card__dscr") || event.target.closest(".product-card__img")) {
@@ -35,7 +25,7 @@ export default function ProductCard({productData, keys, className, collectionNam
     return(
         <article key={id} className={className + " product-card"} onClick={(e)=> handler(e)}>
             <div className="product-card__img">
-                <img src={serverUrl+imageId}
+                <img src={serverUrl + imageId}
                      alt={imageTitle}/>
                 <ProductCardFavoritesBtn/>
                 {priceData.status !== "non-active" ? <div className="product-card__discount">-10%</div> : undefined}
