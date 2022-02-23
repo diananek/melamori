@@ -98,6 +98,22 @@
         width: 24px;
         height: 24px;
         background: no-repeat center url(../../public/img/header/Favorites.svg);
+        position: relative;
+        span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 20px;
+            height: 20px;
+            background: #03257C;
+            border-radius: 50%;
+            position: absolute;
+            left: 12px;
+            top: 11px;
+            font-weight: 600;
+            font-size: 13px;
+            color: #FFFFFF;
+        }
         &_catalog {
             margin: 0;
             @media (min-width: 768px) {
@@ -124,6 +140,22 @@
         width: 24px;
         height: 28px;
         background: no-repeat center url(../../public/img/header/basket.svg);
+        position: relative;
+        span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 20px;
+            height: 20px;
+            background: #03257C;
+            border-radius: 50%;
+            position: absolute;
+            left: 10px;
+            top: 14px;
+            font-weight: 600;
+            font-size: 13px;
+            color: #FFFFFF;
+        }
         &_catalog {
             margin: 0;
             @media (min-width: 1366px) {
@@ -142,6 +174,7 @@
             }
         }
     }
+
     &__actions {
         display: flex;
         height: 26px;
