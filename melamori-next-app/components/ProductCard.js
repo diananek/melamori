@@ -1,5 +1,7 @@
 import ProductCardFavoritesBtn from "./ProductCardFavoritesBtn";
 import {useRouter} from "next/router";
+import AddBasketBtn from "./AddBasketBtn";
+import {getPageUrl} from "../lib/getPageUrl";
 
 export default function ProductCard({productData, keys, className, collectionName}) {
     const serverUrl = process.env.serverUrl
@@ -49,8 +51,8 @@ export default function ProductCard({productData, keys, className, collectionNam
                 <div className="product-card__size">{sizeData.sleep_size}</div>
             </div>
             <div className="product-card__actions">
-                <button className="product-card__add">Добавить в заказ</button>
-                <ProductCardFavoritesBtn className="product-card__fav_grey"> </ProductCardFavoritesBtn>
+                <AddBasketBtn className="product-card__add" id={id} collectionName={collectionName}>Добавить в заказ</AddBasketBtn>
+                <ProductCardFavoritesBtn className="product-card__fav_grey" id={id} collectionName={collectionName}> </ProductCardFavoritesBtn>
             </div>
         </article>
     )

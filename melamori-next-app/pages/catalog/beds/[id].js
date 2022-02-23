@@ -5,6 +5,7 @@ import {useQuery} from "@apollo/client";
 import ProductFavoritesBtn from "../../../components/ProductFavoritesBtn";
 import ProductCard from "../../../components/ProductCard";
 import {getKeys} from "../../../lib/getKeys";
+import AddBasketBtn from "../../../components/AddBasketBtn";
 
 export default function CatalogItem() {
     const serverUrl = process.env.serverUrl
@@ -64,8 +65,8 @@ export default function CatalogItem() {
                                         :undefined}
                                 </div>
                                 <div className="product__actions">
-                                    <button className="product__btn">Добавить в заказ</button>
-                                    <ProductFavoritesBtn> </ProductFavoritesBtn>
+                                    <AddBasketBtn className="product__btn" id={productId} collectionName={"bed_collection"}>Добавить в заказ</AddBasketBtn>
+                                    <ProductFavoritesBtn id={productId} collectionName={"bed_collection"}> </ProductFavoritesBtn>
                                 </div>
                             </div>
                             <div className="product__caution" data-da=".product__grid, 1920, 2">
