@@ -212,6 +212,14 @@
         &:hover {
             background: #03257C;
         }
+        &_active {
+            background: #D5F9FF;
+            color: #03257C;
+            &:hover{
+                background: #E2F1FF;
+                color: #03257C;
+            }
+        }
         @media(min-width: 768px) {
             width: 215px;
         }
@@ -252,6 +260,9 @@
             }
         }
         &_active {
+            span {
+                background: no-repeat center url("data:image/svg+xml,%3Csvg width='24' height='22' viewBox='0 0 24 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M12.9656 21.6396C12.4089 22.1201 11.5911 22.1201 11.0344 21.6396C9.00131 19.8849 4.29684 15.7686 2.22872 13.4916C0.852683 12.0623 0 10.0776 0 7.88357C0 3.52959 3.35786 0 7.5 0C8.77035 0 9.96694 0.33199 11.0155 0.917933C11.6221 1.25691 12.3779 1.25691 12.9845 0.917933C14.0331 0.33199 15.2296 0 16.5 0C20.6421 0 24 3.52959 24 7.88357C24 10.0776 23.1473 12.0623 21.7713 13.4916C19.7032 15.7686 14.9987 19.8849 12.9656 21.6396Z' fill='%23FF2A50'/%3E%3C/svg%3E%0A");
+            }
             @media(min-width: 1366px) {
                 span {
                     background: no-repeat center url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M17.2875 29.8937C16.5452 30.5353 15.4548 30.5353 14.7125 29.8937C12.0017 27.5508 5.72912 22.0546 2.97163 19.0142C1.13691 17.1059 0 14.4559 0 11.5263C0 5.71279 4.47715 1 10 1C11.6938 1 13.2893 1.44328 14.6874 2.22564C15.4962 2.67826 16.5038 2.67826 17.3126 2.22565C18.7107 1.44328 20.3062 1 22 1C27.5228 1 32 5.71279 32 11.5263C32 14.4559 30.8631 17.1059 29.0284 19.0142C26.2709 22.0546 19.9983 27.5508 17.2875 29.8937Z' fill='%23FF2A50'/%3E%3C/svg%3E%0A");
@@ -891,6 +902,15 @@
         &:hover {
             color: #4261AE;
             border-color: #4261AE;
+        }
+        &_active {
+            background: #D5F9FF;
+            border: none;
+            color: #03257C;
+            &:hover{
+                background: #E2F1FF;
+                color: #03257C;
+            }
         }
     }
 }
