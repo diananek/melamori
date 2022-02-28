@@ -5,8 +5,8 @@ import classNames from "classnames";
 
 export default function AddBasketBtn({className, id}) {
     const ctx = useAppContext();
-    const [text, setText] = useState(ctx.cookieBasket.includes(id) ? 'Убрать из заказа' : 'Добавить в заказ');
     if(ctx.cookieBasket) {
+        const [text, setText] = useState(ctx.cookieBasket.includes(id) ? 'Убрать из заказа' : 'Добавить в заказ');
         let [isPressed, setPressed] = useState(ctx.cookieBasket.includes(id));
         let btnClass = classNames(className, {
             [`${className}_active`]: isPressed
