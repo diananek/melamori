@@ -3,7 +3,7 @@ import {useRouter} from "next/router";
 import AddBasketBtn from "./AddBasketBtn";
 import {getPageUrl} from "../lib/getPageUrl";
 
-export default function ProductCard({productData, keys, className, collectionName}) {
+export default function ProductCard({productData, keys, className, collectionName, actionsDisabled}) {
     const serverUrl = process.env.serverUrl
     const id = productData.id
     const imageId = productData.image.id
@@ -40,10 +40,10 @@ export default function ProductCard({productData, keys, className, collectionNam
                 <div className="product-card__name">{title}</div>
                 <div className="product-card__size">{sizeData.sleep_size}</div>
             </div>
-            <div className="product-card__actions">
+            {!actionsDisabled ? <div className="product-card__actions">
                 <AddBasketBtn className="product-card__add" id={id} collectionName={collectionName}>Добавить в заказ</AddBasketBtn>
-                <ProductCardFavoritesBtn className="product-card__fav_grey" id={id} collectionName={collectionName}> </ProductCardFavoritesBtn>
-            </div>
+                <ProductCardFavoritesBtn className="product-card__fav_grey" id={id} collectionName={collectionName} data={productData}> </ProductCardFavoritesBtn>
+            </div>:undefined}
         </article>
     )
 }
