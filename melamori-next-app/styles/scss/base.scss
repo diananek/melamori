@@ -76,6 +76,7 @@ body {
         margin: 17px 0 31px 0;
         &_actions {
             margin: 25px 0 31px 0;
+            display: flex !important;
         }
         @media (min-width: 768px) {
            display: none;
@@ -85,10 +86,21 @@ body {
         font-weight: 600;
         font-size: 24px;
         margin: 0 8px 0 0;
+        @media(min-width: 768px) {
+            font-size: 40px;
+            margin: 0 24px 0 0;
+        }
     }
     &__goods-count {
         font-size: 16px;
         color: #58778D;
+        @media (min-width: 768px) {
+            font-size: 24px;
+            color: #58778D;
+        }
+        @media (min-width: 1366px) {
+            font-size: 40px;
+        }
     }
     &__logo {
         position: relative;
