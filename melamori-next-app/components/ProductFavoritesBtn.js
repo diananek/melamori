@@ -2,30 +2,31 @@ import {useState} from "react";
 import {useAppContext} from "../context/state";
 import classNames from "classnames";
 
-export default function ProductFavoritesBtn({className, id}) {
+export default function ProductFavoritesBtn({className, id, data}) {
     let classNames = require('classnames');
 
     const ctx = useAppContext();
-    if(ctx.cookieFav) {
-        let [isPressed, setPressed] = useState(ctx.cookieFav.includes(id) );
+    if(ctx.cookieFavId) {
+        let [isPressed, setPressed] = useState(ctx.cookieFavId.includes(id) );
 
         let btnClass = classNames("product__favorites", className, {
             "product__favorites_active": isPressed
         })
 
         const removeId = ()=> {
-            const index = ctx.cookieFav.indexOf(id, 0)
-            ctx.setCookieFav(ctx.cookieFav.slice(0, index).concat(ctx.cookieFav.slice(index+1)))
+            const index = ctx.cookieFavId.indexOf(id, 0)
+            ctx.setCookieFavId(ctx.cookieFavId.slice(0, index).concat(ctx.cookieFavId.slice(index+1)))
         }
 
         return(
             <button className={btnClass} onClick={()=>{
                 const isActive = !isPressed
                 setPressed(isActive)
-                console.log(ctx.cookieFav)
+                console.log(ctx.cookieFavId)
                 if(isActive) {
-                    if(!ctx.cookieFav.includes(id)){
-                        ctx.setCookieFav(ctx.cookieFav.concat(id))
+                    if(!ctx.cookieFavId.includes(id)){
+                        ctx.setCookieFavId(ctx.cookieFavId.concat(id))
+                        ctx.setCookieFav(ctx.cookieFav.concat([data]))
                     }
                 } else {
                     removeId()
