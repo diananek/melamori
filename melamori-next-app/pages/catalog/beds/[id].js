@@ -66,7 +66,8 @@ export default function CatalogItem() {
                                 </div>
                                 <div className="product__actions">
                                     <AddBasketBtn className="product__btn" id={productId} collectionName={"bed_collection"}>Добавить в заказ</AddBasketBtn>
-                                    <ProductFavoritesBtn id={productId} collectionName={"bed_collection"}> </ProductFavoritesBtn>
+                                    <ProductFavoritesBtn id={productId} collectionName={"bed_collection"} data={itemData}>
+                                    </ProductFavoritesBtn>
                                 </div>
                             </div>
                             <div className="product__caution" data-da=".product__grid, 1920, 2">
@@ -148,7 +149,8 @@ export default function CatalogItem() {
                         <div className="similar-products__items">
                             {
                                 collection.map((item) =>
-                                    <ProductCard key={item.id} productData={item} keys={keys} className={"catalog__item"}/>
+                                    <ProductCard key={item.id} productData={item} keys={keys}
+                                                 className={"catalog__item"} collectionName={'bed_collection'}/>
                                 )
                             }
                         </div>
