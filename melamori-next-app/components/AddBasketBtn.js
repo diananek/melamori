@@ -44,8 +44,9 @@ export default function AddBasketBtn({className, id}) {
 
         return(
             <button className={btnClass} onClick={()=>{
-                setPressed(!isPressed)
-                if(isPressed) {
+                const isActive = !isPressed
+                setPressed(isActive)
+                if(isActive) {
                     setText('Убрать из заказа')
                 } else {
                     setText('Добавить в заказ')
