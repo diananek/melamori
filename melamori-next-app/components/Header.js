@@ -7,7 +7,7 @@ import {useAppContext} from "../context/state";
 export default function Header() {
     const ctx = useAppContext()
     const basketCount = ctx.cookieBasket !== undefined ? ctx.cookieBasket.length : 0
-    const favoritesCount = ctx.cookieFav !== undefined ? ctx.cookieFav.length : 0
+    const favoritesCount = ctx.cookieFavId !== undefined ? ctx.cookieFavId.length : 0
     return(
         <header className="header header_catalog">
             <div className="header__body container">
