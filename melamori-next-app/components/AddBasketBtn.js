@@ -36,6 +36,7 @@ export default function AddBasketBtn({className, id}) {
         )
     } else {
         let [isPressed, setPressed] = useState(false);
+        const [text, setText] = useState( isPressed === true ? 'Убрать из заказа' : 'Добавить в заказ');
 
         let btnClass = classNames( className, {
             "product__favorites_active": isPressed
