@@ -13,7 +13,6 @@ export default function SortingItem({ id, children }) {
                 query: { sorting: id }
             },
             void 0
-
         );
     };
 
