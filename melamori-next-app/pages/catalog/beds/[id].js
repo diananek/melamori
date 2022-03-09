@@ -56,11 +56,10 @@ export default function CatalogItem() {
     const [categories, dispatchCategories] = useReducer(reducer, [...clothCategoriesBySizes.get(sizes)])
 
     const priceList = productData.price_list[0].bed_prices_id
-
-    const sleepSize = priceList.bed_size_relation.sleep_size
-    const bedSizes = priceList.bed_size_relation.bed_size.split('*')
-
-    const clothCategory = priceList.bed_cloth_category_relation.category
+    const clothCategory = priceList.bed_cloth_category_relation
+    const bedSizes = sizesByClothCategories.get(clothCategory)
+    const bedSizeList = bedSizes[0].bed_size.split('*')
+    const sleepSize = bedSizes[0].sleep_size
 
     const imageId = productData.image.id
     const imageTitle = productData.image.title
