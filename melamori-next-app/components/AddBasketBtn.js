@@ -6,17 +6,16 @@ import {removeData} from "../lib/removeData";
 
 export default function AddBasketBtn({className, id, data, price, size, sale, saleStatus}) {
     const ctx = useAppContext();
-    if(ctx.cookieBasket) {
-        const [text, setText] = useState(ctx.cookieBasket.includes(id) ? 'Убрать из заказа' : 'Добавить в заказ');
-        let [isPressed, setPressed] = useState(ctx.cookieBasket.includes(id));
+    if(ctx.cookieBasketId) {
+        const [text, setText] = useState(ctx.cookieBasketId.includes(id) ? 'Убрать из заказа' : 'Добавить в заказ');
+        let [isPressed, setPressed] = useState(ctx.cookieBasketId.includes(id));
+
         let btnClass = classNames(className, {
             [`${className}_active`]: isPressed
         })
-
-
         const removeId = ()=> {
-            const index = ctx.cookieBasket.indexOf(id, 0)
-            ctx.setCookieBasket(ctx.cookieBasket.slice(0, index).concat(ctx.cookieBasket.slice(index+1)))
+            const index = ctx.cookieBasketId.indexOf(id, 0)
+            ctx.setCookieBasketId(ctx.cookieBasketId.slice(0, index).concat(ctx.cookieBasketId.slice(index+1)))
         }
 
         return(
@@ -25,8 +24,21 @@ export default function AddBasketBtn({className, id, data, price, size, sale, sa
                 setPressed(isActive)
                 setText('Убрать из заказа')
                 if(isActive) {
-                    if (!ctx.cookieBasket.includes(id)) {
-                        ctx.setCookieBasket(ctx.cookieBasket.concat(id))
+                    if (!ctx.cookieBasketId.includes(id)) {
+                        const BasketData = {
+                            id : id,
+                            imageId : data.image.id,
+                            imageTitle : data.image.title,
+                            title : data.title,
+                            price : price,
+                            sale : sale,
+                            saleStatus : saleStatus,
+                            size : size,
+                        }
+                        ctx.setCookieBasketId(ctx.cookieBasketId.concat(id))
+                        ctx.setCookieBasket(ctx.cookieBasket.concat(
+                            [BasketData]
+                        ))
                     }
                 } else {
                     removeId()
