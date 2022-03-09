@@ -7,7 +7,7 @@ import ProductCard from "../../../components/ProductCard";
 import {getKeys} from "../../../lib/getKeys";
 import AddBasketBtn from "../../../components/AddBasketBtn";
 import {getSizesAndCategories} from "../../../lib/getSizesAndCategories";
-import {useReducer, useState} from "react";
+import {useReducer} from "react";
 import FeaturesOptions from "../../../components/FeaturesOptions";
 
 export default function BedItem() {
@@ -96,7 +96,7 @@ export default function BedItem() {
                                         :undefined}
                                 </div>
                                 <div className="product__actions">
-                                    <AddBasketBtn className="product__btn" id={productId} collectionName={"bed_collection"}>Добавить в заказ</AddBasketBtn>
+                                    <AddBasketBtn className="product__btn" id={productId} collectionName={"bed_collection"} data={itemData}/>
                                     <ProductFavoritesBtn id={productId} collectionName={"bed_collection"} data={itemData}>
                                     </ProductFavoritesBtn>
                                 </div>
@@ -142,15 +142,15 @@ export default function BedItem() {
                         <div className="product__props props">
                             <div className="props__item ">
                                 <div className="props__name ">Ширина</div>
-                                <div className="props__val ">{bedSizes[0] + ' см'}</div>
+                                <div className="props__val ">{bedSizeList[0] + ' см'}</div>
                             </div>
                             <div className="props__item ">
                                 <div className="props__name ">Высота</div>
-                                <div className="props__val ">{bedSizes[2] + ' см'}</div>
+                                <div className="props__val ">{bedSizeList[2] + ' см'}</div>
                             </div>
                             <div className="props__item ">
                                 <div className="props__name ">Длина</div>
-                                <div className="props__val ">{bedSizes[1] + ' см'}</div>
+                                <div className="props__val ">{bedSizeList[1] + ' см'}</div>
                             </div>
                             <div className="props__item ">
                                 <div className="props__name ">Матрац</div>
