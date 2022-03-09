@@ -4,7 +4,7 @@ import {getKeys} from "../lib/getKeys";
 import Sorting from "./Sorting";
 
 
-export default function Catalog({title, productsData, status, collectionName}) {
+export default function Catalog({title, productsData, status, collectionName, onLoadMore}) {
     if(status === "loading") {
         return "LOADING...."
     }
@@ -15,7 +15,6 @@ export default function Catalog({title, productsData, status, collectionName}) {
     let products = productsData[collectionName]
     const keys = getKeys(collectionName)
     const path = useRouter().asPath
-
     return(
         <div className="catalog">
             <div className="catalog__container container">
@@ -31,7 +30,7 @@ export default function Catalog({title, productsData, status, collectionName}) {
                 <div className="catalog__grid">
                     {
                         products.map((item) =>
-                            <ProductCard key={item.id} productData={item} keys={keys} className={"catalog__item"}/>
+                            <ProductCard collectionName={collectionName} key={item.id} productData={item} keys={keys} className={"catalog__item"}/>
                         )
                     }
                 </div>
