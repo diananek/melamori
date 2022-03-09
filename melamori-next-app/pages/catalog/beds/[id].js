@@ -114,27 +114,18 @@ export default function CatalogItem() {
                             </div>
                         </div>
                         <form className="product__features features">
-                            <div className="features__item ">
-                                <div className="features__name name">Размер спального места</div>
-                                <div className="features__options ">
-                                    <button className="features__option features__option_selected ">{sleepSize}</button>
-                                    <button className="features__option ">Свой</button>
-                                </div>
-                            </div>
-                            <div className="features__item ">
-                                <div className="features__name name">Категория ткани</div>
-                                <div className="features__options">
-                                    <button className="features__option features__option_selected">{clothCategory}</button>
-                                </div>
-                            </div>
-
-                            <div className="features__item ">
-                                <div className="features__name name">Украшения</div>
-                                <div className="features__options">
-                                    <button className="features__option features__option_selected ">Пуговицы</button>
-                                    <button className="features__option ">Стразы</button>
-                                </div>
-                            </div>
+                             <div className="features__item">
+                                 <div className="features__name name">Размер спального места</div>
+                                     <FeaturesOptions data={{'sizes': sizes, 'categories': categories}}
+                                                      dispatch={{'size': dispatchSizes, 'category': dispatchCategories}}
+                                                      type={'size'}/>
+                             </div>
+                             <div className="features__item">
+                                 <div className="features__name name">Категория ткани</div>
+                                     <FeaturesOptions data={{'sizes': sizes, 'categories': categories}}
+                                                      dispatch={{'size': dispatchSizes, 'category': dispatchCategories}}
+                                                      type={'category'}/>
+                             </div>
                         </form>
                         <div className="product__extra features">
                             <div className="features__item">
