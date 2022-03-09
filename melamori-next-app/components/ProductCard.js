@@ -3,7 +3,7 @@ import {useRouter} from "next/router";
 import AddBasketBtn from "./AddBasketBtn";
 import {getPageUrl} from "../lib/getPageUrl";
 
-export default function ProductCard({productData, keys, className, collectionName, actionsDisabled}) {
+export default function ProductCard({productData, keys, className, collectionName}) {
     const serverUrl = process.env.serverUrl
     const id = productData.id
     const imageId = productData.image.id
@@ -15,6 +15,9 @@ export default function ProductCard({productData, keys, className, collectionNam
 
     const sizeData = priceData[keys.sizeRelation]
     const router = useRouter()
+
+    const sale = priceData.sale_percentage ? priceData.sale_percentage : 0
+    const price = priceData.price * (1 - sale/100)
 
     const pageUrl = getPageUrl(collectionName)
     const handler = (event)=>{
@@ -28,22 +31,22 @@ export default function ProductCard({productData, keys, className, collectionNam
                 <img src={serverUrl + imageId}
                      alt={imageTitle}/>
                 <ProductCardFavoritesBtn/>
-                {priceData.status !== "non-active" ? <div className="product-card__discount">-10%</div> : undefined}
+                {priceData.status !== "non-active" ? <div className="product-card__discount">-{sale}%</div> : undefined}
             </div>
             <div className="product-card__prices">
-                <div className="product-card__price product-card__price_cur">{priceData.price} <span>₽</span></div>
-                {priceData.status !== "non-active" ? <div className="product-card__price product-card__price_old">238 990</div> : undefined}
-                {priceData.status !== "non-active" ? <div className="product-card__discount">-10%</div> : undefined}
-                <div className="product-card__size">{sizeData.sleep_size}</div>
+                <div className="product-card__price product-card__price_cur"> от {price} <span>₽</span></div>
+                {priceData.status !== "non-active" ? <div className="product-card__price product-card__price_old">от {priceData.price}</div> : undefined}
+                {priceData.status !== "non-active" ? <div className="product-card__discount">-{sale}%</div> : undefined}
             </div>
             <div className="product-card__dscr">
                 <div className="product-card__name">{title}</div>
-                <div className="product-card__size">{sizeData.sleep_size}</div>
             </div>
-            {!actionsDisabled ? <div className="product-card__actions">
-                <AddBasketBtn className="product-card__add" id={id} collectionName={collectionName}>Добавить в заказ</AddBasketBtn>
-                <ProductCardFavoritesBtn className="product-card__fav_grey" id={id} collectionName={collectionName} data={productData}> </ProductCardFavoritesBtn>
-            </div>:undefined}
+            <div className="product-card__actions">
+                <AddBasketBtn className="product-card__add" id={id} collectionName={collectionName} data={productData}
+                              price={priceData.price} sale={sale} saleStatus={priceData.status}/>
+                <ProductCardFavoritesBtn className="product-card__fav_grey" id={id} collectionName={collectionName}
+                                         data={productData}> </ProductCardFavoritesBtn>
+            </div>
         </article>
     )
 }
