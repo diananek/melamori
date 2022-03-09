@@ -2,6 +2,7 @@ import {useState} from "react";
 import {useAppContext} from "../context/state";
 import "classnames";
 import classNames from "classnames";
+import {removeData} from "../lib/removeData";
 
 export default function AddBasketBtn({className, id}) {
     const ctx = useAppContext();
@@ -29,6 +30,7 @@ export default function AddBasketBtn({className, id}) {
                     }
                 } else {
                     removeId()
+                    removeData(ctx.cookieBasket, id)
                     setText('Добавить в заказ')
                 }
 
