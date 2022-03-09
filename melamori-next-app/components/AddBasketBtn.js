@@ -4,7 +4,7 @@ import "classnames";
 import classNames from "classnames";
 import {removeData} from "../lib/removeData";
 
-export default function AddBasketBtn({className, id}) {
+export default function AddBasketBtn({className, id, data, price, size, sale, saleStatus}) {
     const ctx = useAppContext();
     if(ctx.cookieBasket) {
         const [text, setText] = useState(ctx.cookieBasket.includes(id) ? 'Убрать из заказа' : 'Добавить в заказ');
