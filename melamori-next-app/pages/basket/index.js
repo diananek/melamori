@@ -4,12 +4,15 @@ import {getKeys} from "../../lib/getKeys";
 import BasketCard from "../../components/BasketCard";
 
 export default function BasketPage() {
+    const ctx = useAppContext()
+    const cookies = ctx.cookieBasket
+    const basketCount = cookies.length
     return (
         <MainLayout title={"Корзина"}>
             <div className="container">
                 <div className="page__name page__name_actions">
                     <h1 className="page__title">Корзина</h1>
-                    <div className="page__goods-count">4 товара</div>
+                    <div className="page__goods-count">{basketCount} товара</div>
                 </div>
                 <div className="basket">
                     <section className="basket__catalog catalog">
@@ -36,8 +39,8 @@ export default function BasketPage() {
                                         <span className="discount__value">200 000 ₽</span>
                                     </li>
                                     <li className="discount__item">
-                                        <span className="discount__title">Без скидки</span>
-                                        <span className="discount__value">200 000 ₽</span>
+                                        <span className="discount__title">Скидка</span>
+                                        <span className="discount__value">86 810 ₽</span>
                                     </li>
                                 </ul>
                             </div>
