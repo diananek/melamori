@@ -5,8 +5,10 @@ const AppContext = createContext();
 
 export function AppWrapper({children}) {
     const [cookieFavId, setCookieFavId] = useState(undefined)
+    const [cookieBasketId, setCookieBasketId] = useState(undefined)
+
     const [cookieFav, setCookieFav] = useState([])
-    const [cookieBasket, setCookieBasket] = useState(undefined)
+    const [cookieBasket, setCookieBasket] = useState([])
 
     useEffect(() => {
         if (Cookie.get('site_consent')) {
@@ -34,26 +36,33 @@ export function AppWrapper({children}) {
 
     }, [cookieFavId, cookieFav])
     useEffect(() => {
-        console.log(cookieBasket)
         if (Cookie.get('site_consent')) {
-            if (Cookie.get('basket') === undefined) {
+            if (Cookie.get('basket_id') === undefined) {
+                Cookie.set('basket_id', JSON.stringify([]), {
+                    expires: 30
+                })
                 Cookie.set('basket', JSON.stringify([]), {
                     expires: 30
                 })
             }
-            if (cookieBasket !== undefined) {
+            if (cookieBasketId !== undefined) {
+                Cookie.set('basket_id', JSON.stringify(cookieBasketId), {
+                    expires: 30
+                })
                 Cookie.set('basket', JSON.stringify(cookieBasket), {
                     expires: 30
                 })
             } else {
+                setCookieBasketId(JSON.parse(Cookie.get('basket_id')))
                 setCookieBasket(JSON.parse(Cookie.get('basket')))
             }
         }
 
-    }, [cookieBasket])
+    }, [cookieBasketId, cookieBasket])
 
     return (
-        <AppContext.Provider value={{cookieFavId, setCookieFavId, setCookieFav, cookieFav, cookieBasket, setCookieBasket}}>
+        <AppContext.Provider value={{cookieFavId, setCookieFavId, setCookieFav, cookieFav, cookieBasket,
+            setCookieBasket,  cookieBasketId, setCookieBasketId}}>
             {children}
         </AppContext.Provider>
     );
