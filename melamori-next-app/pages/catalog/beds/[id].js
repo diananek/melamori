@@ -6,8 +6,12 @@ import ProductFavoritesBtn from "../../../components/ProductFavoritesBtn";
 import ProductCard from "../../../components/ProductCard";
 import {getKeys} from "../../../lib/getKeys";
 import AddBasketBtn from "../../../components/AddBasketBtn";
+import {getSizesAndCategories} from "../../../lib/getSizesAndCategories";
+import {useReducer, useState} from "react";
+import FeaturesOptions from "../../../components/FeaturesOptions";
 
-export default function CatalogItem() {
+export default function BedItem() {
+    const router = useRouter()
     const serverUrl = process.env.serverUrl
     const productId = useRouter().asPath.split('/').pop()
     const { loading: itemLoading, error: itemError, data: itemData } = useQuery(bedCollectionById, {
@@ -15,7 +19,7 @@ export default function CatalogItem() {
     })
 
     const { loading: collectionLoading, error: collectionError, data: collectionData } = useQuery(bedCollection, {
-        variables: { offset: 4 },
+        variables: { limit: 4 },
     })
 
     if(itemLoading || collectionLoading) {
@@ -105,12 +109,11 @@ export default function CatalogItem() {
                                 </div>
                             </div>
                         </div>
-
                         <div className="product__info info">
                             <div className="info__container ">
                                 <p>18 месяцев гарантия</p>
                                 <p>От 7-ми дней срок изготовления </p>
-                                <a href="#" className="product__offer link ">Бесплатная консультация с менеджером</a>
+                                <a href="#" className="product__offer link">Бесплатная консультация с менеджером</a>
                             </div>
                         </div>
                         <form className="product__features features">
