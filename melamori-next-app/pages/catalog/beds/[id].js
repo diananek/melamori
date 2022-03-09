@@ -48,7 +48,7 @@ export default function CatalogItem() {
                 <div className="product">
                     <div className="container product__grid">
                         <div className="product__img">
-                            <img src={serverUrl + imageId} alt={imageTitle}/>
+                            <img src={serverUrl + imageId} alt={imageTitle} style={{background: `no-repeat center/ cover url(${serverUrl + imageId})`}}/>
                         </div>
                         <div className="product__dscr dscr">
                             <div className="dscr__grid">
@@ -58,10 +58,10 @@ export default function CatalogItem() {
                                 <div className="product__prices">
                                     <div className="product__price price price_cur">{price} <span>₽</span></div>
                                     {saleStatus !== "non-active" ?
-                                        <div className="product__price price price_old">200 000</div>
+                                        <div className="product__price price price_old">{priceList.price}</div>
                                         :undefined}
                                     {saleStatus !== "non-active" ?
-                                        <div className="product__discount">-40%</div>
+                                        <div className="product__discount">-{sale}%</div>
                                         :undefined}
                                 </div>
                                 <div className="product__actions">
