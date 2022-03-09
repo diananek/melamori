@@ -66,7 +66,8 @@ export default function CatalogItem() {
     const title = productData.title
 
     const saleStatus = priceList.status
-    const price = priceList.price
+    const sale = priceList.sale_percentage ? priceData.sale_percentage : 0
+    const price = priceList.price * (1 - sale/100)
 
     const collection = collectionData.bed_collection
     const keys = getKeys("bed_collection")
