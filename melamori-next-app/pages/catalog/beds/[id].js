@@ -28,6 +28,33 @@ export default function CatalogItem() {
 
     const productData = itemData.bed_collection_by_id
 
+    const keys = getKeys("bed_collection")
+    const [sizesByClothCategories, clothCategoriesBySizes, pricesByCategoriesAndSizes] = getSizesAndCategories(productData, keys)
+
+    sizesByClothCategories.set({'__typename': 'cloth_category', 'category': '2 Категория', 'id': 'c406558e-2260-4023-95ca-260e21da5205'},[{'__typename': 'bed_sizes','id': 'v403558e-2260-4023-95ca-290e21da5205', 'sleep_size': '140х200', 'bed_size': '134*210*116'}])
+    sizesByClothCategories.set({'__typename': 'cloth_category', 'category': '3 Категория', 'id': 'v403558e-2260-4023-95ca-260e21da5205'},[{'__typename': 'bed_sizes','id': 'v403558e-2260-4023-95ca-290e21da5205', 'sleep_size': '140х200', 'bed_size': '134*210*116'}])
+    clothCategoriesBySizes.set({'__typename': 'bed_sizes', 'id': 'v403558e-2260-4023-95ca-290e21da5205', 'sleep_size': '140х200', 'bed_size': '134*210*116'}, [{'__typename': 'cloth_category', 'category': '2 Категория', 'id': 'c406558e-2260-4023-95ca-260e21da5205'},
+        {'__typename': 'cloth_category', 'category': '3 Категория', 'id': 'v403558e-2260-4023-95ca-260e21da5205'}])
+    console.dir(sizesByClothCategories)
+    console.dir(clothCategoriesBySizes)
+    function reducer(selectorType, size, category){
+        switch(selectorType){
+            case 'size':
+                return {
+                    'sizes': [...clothCategoriesBySizes.keys()],
+                    'categories': [...clothCategoriesBySizes.get(size)]
+                }
+            case 'category':
+                return {
+                    'categories': [...sizesByClothCategories.keys()],
+                    'sizes': [...clothCategoriesBySizes.get(category)]
+                }
+        }
+    }
+
+    const [sizes, dispatchSizes] = useReducer(reducer, [...clothCategoriesBySizes.keys()])
+    const [categories, dispatchCategories] = useReducer(reducer, [...clothCategoriesBySizes.get(sizes)])
+
     const priceList = productData.price_list[0].bed_prices_id
 
     const sleepSize = priceList.bed_size_relation.sleep_size
