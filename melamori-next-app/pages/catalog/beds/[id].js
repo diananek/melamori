@@ -22,7 +22,8 @@ export default function CatalogItem() {
         return "LOADING...."
     }
     if(itemError || collectionError) {
-        return "ERROR!"
+        router.push('/404')
+        return
     }
 
     const productData = itemData.bed_collection_by_id
