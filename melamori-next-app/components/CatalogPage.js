@@ -2,7 +2,7 @@ import Offers from "./Offers";
 import Catalog from "./Catalog";
 import MainLayout from "./MainLayout";
 
-export default function CatalogPage({title, collectionName, data, status}) {
+export default function CatalogPage({title, collectionName, data, status, onLoadMore}) {
     return (
         <MainLayout>
             <div className="container">
@@ -12,8 +12,9 @@ export default function CatalogPage({title, collectionName, data, status}) {
                 </div>
             </div>
             <Offers/>
+            <button style={{width: '60px', height: '30px', backgroundColor: 'tomato'}} onClick={()=> onLoadMore()}>Click</button>
             <Catalog productsData={data} status={status}
-                     collectionName={collectionName} title={title}/>
+                     collectionName={collectionName} title={title} onLoadMore={onLoadMore}/>
         </MainLayout>
     )
 }
