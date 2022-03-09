@@ -74,7 +74,6 @@ export default function BedItem() {
     const price = priceList.price * (1 - sale/100)
 
     const collection = collectionData.bed_collection
-    const keys = getKeys("bed_collection")
     return(
         <MainLayout>
                 <div className="product">
