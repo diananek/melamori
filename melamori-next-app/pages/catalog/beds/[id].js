@@ -34,7 +34,7 @@ export default function BedItem() {
 
     const keys = getKeys("bed_collection")
     const [sizesByClothCategories, clothCategoriesBySizes, pricesByCategoriesAndSizes] = getSizesAndCategories(productData, keys)
-
+    // Добавлены дополнительные примеры данных
     sizesByClothCategories.set({'__typename': 'cloth_category', 'category': '2 Категория', 'id': 'c406558e-2260-4023-95ca-260e21da5205'},[{'__typename': 'bed_sizes','id': 'v403558e-2260-4023-95ca-290e21da5205', 'sleep_size': '140х200', 'bed_size': '134*210*116'}])
     sizesByClothCategories.set({'__typename': 'cloth_category', 'category': '3 Категория', 'id': 'v403558e-2260-4023-95ca-260e21da5205'},[{'__typename': 'bed_sizes','id': 'v403558e-2260-4023-95ca-290e21da5205', 'sleep_size': '140х200', 'bed_size': '134*210*116'}])
     clothCategoriesBySizes.set({'__typename': 'bed_sizes', 'id': 'v403558e-2260-4023-95ca-290e21da5205', 'sleep_size': '140х200', 'bed_size': '134*210*116'}, [{'__typename': 'cloth_category', 'category': '2 Категория', 'id': 'c406558e-2260-4023-95ca-260e21da5205'},
