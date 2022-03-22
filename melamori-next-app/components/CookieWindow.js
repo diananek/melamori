@@ -25,11 +25,7 @@ export default function CookieWindow() {
         }
 
         const hasConsented = () => {
-            if (getItem(consentPropertyType) === 'true') {
-                return true;
-            } else {
-                return false;
-            }
+            return getItem(consentPropertyType) === 'true';
         }
 
         const changeStatus = (prop) => {
