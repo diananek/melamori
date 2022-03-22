@@ -87,15 +87,7 @@ export default function BedItem() {
                                 <h2 className="product__title title">{title}</h2>
                                 <div className="product__category">Кровать <a href="#" className="product__textile link">106
                                     вариантов тканей</a></div>
-                                <div className="product__prices">
-                                    <div className="product__price price price_cur">{price} <span>₽</span></div>
-                                    {saleStatus !== "non-active" ?
-                                        <div className="product__price price price_old">{priceList.price}</div>
-                                        :undefined}
-                                    {saleStatus !== "non-active" ?
-                                        <div className="product__discount">-{sale}%</div>
-                                        :undefined}
-                                </div>
+                                <Prices productState={productState} dispatch={dispatch} sizes={sizes} priceList={priceList}/>
                                 <div className="product__actions">
                                     <AddBasketBtn className="product__btn" id={productId} collectionName={"bed_collection"} data={itemData}/>
                                     <ProductFavoritesBtn id={productId} collectionName={"bed_collection"} data={itemData}>
