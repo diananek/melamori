@@ -7,6 +7,7 @@ import ProductCard from "../../../components/ProductCard";
 import {getKeys} from "../../../lib/getKeys";
 import AddBasketBtn from "../../../components/AddBasketBtn";
 import {getSizesAndCategories} from "../../../lib/getSizesAndCategories";
+import ProductOptions from "../../../components/ProductOptions";
 import {useReducer} from "react";
 import FeaturesOptions from "../../../components/FeaturesOptions";
 
@@ -118,15 +119,11 @@ export default function BedItem() {
                         <form className="product__features features">
                              <div className="features__item">
                                  <div className="features__name name">Размер спального места</div>
-                                     <FeaturesOptions data={{'sizes': sizes, 'categories': categories}}
-                                                      dispatch={{'size': dispatchSizes, 'category': dispatchCategories}}
-                                                      type={'size'}/>
+                                 <ProductOptions data={sizes} valueName={'sleep_size'}/>
                              </div>
                              <div className="features__item">
                                  <div className="features__name name">Категория ткани</div>
-                                     <FeaturesOptions data={{'sizes': sizes, 'categories': categories}}
-                                                      dispatch={{'size': dispatchSizes, 'category': dispatchCategories}}
-                                                      type={'category'}/>
+                                 <ProductOptions data={clothCategories} valueName={'category'}/>
                              </div>
                         </form>
                         <div className="product__extra features">
