@@ -25,7 +25,9 @@ export const bedCollection = gql`query myQuery($offset: Int, $limit: Int){
           status
           sale_percentage
           bed_size_relation {
-              bed_size
+              height
+              length
+              width
               sleep_size
           }
           bed_cloth_category_relation {
@@ -38,22 +40,25 @@ export const bedCollection = gql`query myQuery($offset: Int, $limit: Int){
     }
     `
 
-export const sofaCollection = gql`query myQuery($offset: Int, $limit: Int){
-    sofa_collection (offset: $offset, limit: $limit){
+export const softFurnitureCollection = gql`query myQuery($offset: Int, $limit: Int){
+    soft_furniture (offset: $offset, limit: $limit){
+        title
+        furniture_type
+        id
         image {
             id
             title
         }
-        title
-        id
         price_list {
-            sofa_prices_id {
+            soft_furniture_prices_id {
                 price
-                status
                 sale_percentage
-                sofa_size_relation {
-                    sleep_size
-                    sofa_size
+                status
+                soft_furniture_cloth_category_relation {
+                    category
+                }
+                soft_furniture_size_relation {
+                    basic_size
                 }
             }
         }
@@ -99,7 +104,9 @@ export const bedCollectionById = gql`query myQuery($id:ID!){
                 bed_size_relation {
                     id
                     sleep_size
-                    bed_size
+                    height
+                    length
+                    width
                 }
                 price
                 status
@@ -116,7 +123,7 @@ export const bedCollectionById = gql`query myQuery($id:ID!){
 }
 `
 export const sofaCollectionById = gql`query myQuery($id:ID!){
-    sofa_collection_by_id(id: $id) {
+    soft_furniture_by_id(id: $id) {
         title
         image {
             id
