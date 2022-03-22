@@ -2,9 +2,12 @@ import {useState} from "react";
 import {useAppContext} from "../context/state";
 import classNames from "classnames";
 
+// кнопка добавления в избранное для карточки товара в каталоге
 export default function ProductCardFavoritesBtn({className, id, data}) {
     const ctx = useAppContext();
+
     let classNames = require('classnames');
+
     if(ctx.cookieFavId) {
         let [isPressed, setPressed] = useState(ctx.cookieFavId.includes(id) );
 

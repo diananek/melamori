@@ -2,23 +2,23 @@ import ProductCardFavoritesBtn from "./ProductCardFavoritesBtn";
 import {useRouter} from "next/router";
 import AddBasketBtn from "./AddBasketBtn";
 import {getPageUrl} from "../lib/getPageUrl";
-import {useAppContext} from "../context/state";
 
 export default function BasketCard({data, className, collectionName}) {
     const serverUrl = process.env.serverUrl
 
-    const id = data.id
-    const imageId = data.imageId
-    const imageTitle = data.imageTitle
-    const title = data.title
-    const sizeData = data.size
+    const id = data.id // id товара
+    const imageId = data.imageId // id картинки
+    const imageTitle = data.imageTitle // alt картинки
+    const title = data.title // название товара
+    const sizeData = data.size //данные о размере
 
     const router = useRouter()
 
     const sale = data.sale ? data.sale : 0
-    const price = data.price * (1 - sale/100)
+    const price = data.price * (1 - sale/100) // цена с учетом скидки
 
-    const pageUrl = getPageUrl(collectionName)
+    const pageUrl = getPageUrl(collectionName) // получение url по имени коллекции
+
     const handler = (event)=>{
         if(event.target.closest(".product-card__dscr") || event.target.closest(".product-card__img")) {
             router.push(pageUrl + id)

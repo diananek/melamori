@@ -12,8 +12,8 @@ export default function Catalog({title, productsData, status, collectionName, on
         return "ERROR!"
     }
 
-    let products = productsData[collectionName]
-    const keys = getKeys(collectionName)
+    let products = productsData[collectionName] //список объектов товаров
+    const keys = getKeys(collectionName) // ключи для получения некоторых специфических свойств из полученных объектов
     const path = useRouter().asPath
     return(
         <div className="catalog">

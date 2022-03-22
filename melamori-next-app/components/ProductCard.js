@@ -4,20 +4,20 @@ import AddBasketBtn from "./AddBasketBtn";
 import {getPageUrl} from "../lib/getPageUrl";
 
 export default function ProductCard({productData, keys, className, collectionName}) {
-    const serverUrl = process.env.serverUrl
-    const id = productData.id
-    const imageId = productData.image.id
-    const imageTitle = productData.image.title
-    const title = productData.title
+    const serverUrl = process.env.serverUrl // адрес сервера с картинками
+    const id = productData.id // id товара
 
-    const priceList = productData.price_list[0]
-    const priceData = priceList[keys.prices]
+    const imageId = productData.image ? productData.image.id: null // id картинки
+    const imageTitle = productData.image ? productData.image.title: null // alt картинки
+    const title = productData.title  // название товара
 
-    const sizeData = priceData[keys.sizeRelation]
+    const priceListElement = productData.price_list[0] // первый объект списка цен
+    const priceData = priceListElement[keys.prices] // получение необходимого объекта по ключу
+
     const router = useRouter()
 
     const sale = priceData.sale_percentage ? priceData.sale_percentage : 0
-    const price = priceData.price * (1 - sale/100)
+    const price = priceData.price * (1 - sale/100) // цена с учетом скидки
 
     const pageUrl = getPageUrl(collectionName)
     const handler = (event)=>{
@@ -28,8 +28,8 @@ export default function ProductCard({productData, keys, className, collectionNam
     return(
         <article key={id} className={className + " product-card"} onClick={(e)=> handler(e)}>
             <div className="product-card__img">
-                <img src={serverUrl + imageId}
-                     alt={imageTitle}/>
+                {imageId ? <img src={serverUrl + imageId}
+                                alt={imageTitle}/>: <div className="product-card__img-plug"/>}
                 <ProductCardFavoritesBtn/>
                 {priceData.status !== "non-active" ? <div className="product-card__discount">-{sale}%</div> : undefined}
             </div>

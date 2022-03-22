@@ -1,5 +1,7 @@
 import Link from "next/link"
 
+
+// функция проверки: совпадает ли адрес ссылки и адрес текущей страницы
 function isSelected(path, href) {
     return(
         path === href

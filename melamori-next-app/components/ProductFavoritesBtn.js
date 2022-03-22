@@ -2,6 +2,8 @@ import {useState} from "react";
 import {useAppContext} from "../context/state";
 import classNames from "classnames";
 
+
+// кнопка добавления в избранное для страницы товара
 export default function ProductFavoritesBtn({className, id, data}) {
     let classNames = require('classnames');
 

@@ -6,7 +6,7 @@ import Offers4 from "../public/img/offers/gift.png"
 import Offers5 from "../public/img/offers/phone.png"
 import Offers6 from "../public/img/offers/rings.png"
 
-
+// Реклама в верхней части экрана
 export default function Offers (){
     let pos = { top: 0, left: 0, x: 0, y: 0 };
     let element;
@@ -36,7 +36,7 @@ export default function Offers (){
 
     };
 
-    const mouseUpHandler = function(e) {
+    const mouseUpHandler = function() {
         document.removeEventListener('mousemove', mouseMoveHandler);
         document.removeEventListener('mouseup', mouseUpHandler);
 
