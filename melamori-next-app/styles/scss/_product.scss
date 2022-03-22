@@ -818,18 +818,34 @@
     &__img {
         position: relative;
         width: 100%;
-        height: auto;
         img {
             width: 100%;
+            height: 100%;
         }
         &:hover {
             cursor: pointer;
         }
+        height: 112px;
         @media(min-width: 768px) {
             .product-card__discount {
                 display: none;
             }
+            height: 151px;
         }
+        @media(min-width: 1366px) {
+            height: 201px;
+        }
+        @media(min-width: 1536px) {
+            height: 228px;
+        }
+        @media(min-width: 1920px) {
+            height: 296px;
+        }
+    }
+    &__img-plug{
+        background-color: #D4F9FF;
+        width: 100%;
+        height: 100%;
     }
     &__name {
         display: inline;
