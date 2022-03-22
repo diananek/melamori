@@ -11,11 +11,11 @@ export function getKeys(category) {
             keys.clothRelation = 'bed_cloth_category_relation'
             keys.size = 'bed_size'
             break;
-        case 'sofa_collection':
-            keys.prices = 'sofa_prices_id'
-            keys.sizeRelation = 'sofa_size_relation'
-            keys.clothRelation = 'sofa_cloth_category_relation'
-            keys.size = 'sofa_size'
+        case 'soft_furniture':
+            keys.prices = 'soft_furniture_prices_id'
+            keys.sizeRelation = 'soft_furniture_size_relation'
+            keys.clothRelation = 'soft_furniture_cloth_category_relation'
+            keys.size = 'soft_furniture_size'
             break;
         case 'mattresses':
             keys.prices = 'mattresses_prices_id'
