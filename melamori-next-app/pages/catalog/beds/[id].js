@@ -9,70 +9,63 @@ import AddBasketBtn from "../../../components/AddBasketBtn";
 import {getSizesAndCategories} from "../../../lib/getSizesAndCategories";
 import ProductOptions from "../../../components/ProductOptions";
 import {useReducer} from "react";
-import FeaturesOptions from "../../../components/FeaturesOptions";
+import Prices from "../../../components/Prices";
+
 
 export default function BedItem() {
-    const router = useRouter()
-    const serverUrl = process.env.serverUrl
-    const productId = useRouter().asPath.split('/').pop()
+    const router = useRouter();
+    const serverUrl = process.env.serverUrl;
+    const productId = router.asPath.split('/').pop();
+    const productInitState = {
+        sleepSize:null,
+        bedSize: null,
+        priceObj: {},
+    };
+    function productReducer(state, action){
+        switch (action.type) {
+            case 'add_price':
+                return {...state, price: action.value};
+            case 'add_bed-size':
+                return {...state, bedSize: action.value};
+            case 'add_sleep-size':
+                return {...state, sleepSize: action.value};
+        }
+    }
+    const [productState, dispatch] = useReducer(productReducer, productInitState);
+
+
     const { loading: itemLoading, error: itemError, data: itemData } = useQuery(bedCollectionById, {
         variables: { id: productId },
-    })
+    });
 
     const { loading: collectionLoading, error: collectionError, data: collectionData } = useQuery(bedCollection, {
         variables: { limit: 4 },
-    })
+    });
 
     if(itemLoading || collectionLoading) {
-        return "LOADING...."
+        return("LOADING....")
     }
     if(itemError || collectionError) {
         router.push('/404')
-        return
-    }
+        return("ERROR....")
 
-    const productData = itemData.bed_collection_by_id
+    }
 
     const keys = getKeys("bed_collection")
-    const [sizesByClothCategories, clothCategoriesBySizes, pricesByCategoriesAndSizes] = getSizesAndCategories(productData, keys)
-    // Добавлены дополнительные примеры данных
-    sizesByClothCategories.set({'__typename': 'cloth_category', 'category': '2 Категория', 'id': 'c406558e-2260-4023-95ca-260e21da5205'},[{'__typename': 'bed_sizes','id': 'v403558e-2260-4023-95ca-290e21da5205', 'sleep_size': '140х200', 'bed_size': '134*210*116'}])
-    sizesByClothCategories.set({'__typename': 'cloth_category', 'category': '3 Категория', 'id': 'v403558e-2260-4023-95ca-260e21da5205'},[{'__typename': 'bed_sizes','id': 'v403558e-2260-4023-95ca-290e21da5205', 'sleep_size': '140х200', 'bed_size': '134*210*116'}])
-    clothCategoriesBySizes.set({'__typename': 'bed_sizes', 'id': 'v403558e-2260-4023-95ca-290e21da5205', 'sleep_size': '140х200', 'bed_size': '134*210*116'}, [{'__typename': 'cloth_category', 'category': '2 Категория', 'id': 'c406558e-2260-4023-95ca-260e21da5205'},
-        {'__typename': 'cloth_category', 'category': '3 Категория', 'id': 'v403558e-2260-4023-95ca-260e21da5205'}])
-    console.dir(sizesByClothCategories)
-    console.dir(clothCategoriesBySizes)
-    function reducer(selectorType, size, category){
-        switch(selectorType){
-            case 'size':
-                return {
-                    'sizes': [...clothCategoriesBySizes.keys()],
-                    'categories': [...clothCategoriesBySizes.get(size)]
-                }
-            case 'category':
-                return {
-                    'categories': [...sizesByClothCategories.keys()],
-                    'sizes': [...clothCategoriesBySizes.get(category)]
-                }
-        }
-    }
+    const productData = itemData ? itemData.bed_collection_by_id : undefined
+    const [sizes, clothCategories] = getSizesAndCategories(productData, keys)
+    const priceList = productData.price_list
 
-    const [sizes, dispatchSizes] = useReducer(reducer, [...clothCategoriesBySizes.keys()])
-    const [categories, dispatchCategories] = useReducer(reducer, [...clothCategoriesBySizes.get(sizes)])
-
-    const priceList = productData.price_list[0].bed_prices_id
-    const clothCategory = priceList.bed_cloth_category_relation
-    const bedSizes = sizesByClothCategories.get(clothCategory)
-    const bedSizeList = bedSizes[0].bed_size.split('*')
-    const sleepSize = bedSizes[0].sleep_size
-
-    const imageId = productData.image.id
-    const imageTitle = productData.image.title
+    // dispatch({type: 'add_sleep-size', value: sizes[0].sleep_size})
+    // dispatch({type: 'add_price', value: priceList[0].bed_prices_id})
+    // console.log(prices.get(getTuple(clothCategories[0], sizes[0])))
+    const imageId = productData.image ? productData.image.id: null
+    const imageTitle = productData.image ? productData.image.title: null
     const title = productData.title
 
-    const saleStatus = priceList.status
-    const sale = priceList.sale_percentage ? priceData.sale_percentage : 0
-    const price = priceList.price * (1 - sale/100)
+    // const saleStatus = productState.price.status
+    // const sale = productState.price.sale_percentage ? productState.price.sale_percentage : 0
+    // const price = productState.price.price * (1 - sale/100)
 
     const collection = collectionData.bed_collection
     return(
@@ -80,7 +73,9 @@ export default function BedItem() {
                 <div className="product">
                     <div className="container product__grid">
                         <div className="product__img">
-                            <img src={serverUrl + imageId} alt={imageTitle} style={{background: `no-repeat center/ cover url(${serverUrl + imageId})`}}/>
+                            {imageId ? <img src={serverUrl + imageId} alt={imageTitle}
+                                            style={{background: `no-repeat center/ cover url(${serverUrl + imageId})`}}/>
+                                : <div className='product__img-plug'/>}
                         </div>
                         <div className="product__dscr dscr">
                             <div className="dscr__grid">
@@ -89,8 +84,9 @@ export default function BedItem() {
                                     вариантов тканей</a></div>
                                 <Prices productState={productState} dispatch={dispatch} sizes={sizes} priceList={priceList}/>
                                 <div className="product__actions">
-                                    <AddBasketBtn className="product__btn" id={productId} collectionName={"bed_collection"} data={itemData}/>
-                                    <ProductFavoritesBtn id={productId} collectionName={"bed_collection"} data={itemData}>
+                                    <AddBasketBtn className="product__btn" id={productId} collectionName={"bed_collection"}
+                                                  data={itemData.bed_collection_by_id}/>
+                                    <ProductFavoritesBtn id={productId} collectionName={"bed_collection"} data={itemData.bed_collection_by_id}>
                                     </ProductFavoritesBtn>
                                 </div>
                             </div>
@@ -129,18 +125,18 @@ export default function BedItem() {
                             </div>
                         </div>
                         <div className="product__props props">
-                            <div className="props__item ">
-                                <div className="props__name ">Ширина</div>
-                                <div className="props__val ">{bedSizeList[0] + ' см'}</div>
-                            </div>
-                            <div className="props__item ">
-                                <div className="props__name ">Высота</div>
-                                <div className="props__val ">{bedSizeList[2] + ' см'}</div>
-                            </div>
-                            <div className="props__item ">
-                                <div className="props__name ">Длина</div>
-                                <div className="props__val ">{bedSizeList[1] + ' см'}</div>
-                            </div>
+                            {/*<div className="props__item ">*/}
+                            {/*    <div className="props__name ">Ширина</div>*/}
+                            {/*    <div className="props__val ">{bedSizeList[0] + ' см'}</div>*/}
+                            {/*</div>*/}
+                            {/*<div className="props__item ">*/}
+                            {/*    <div className="props__name ">Высота</div>*/}
+                            {/*    <div className="props__val ">{bedSizeList[2] + ' см'}</div>*/}
+                            {/*</div>*/}
+                            {/*<div className="props__item ">*/}
+                            {/*    <div className="props__name ">Длина</div>*/}
+                            {/*    <div className="props__val ">{bedSizeList[1] + ' см'}</div>*/}
+                            {/*</div>*/}
                             <div className="props__item ">
                                 <div className="props__name ">Матрац</div>
                                 <div className="props__val ">Не входит в комплектацию</div>
