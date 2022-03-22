@@ -7,7 +7,12 @@ import CatalogPage from "../../../components/CatalogPage";
 export default function Beds() {
     const pathname = useRouter().asPath
     const title = getPageData(pathname)
-    const {loading, error, data} = useQuery(bedCollection)
+    const {loading, error, data, fetchMore} = useQuery(bedCollection, {
+        variables: {
+            offset: 0,
+            limit: 4
+        },
+    })
 
     let status;
 
@@ -19,6 +24,13 @@ export default function Beds() {
     }
 
     return(
-        <CatalogPage title={title} collectionName={'bed_collection'} status={status} data={data}/>
+        <>
+            <CatalogPage title={title} collectionName={'bed_collection'} status={status} data={data} onLoadMore={() => fetchMore({
+                variables: {
+                    offset: data.bed_collection.length,
+                    limit: 4
+                },
+            })}/>
+        </>
     )
 }
