@@ -10,9 +10,9 @@ export const Slider = () => {
                 </div>
             </div>
             <ul className="page__offers offers">
-                <li className="offers__item offers__item_dark ">
+                <li className="offers__item offers__item_dark">
                     <div className="offers__img">
-                        <Image src="/img/offers/clock.png" alt={''}/>
+                        <Image src="/img/offers/clock.png" alt={''} width={152} height={152} />
                     </div>
                     <div className="offers__text">
                         <div className="offers__title">Комплект</div>
@@ -21,7 +21,7 @@ export const Slider = () => {
                 </li>
                 <li className="offers__item offers__item_light">
                     <div className="offers__img">
-                        <Image src="/img/offers/glasses.png" alt={''}/>
+                        <Image src="/img/offers/glasses.png" alt={''} width={152} height={152}/>
                     </div>
                     <div className="offers__text offers__text_dark">
                         <div className="offers__title">Пенсионерам</div>
@@ -30,7 +30,7 @@ export const Slider = () => {
                 </li>
                 <li className="offers__item offers__item_dark">
                     <div className="offers__img">
-                        <Image alt={''} src="/img/offers/ruler.png"/>
+                        <Image alt={''} src="/img/offers/ruler.png" width={152} height={152}/>
                     </div>
                     <div className="offers__text">
                         <div className="offers__title">Свой размер</div>
@@ -39,7 +39,7 @@ export const Slider = () => {
                 </li>
                 <li className="offers__item offers__item_dark">
                     <div className="offers__img">
-                        <Image alt={''} src="/img/offers/gift.png"/>
+                        <Image alt={''} src="/img/offers/gift.png" width={152} height={152}/>
                     </div>
                     <div className="offers__text">
                         <div className="offers__title">С днём рождения!</div>
@@ -48,7 +48,7 @@ export const Slider = () => {
                 </li>
                 <li className="offers__item offers__item_light">
                     <div className="offers__img">
-                        <Image alt={''} src="/img/offers/phone.png"/>
+                        <Image alt={''} src="/img/offers/phone.png" width={152} height={152}/>
                     </div>
                     <div className="offers__text offers__text_dark">
                         <div className="offers__title">Подпишись!</div>
@@ -57,7 +57,7 @@ export const Slider = () => {
                 </li>
                 <li className="offers__item offers__item_light">
                     <div className="offers__img">
-                        <Image alt={''} src="/img/offers/rings.png"/>
+                        <Image alt={''} src="/img/offers/rings.png" width={152} height={152}/>
                     </div>
                     <div className="offers__text offers__text_dark">
                         <div className="offers__title">На свадьбу</div>

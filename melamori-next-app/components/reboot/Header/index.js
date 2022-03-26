@@ -55,10 +55,10 @@ export const Header = () => {
                     </a>
                 </Link>
                 <Link href={'/'}>
-                    <a href={"/"} className="header__favorites header__favorites_catalog"/>
+                    <a href={"/"} aria-label="favorites" className="header__favorites header__favorites_catalog"/>
                 </Link>
                 <Link href={'/'}>
-                    <a href={"/"} className="header__basket header__basket_catalog"/>
+                    <a href={"/"} aria-label="cart" className="header__basket header__basket_catalog"/>
                 </Link>
             </div>
         </header>

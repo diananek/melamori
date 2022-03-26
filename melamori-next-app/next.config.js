@@ -93,7 +93,9 @@ const composed = (phase) => {
 const nextConfig = (phase) => ({
     reactStrictMode: true,
     images: {
-        domains: [],
+        domains: [
+            'service.melamori-mebel.ru'
+        ],
     },
     env: {
         serverUrl: 'https://service.melamori-mebel.ru/assets/',

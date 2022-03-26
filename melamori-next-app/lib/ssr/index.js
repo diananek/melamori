@@ -12,16 +12,21 @@ const bedMapper = fp.pipe(
 )
 
 
+
+// TODO: watch for show count pages.
+// https://service.melamori-mebel.ru/items/bed_collection?meta=*&limit=0 url with meta example
+
+
 const dataGetter = {
     home: async (params = {}) => {
 
+        const remapped = fp.mapValues(fp.toInteger, params)
         let response = await client.query({
             query: GET_BEDS,
-            variables: {...params}
+            variables: remapped
         })
 
         response = {
-            meta: 12,
             items: bedMapper(response)
         }
 

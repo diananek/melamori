@@ -23,7 +23,7 @@ export default class MyDocument extends Document {
                 {/*<script src="/static/js/cookieConsent.js"/>*/}
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js "
                         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-                        crossOrigin="anonymous"/>
+                        crossOrigin="true"/>
                 <script src="/static/js/dynamic-adapt.js"/>
                 <script src="/static/js/script.js"/>
                 <script src="/static/js/main.js"/>
