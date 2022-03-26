@@ -1,11 +1,9 @@
-import Header from "../components/Header";
+import {Layout} from "../components/reboot/Layout";
 
 
 export default function ErrorPage (){
     return(
-        <div className={"wrapper"}>
-            <Header/>
-            <main className={"page"}>
+        <Layout>
                 <div className={"container"}>
                     <div className={"error"}>
                         <div className={"error__circle"}> </div>
@@ -13,7 +11,6 @@ export default function ErrorPage (){
                         <h1 className={"error__msg"}>Страница не найдена</h1>
                     </div>
                 </div>
-            </main>
-        </div>
+        </Layout>
     )
 }

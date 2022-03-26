@@ -6,7 +6,7 @@ import "../styles/scss/cookie.scss"
 import "../styles/scss/thanks.scss"
 import {ApolloClient, InMemoryCache, ApolloProvider} from "@apollo/client";
 import {offsetLimitPagination} from "@apollo/client/utilities";
-import {AppWrapper} from "../context/state";
+// import {AppWrapper} from "../context/state";
 
 const apolloClient = new ApolloClient({
     uri: "https://service.melamori-mebel.ru/graphql",
@@ -24,11 +24,11 @@ const apolloClient = new ApolloClient({
 
 function MyApp({ Component, pageProps }) {
   return(
-      <AppWrapper>
+      // <AppWrapper>
           <ApolloProvider client={apolloClient}>
               <Component {...pageProps} />
           </ApolloProvider>
-      </AppWrapper>
+      // </AppWrapper>
       )
 
 }

@@ -1,0 +1,20 @@
+query GET_BEDS (
+    $limit: Int = 20
+    $page: Int = 1
+){
+    bed_collection (limit: $limit, page: $page){
+        id
+        title
+        image {
+            id
+            title
+        }
+        price_list{
+            bed_prices_id{
+                price
+                sale_percentage
+                status
+            }
+        }
+    }
+}

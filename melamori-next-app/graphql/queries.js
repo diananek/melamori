@@ -1,44 +1,52 @@
+// noinspection GraphQLUnresolvedReference
+
 import {gql} from "@apollo/client";
 
-export const bedCollection = gql`query myQuery($offset: Int, $limit: Int){
-       bed_collection (offset: $offset, limit: $limit){
-           additional_options {
-               id
-               additional_options_id {
-                   id
-                   percentage
-                   price
-                   title
-                   description
-               }
-           }
-           image {
-      id
-      title
+
+
+
+
+
+export const bedCollection = gql`
+    query myQuery($offset: Int, $limit: Int){
+        bed_collection (offset: $offset, limit: $limit){
+            additional_options {
+                id
+                additional_options_id {
+                    id
+                    percentage
+                    price
+                    title
+                    description
+                }
+            }
+            image {
+                id
+                title
+            }
+            title
+            id
+            price_list {
+                bed_prices_id {
+                    id
+                    price
+                    status
+                    sale_percentage
+                    bed_size_relation {
+                        height
+                        length
+                        width
+                        sleep_size
+                    }
+                    bed_cloth_category_relation {
+                        category
+                        id
+                    }
+                }
+            }
+        }
     }
-    title
-    id
-    price_list {
-      bed_prices_id {
-          id
-          price
-          status
-          sale_percentage
-          bed_size_relation {
-              height
-              length
-              width
-              sleep_size
-          }
-          bed_cloth_category_relation {
-              category
-              id
-          }
-      }
-    }
-  }
-    }
-    `
+`
 
 export const softFurnitureCollection = gql`query myQuery($offset: Int, $limit: Int){
     soft_furniture (offset: $offset, limit: $limit){
