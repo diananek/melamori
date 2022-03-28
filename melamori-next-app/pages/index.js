@@ -1,7 +1,7 @@
 import React from 'react';
-import {Ssr} from "../../lib/ssr";
-import {Layout} from "../../components/reboot/Layout";
-import {ProductCard} from "../../components/reboot/ProductCard";
+import {Ssr} from "../lib/ssr";
+import {Layout} from "../components/reboot/Layout";
+import {ProductCard} from "../components/reboot/ProductCard";
 
 const Index = ({items}) => {
     return (

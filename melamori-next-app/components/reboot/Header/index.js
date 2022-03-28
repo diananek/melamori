@@ -1,9 +1,14 @@
 import React from 'react';
 import Link from 'next/link'
 import Image from 'next/image'
+import {useSelector} from "../../../lib/hooks/useState";
 
 
 export const Header = () => {
+
+    const favoriteCounter = useSelector('main.favorites.length')
+    const cartCounter = useSelector('main.cart.length')
+
     return (
         <header className="header header_catalog">
             <div className="header__body container">
@@ -13,22 +18,22 @@ export const Header = () => {
                     </div>
                     <ul className="menu__list menu__list_catalog">
                         <li className="menu__item">
-                            <Link href="/">
-                                <a href={'/'} className=" menu__link menu__link_selected">
+                            <Link href={'/catalog/bed_collection'}>
+                                <a href={'/catalog/bed_collection'} className=" menu__link menu__link_selected">
                                     Кровати
                                 </a>
                             </Link>
                         </li>
                         <li className="menu__item ">
-                            <Link href="/">
-                                <a href={"/"} className="menu__link ">
+                            <Link href={'/catalog/mattresses'}>
+                                <a href={'/catalog/mattresses'} className="menu__link ">
                                     Матрацы
                                 </a>
                             </Link>
                         </li>
                         <li className="menu__item ">
-                            <Link href="/">
-                                <a href={"/"} className="menu__link ">
+                            <Link href={'/catalog/soft_furniture'}>
+                                <a href={'/catalog/soft_furniture'} className="menu__link ">
                                     Мягкая мебель
                                 </a>
                             </Link>
@@ -54,11 +59,15 @@ export const Header = () => {
                         <Image src="/img/logo.svg" layout='fill' alt="Логотип Me Lamori"/>
                     </a>
                 </Link>
-                <Link href={'/'}>
-                    <a href={"/"} aria-label="favorites" className="header__favorites header__favorites_catalog"/>
+                <Link href={'/my/favorites'}>
+                    <a href={'/my/favorites'} aria-label="favorites" className="header__favorites header__favorites_catalog">
+                        {favoriteCounter > 0 && <span>{favoriteCounter > 9 ? '9+' : favoriteCounter}</span>}
+                    </a>
                 </Link>
                 <Link href={'/'}>
-                    <a href={"/"} aria-label="cart" className="header__basket header__basket_catalog"/>
+                    <a href={"/"} aria-label="cart" className="header__basket header__basket_catalog">
+                        {cartCounter > 0 && <span>{cartCounter > 9 ? '9+' : cartCounter}</span>}
+                    </a>
                 </Link>
             </div>
         </header>

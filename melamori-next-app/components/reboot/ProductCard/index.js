@@ -5,25 +5,78 @@ import fp from "lodash/fp";
 import {useDispatch, useSelector} from "../../../lib/hooks/useState";
 import {actions} from "../../../lib/store/main/actions";
 import clsx from "clsx";
+import {priceResult} from "../../../lib/ssr";
 
 
-// TODO: add route for redirect
+
+const delimiter = (price) => {
+    let formatted = fp
+        .toString(price)
+        .split("")
+
+
+    let counter = 3
+    return fp.reduceRight(
+        (curr, prev) => {
+            if (counter / 3 === 1) {
+                counter = 1
+                return `${curr} ${prev}`;
+            } else {
+                counter += 1
+                return `${curr}${prev}`;
+            }
+        },
+        '',
+        formatted
+    )
+}
+
+const toStringSizes = fp.cond([
+    [fp.getOr(false, 'diameter'), ({
+                                       diameter,
+                                   }) => `${diameter} x ${diameter}`],
+    [fp.constant(true), (x) => `${(x?.length)} x ${(x?.width)}`]
+
+])
+
+const price_getter = {
+    soft_furniture: {
+        price: 'soft_furniture_prices_id',
+        size: 'soft_furniture_size_relation'
+    },
+    mattresses: {
+        price: 'mattresses_prices_id',
+        size: 'mattress_size_relation'
+    },
+    bed_collection: {
+        price: 'bed_prices_id',
+        size: 'bed_size_relation'
+    }
+}
+
 
 export const ProductCard = ({
                                 item = {},
                             }) => {
+
+    const types = price_getter[item.__typename]
+    const pl = item.price_list[types.price];
+
+    const sale_percentage = fp.get('sale_percentage', pl)
+    const price = fp.get('price', pl)
+
+    const sizes = fp.get(`price_list.${types.price}.${types.size}`, item);
+    debugger
+
     const dp = useDispatch();
     const favList = useSelector('main.favorites')
-    // const isFavorite = fp.findIndex(fp.isEqual(`bed_collection/4bc81945-145a-4203-b3b1-da55a1426f86`), favList)
     const isFavorite = fp.findIndex(fp.isEqual(`${item.__typename}/${item.id}`), favList) > -1
 
-
-    // debugger
     return (
         <article className="catalog__item product-card">
             <div className="product-card__img">
-                <Link href={`/${item.id}`}>
-                    <a href={`/${item.id}`}>
+                <Link href={`catalog/${item.__typename}/${item.id}`}>
+                    <a href={`catalog/${item.__typename}/${item.id}`}>
                         <Image
                             layout={'fill'}
                             src={`${process.env.serverUrl}/${fp.get('image.id', item)}`}
@@ -32,25 +85,26 @@ export const ProductCard = ({
                     </a>
                 </Link>
                 <button className={"product-card__fav"}/>
-                <div className="product-card__discount">
-                    -10%
-                </div>
+                {sale_percentage && <div className="product-card__discount">
+                    -{sale_percentage}%
+                </div>}
             </div>
             <div className="product-card__prices">
                 <div className="product-card__price product-card__price_cur">
-                    125 550
+                    {delimiter(priceResult({sale_percentage, price}))}
+                    {/*{delimiter(23234243224.23)}*/}
                     <span>
                         ₽
                     </span>
                 </div>
-                <div className="product-card__price product-card__price_old">
-                    238 990
-                </div>
-                <div className="product-card__discount">
-                    -10%
-                </div>
+                {sale_percentage && <div className="product-card__price product-card__price_old">
+                    {delimiter(price)}
+                </div>}
+                {sale_percentage && <div className="product-card__discount">
+                    -{sale_percentage}%
+                </div>}
                 <div className="product-card__size">
-                    140 x 200
+                    {toStringSizes(sizes)}
                 </div>
             </div>
             <div className="product-card__dscr">
@@ -58,7 +112,7 @@ export const ProductCard = ({
                     {item.title}
                 </div>
                 <div className="product-card__size">
-                    140 x 200
+                    {toStringSizes(sizes)}
                 </div>
             </div>
             <div className="product-card__actions">

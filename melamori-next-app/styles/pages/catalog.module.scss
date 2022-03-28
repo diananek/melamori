@@ -1,0 +1,34 @@
+
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.reverse{
+    transform: rotateX(180deg);
+}
+
+.sorting {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 25px;
+    > div {
+        cursor: pointer;
+        padding: 0 10px;
+        display: flex;
+        align-items: center;
+    }
+}
+
+.inactive {
+    color: #58778D;
+}
+.active {
+    color: #03257C;
+}
+
+.margin {
+    margin-top: 30px;
+}

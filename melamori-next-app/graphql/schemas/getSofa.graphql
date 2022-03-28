@@ -1,0 +1,29 @@
+query GET_SOFA(
+    $limit: Int = 10
+    $page: Int = 1
+) {
+    soft_furniture (
+        page: $page
+        limit: $limit
+    ){
+        id
+        title
+        image {
+            id
+            title
+        }
+        price_list(limit: -1) {
+            soft_furniture_prices_id {
+                price
+                sale_percentage
+                status
+                soft_furniture_size_relation{
+                    length
+                    width
+                    diameter
+                    height
+                }
+            }
+        }
+    }
+}
