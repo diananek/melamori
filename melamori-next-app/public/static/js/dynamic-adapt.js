@@ -1,4 +1,4 @@
-// noinspection JSNonASCIINames,NonAsciiCharacters,UnnecessaryReturnStatementJS
+// noinspection JSNonASCIINames, NonAsciiCharacters, UnnecessaryReturnStatementJS
 
 (function() {
     "use strict";
@@ -15,18 +15,18 @@
             // массив DOM-элементов
             this.nodes = [...document.querySelectorAll('[data-da]')];
 
-            // наполнение оbjects объктами
+            // наполнение objects объктами
             this.nodes.forEach((node) => {
                 const data = node.dataset.da.trim();
                 const dataArray = data.split(',');
-                const оbject = {};
-                оbject.element = node;
-                оbject.parent = node.parentNode;
-                оbject.destination = document.querySelector(`${dataArray[0].trim()}`);
-                оbject.breakpoint = dataArray[1] ? dataArray[1].trim() : '767';
-                оbject.place = dataArray[2] ? dataArray[2].trim() : 'last';
-                оbject.index = this.indexInParent(оbject.parent, оbject.element);
-                this.оbjects.push(оbject);
+                const object = {};
+                object.element = node;
+                object.parent = node.parentNode;
+                object.destination = document.querySelector(`${dataArray[0].trim()}`);
+                object.breakpoint = dataArray[1] ? dataArray[1].trim() : '767';
+                object.place = dataArray[2] ? dataArray[2].trim() : 'last';
+                object.index = this.indexInParent(object.parent, object.element);
+                this.оbjects.push(object);
             });
 
             this.arraySort(this.оbjects);
@@ -59,14 +59,14 @@
         }
 
         // Основная функция
-        mediaHandler(matchMedia, оbjects) {
+        mediaHandler(matchMedia, objects) {
             if (matchMedia.matches) {
-                оbjects.forEach((оbject) => {
-                    оbject.index = this.indexInParent(оbject.parent, оbject.element);
-                    this.moveTo(оbject.place, оbject.element, оbject.destination);
+                objects.forEach((object) => {
+                    object.index = this.indexInParent(object.parent, object.element);
+                    this.moveTo(object.place, object.element, object.destination);
                 });
             } else {
-                оbjects.forEach(
+                objects.forEach(
                     ({ parent, element, index }) => {
                         if (element.classList.contains(this.daClassname)) {
                             this.moveBack(parent, element, index);

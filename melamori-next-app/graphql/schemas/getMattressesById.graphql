@@ -1,9 +1,70 @@
 query GET_BY_MATTRESS_ID(
-    $id: ID!
+    $id: ID! = "03d33219-cf92-42bf-9921-8e538bd8c7b7"
 ){
     mattresses_by_id(
         id: $id
     ) {
+        additional_options(limit: -1){
+            additional_options_id{
+                description
+                id
+                percentage
+                price
+                title
+                user_created
+                user_updated
+            }
+        }
+        bed_springs
+        date_created
+        date_updated
+        description
+        hardness
+        height
         id
+        image{
+            id
+            title
+        }
+        images(limit: -1){
+            directus_files_id {
+                id
+                title
+            }
+        }
+        materials(limit: -1){
+            mattresses_materials_id{
+                description
+                id
+                image{
+                    id
+                    title
+                }
+                material_type
+                title
+            }
+        }
+        other_hardness
+        price_list(limit: -1){
+            mattresses_prices_id{
+                id
+                mattress_size_relation(limit: -1) {
+                    diameter
+                    id
+                    length
+                    user_created
+                    user_updated
+                    width
+                }
+                price
+                sale_percentage
+                status
+                user_created
+                user_updated
+            }
+        }
+        sleep_place_weight
+        status
+        title
     }
 }

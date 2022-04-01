@@ -1,3 +1,5 @@
+// noinspection JSCheckFunctionSignatures
+
 import fp from "lodash/fp";
 import {useContext} from "react";
 

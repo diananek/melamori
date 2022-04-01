@@ -96,7 +96,7 @@ const dataGetter = {
         return (await client.query({
             query: GET_BY_MATTRESS_ID,
             variables: param
-        })).data
+        })).data.mattresses_by_id
     },
 }
 
