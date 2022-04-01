@@ -3,6 +3,7 @@ import {initializeApollo} from "./apollo";
 import GET_BEDS from '../../graphql/schemas/getBeds.graphql'
 import GET_SOFA from '../../graphql/schemas/getSofa.graphql'
 import GET_MATTRESSES from '../../graphql/schemas/getMattresses.graphql'
+import GET_BY_MATTRESS_ID from '../../graphql/schemas/getMattressesById.graphql'
 import fp from "lodash/fp";
 import axios from 'axios'
 
@@ -90,6 +91,12 @@ const dataGetter = {
             meta: (await meta).data.meta,
         }
         return response
+    },
+    mattresses_by_id: async (param = {}) => {
+        return (await client.query({
+            query: GET_BY_MATTRESS_ID,
+            variables: param
+        })).data
     },
 }
 

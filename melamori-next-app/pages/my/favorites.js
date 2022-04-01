@@ -18,6 +18,19 @@ function Favorites() {
 
     const [request, {loading, data: rawData}] = useLazyQuery(GET_FAVORITES)
 
+    useEffect(() => {
+        fp.mapValues(null, links);
+        links.forEach((string) => {
+            const [collection, id] = string.split('/')
+            fp.isArray(params[collection])
+                ? params[collection].push(id)
+                : params[collection] = [id];
+        })
+        if (!loading && links['length'] > 0) {
+            (async () => await request({variables: params}))()
+        }
+    }, [rawData, links, links.length, loading, params, request])
+
 
     const bed_collection = bedMapper
     ('s', 'bed_prices_id')
@@ -31,18 +44,11 @@ function Favorites() {
     ('s', 'mattresses_prices_id')
     ({data: {s: rawData?.mattresses || []}})
 
-
-    useEffect(() => {
-        fp.mapValues(null,links);
-        links.forEach((string) => {
-            const [collection, id] = string.split('/')
-            fp.isArray(params[collection])
-                ? params[collection].push(id)
-                : params[collection] = [id];
-        })
-        if (fp.isEmpty(rawData) && !loading && links['length'] > 0)
-            (async () => await request({variables: params}))()
-    }, [rawData, links, links.length, loading, params, request])
+    const items = {
+        bed_collection,
+        soft_furniture,
+        mattresses,
+    }
 
 
     return (
@@ -58,9 +64,10 @@ function Favorites() {
                     <div className="catalog__grid">
                         {
                             (loading || fp.isEmpty(rawData)) || <>
-                                {bed_collection.map((i, key) => <ProductCard key={String(key)} item={i} />)}
-                                {mattresses.map((i, key) => <ProductCard key={String(key)} item={i} />)}
-                                {soft_furniture.map((i, key) => <ProductCard key={String(key)} item={i} />)}
+                                {links.map((item => {
+                                    const position = item.split('/');
+                                    return <ProductCard item={fp.find({id: position[1]}, items[position[0]])} key={item}/>
+                                }))}
                             </>
                         }
                     </div>

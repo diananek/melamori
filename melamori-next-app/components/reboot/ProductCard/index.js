@@ -66,7 +66,6 @@ export const ProductCard = ({
     const price = fp.get('price', pl)
 
     const sizes = fp.get(`price_list.${types.price}.${types.size}`, item);
-    debugger
 
     const dp = useDispatch();
     const favList = useSelector('main.favorites')
@@ -75,8 +74,8 @@ export const ProductCard = ({
     return (
         <article className="catalog__item product-card">
             <div className="product-card__img">
-                <Link href={`catalog/${item.__typename}/${item.id}`}>
-                    <a href={`catalog/${item.__typename}/${item.id}`}>
+                <Link href={`/catalog/${item.__typename}/${item.id}`}>
+                    <a href={`/catalog/${item.__typename}/${item.id}`}>
                         <Image
                             layout={'fill'}
                             src={`${process.env.serverUrl}/${fp.get('image.id', item)}`}
