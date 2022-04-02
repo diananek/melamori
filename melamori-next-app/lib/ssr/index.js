@@ -95,6 +95,7 @@ const dataGetter = {
     mattresses_by_id: async (param = {}) => {
         return (await client.query({
             query: GET_BY_MATTRESS_ID,
+            networkPolicy: 'network-only',
             variables: param
         })).data.mattresses_by_id
     },

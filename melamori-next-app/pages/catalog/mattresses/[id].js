@@ -4,19 +4,42 @@ import {actions} from "../../../lib/store/main/actions";
 import {useDispatch, useSelector} from "../../../lib/hooks/useState";
 import fp from "lodash/fp";
 import clsx from "clsx";
+import {useState} from "react";
 
 
 const uniqWidths = fp.uniqBy('mattresses_prices_id.mattress_size_relation.width')
-const uniqLengths = fp.uniqBy('mattresses_prices_id.mattress_size_relation.height')
+const uniqLengths = fp.uniqBy('mattresses_prices_id.mattress_size_relation.length')
+
+
+const sizeGetter = (id, type) => fp.pipe(
+    fp.find(['mattresses_prices_id.id', id]),
+    fp.get(`mattresses_prices_id.mattress_size_relation.${type}`)
+)
+
+const filterSizes = (select, key, uniq) => {
+    console.log(select, key, uniq)
+    return select
+        ? fp.filter([`mattresses_prices_id.mattress_size_relation.${key}`, select], uniq)
+        : uniq;
+}
 
 
 const MattressesId = (props) => {
 
+    const [selectedWidth, setSelectedWidth] = useState(null)
+    const [selectedLength, setSelectedLength] = useState(null)
+
     const dp = useDispatch();
+
     const favList = useSelector('main.favorites');
 
 
     const isFavorite = fp.findIndex(fp.isEqual(`${props.__typename}/${props.id}`), favList) > -1
+
+    const selectW = sizeGetter(selectedWidth, 'width')(props.price_list)
+
+    const selectL = sizeGetter(selectedLength, 'length')(props.price_list)
+
 
     return (
         <Layout hideSlider>
@@ -24,7 +47,7 @@ const MattressesId = (props) => {
                 <div className="container  product__grid_mattr product__grid">
                     <div className="product__img">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={`${process.env.serverUrl}${props.image.id}`} alt={props.image.title}/>
+                        <img src={`${process.env.serverUrl}${fp.get('image.id', props)}`} alt={fp.get('image.title', props)}/>
                     </div>
                     <div className="product__dscr dscr">
                         <div className="dscr__grid">
@@ -91,20 +114,25 @@ const MattressesId = (props) => {
                             </div>
                             <div className="features__options">
                                 {
-                                    uniqWidths(props.price_list).map(({
+                                    filterSizes(selectL, 'length', uniqWidths(props.price_list)).map(({
                                                                           mattresses_prices_id: {
                                                                               id,
                                                                               mattress_size_relation
                                                                           }
                                                                       }) =>
-                                        <button className="features__option " key={id}>
+                                        <button
+                                            key={id}
+                                            type={'button'}
+                                            className={clsx(
+                                                "features__option",
+                                                id === selectedWidth ? 'features__option_selected' : ''
+                                            )}
+                                            onClick={() => setSelectedWidth(selectedWidth === id ? null : id)}
+                                        >
                                             {mattress_size_relation.width}
                                         </button>
                                     )
                                 }
-                                <button className="features__option features__option_selected">
-                                    Свой
-                                </button>
                             </div>
                         </div>
                         <div className="features__item">
@@ -112,18 +140,23 @@ const MattressesId = (props) => {
                                 Длина
                             </div>
                             <div className="features__options">
-                                {uniqLengths(props.price_list).map(({
-                                                                       mattresses_prices_id: {
-                                                                           id,
-                                                                           mattress_size_relation
-                                                                       }
-                                                                   }) =>
-                                    <button className="features__option" key={id}>
+                                {filterSizes(selectW, 'width', uniqLengths(props.price_list)).map(({
+                                                                        mattresses_prices_id: {
+                                                                            id,
+                                                                            mattress_size_relation
+                                                                        }
+                                                                    }) =>
+                                    <button
+                                        key={id}
+                                        type={'button'}
+                                        className={clsx(
+                                            "features__option",
+                                            id === selectedLength ? 'features__option_selected' : ''
+                                        )}
+                                        onClick={() => setSelectedLength(selectedLength === id ? null : id)}
+                                    >
                                         {mattress_size_relation.length}
                                     </button>)}
-                                <button className="features__option features__option_selected">
-                                    Своя
-                                </button>
                             </div>
                         </div>
 
@@ -139,7 +172,7 @@ const MattressesId = (props) => {
                                     <span className="checkbox__box"/>
                                     {additional_options_id.description}
                                 </label>
-                                ))}
+                            ))}
                         </div>
                     </div>
                     <div className="product__props props props_underlined">
@@ -181,21 +214,21 @@ const MattressesId = (props) => {
                             Материалы
                         </div>
                         {props.materials.map(({mattresses_materials_id}) => (
-                            <div className="materials__item" key={mattresses_materials_id.id}>
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img src={`${process.env.serverUrl}${mattresses_materials_id.image.id}`}
-                                     alt={mattresses_materials_id.image.title}
-                                     className="materials__img"
-                                />
-                                <div className="materials__dscr">
-                                    <div className="materials__name">
-                                        {mattresses_materials_id.title}
-                                    </div>
-                                    <div className="materials__props">
-                                        {mattresses_materials_id.description}
+                                <div className="materials__item" key={mattresses_materials_id.id}>
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img src={`${process.env.serverUrl}${mattresses_materials_id.image.id}`}
+                                         alt={mattresses_materials_id.image.title}
+                                         className="materials__img"
+                                    />
+                                    <div className="materials__dscr">
+                                        <div className="materials__name">
+                                            {mattresses_materials_id.title}
+                                        </div>
+                                        <div className="materials__props">
+                                            {mattresses_materials_id.description}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             )
                         )}
                     </div>

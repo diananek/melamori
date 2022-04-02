@@ -134,7 +134,7 @@
     window.main = function() {
         selectMenuItem();
         menuBurger();
-        selectOption();
+        // selectOption();
         offersScroll();
         sortingItemClick();
         favClick();
