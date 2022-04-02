@@ -9,9 +9,9 @@ import {priceResult} from "../../../lib/ssr";
 
 
 
-const delimiter = (price) => {
+export const priceDelimiter = (price) => {
     let formatted = fp
-        .toString(price)
+        .toString((price.toFixed(2)))
         .split("")
 
 
@@ -90,14 +90,14 @@ export const ProductCard = ({
             </div>
             <div className="product-card__prices">
                 <div className="product-card__price product-card__price_cur">
-                    {delimiter(priceResult({sale_percentage, price}))}
+                    {priceDelimiter(priceResult({sale_percentage, price}))}
                     {/*{delimiter(23234243224.23)}*/}
                     <span>
                         ₽
                     </span>
                 </div>
                 {sale_percentage && <div className="product-card__price product-card__price_old">
-                    {delimiter(price)}
+                    {priceDelimiter(price)}
                 </div>}
                 {sale_percentage && <div className="product-card__discount">
                     -{sale_percentage}%

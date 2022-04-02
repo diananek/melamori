@@ -136,7 +136,7 @@
         menuBurger();
         // selectOption();
         offersScroll();
-        sortingItemClick();
-        favClick();
+        // sortingItemClick();
+        // favClick();
     }
 })()

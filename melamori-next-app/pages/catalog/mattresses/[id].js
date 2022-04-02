@@ -1,10 +1,13 @@
 import {Layout} from "../../../components/reboot/Layout";
-import {Ssr} from "../../../lib/ssr";
+import {priceResult, Ssr} from "../../../lib/ssr";
 import {actions} from "../../../lib/store/main/actions";
 import {useDispatch, useSelector} from "../../../lib/hooks/useState";
 import fp from "lodash/fp";
 import clsx from "clsx";
-import {useState} from "react";
+import {useForm} from "react-hook-form";
+
+import {useEffect, useState} from "react";
+import {priceDelimiter} from "../../../components/reboot/ProductCard";
 
 
 const uniqWidths = fp.uniqBy('mattresses_prices_id.mattress_size_relation.width')
@@ -16,17 +19,53 @@ const sizeGetter = (id, type) => fp.pipe(
     fp.get(`mattresses_prices_id.mattress_size_relation.${type}`)
 )
 
-const filterSizes = (select, key, uniq) => {
-    console.log(select, key, uniq)
-    return select
-        ? fp.filter([`mattresses_prices_id.mattress_size_relation.${key}`, select], uniq)
-        : uniq;
+const filterSizes = (select, key, pl) => {
+
+    let selected = select
+        ? fp.filter([`mattresses_prices_id.mattress_size_relation.${key}`, select], pl)
+        : pl;
+
+    return key === 'length'
+        ? uniqWidths(selected)
+        : uniqLengths(selected)
 }
+
+
+const minPrice = fp.minBy(
+    (item) => {
+        const {price, sale_percentage} = fp.get('mattresses_prices_id', item);
+        return priceResult({price, sale_percentage})
+    }
+)
 
 
 const MattressesId = (props) => {
 
+    const [calcPrice, setCalcPrice] = useState(minPrice(props.price_list).mattresses_prices_id)
+
+    console.log(calcPrice)
+    const {register, handleSubmit, setValue, watch, getValues} = useForm({
+        defaultValues: {
+            additional_options: {},
+            size: null,
+        }
+    });
+
+    const reduceWithAdditions = (acc) => {
+        const vals = getValues('additional_options')
+
+        let resPrice = acc
+        fp.mapKeys(i => {
+            if (vals[i]) {
+                const opt = fp.find(['additional_options_id.id', i], props.additional_options)
+                resPrice = fp.add(fp.add(resPrice, fp.multiply(resPrice / 100, opt.percentage)), opt.price);
+            }
+        }, vals)
+        return resPrice;
+    }
+
     const [selectedWidth, setSelectedWidth] = useState(null)
+
     const [selectedLength, setSelectedLength] = useState(null)
 
     const dp = useDispatch();
@@ -41,13 +80,29 @@ const MattressesId = (props) => {
     const selectL = sizeGetter(selectedLength, 'length')(props.price_list)
 
 
+    useEffect(() => {
+        const sub = watch((data, change) => {
+
+            if (change.name === 'size') {
+                setCalcPrice(fp.find(['mattresses_prices_id.id', data.size], props.price_list).mattresses_prices_id)
+            }
+        })
+        return () => {
+            sub.unsubscribe()
+        }
+    }, [props.price_list, watch])
+
     return (
         <Layout hideSlider>
-            <div className="product">
+            <form
+                className="product"
+                onSubmit={handleSubmit((r) => console.log(r))}
+            >
                 <div className="container  product__grid_mattr product__grid">
                     <div className="product__img">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={`${process.env.serverUrl}${fp.get('image.id', props)}`} alt={fp.get('image.title', props)}/>
+                        <img src={`${process.env.serverUrl}${fp.get('image.id', props)}`}
+                             alt={fp.get('image.title', props)}/>
                     </div>
                     <div className="product__dscr dscr">
                         <div className="dscr__grid">
@@ -62,20 +117,22 @@ const MattressesId = (props) => {
                             </div>
                             <div className="product__prices">
                                 <div className="product__price price price_cur">
-                                    120 200
+                                    {priceDelimiter(reduceWithAdditions(priceResult(calcPrice)))}
                                     <span>
                                         ₽
                                     </span>
                                 </div>
-                                <div className="product__price price price_old">
-                                    200 000
-                                </div>
-                                <div className="product__discount">
-                                    -40%
-                                </div>
+                                {calcPrice.sale_percentage > 0 && <>
+                                    <div className="product__price price price_old">
+                                        {priceDelimiter(calcPrice.price)}
+                                    </div>
+                                    <div className="product__discount">
+                                        -{calcPrice.sale_percentage}%
+                                    </div>
+                                </>}
                             </div>
                             <div className="product__actions">
-                                <button className="product__btn">
+                                <button className="product__btn" type={'submit'}>
                                     Добавить в заказ
                                 </button>
                                 <button
@@ -88,7 +145,8 @@ const MattressesId = (props) => {
                         </div>
                         <div className="product__caution" data-da=".product__grid, 1920, 2">
                             <div className="container">
-                                Вы оплачиваете товар только после разговора с менеджером. Оформляя заказ на сайте, вы
+                                Вы оплачиваете товар только после разговора с менеджером. Оформляя заказ на сайте,
+                                вы
                                 оставляете заявку на звонок
                             </div>
                         </div>
@@ -107,27 +165,31 @@ const MattressesId = (props) => {
                             </a>
                         </div>
                     </div>
-                    <form className="product__features features">
+                    <div className="product__features features">
                         <div className="features__item">
                             <div className="features__name name">
                                 Ширина
                             </div>
                             <div className="features__options">
                                 {
-                                    filterSizes(selectL, 'length', uniqWidths(props.price_list)).map(({
-                                                                          mattresses_prices_id: {
-                                                                              id,
-                                                                              mattress_size_relation
-                                                                          }
-                                                                      }) =>
+                                    filterSizes(selectL, 'length', props.price_list).map(({
+                                                                                              mattresses_prices_id: {
+                                                                                                  id,
+                                                                                                  mattress_size_relation
+                                                                                              }
+                                                                                          }) =>
                                         <button
                                             key={id}
                                             type={'button'}
                                             className={clsx(
                                                 "features__option",
-                                                id === selectedWidth ? 'features__option_selected' : ''
+                                                mattress_size_relation.width === selectW ? 'features__option_selected' : ''
                                             )}
-                                            onClick={() => setSelectedWidth(selectedWidth === id ? null : id)}
+                                            onClick={() => {
+                                                const newVal = selectedWidth === id ? null : id
+                                                setValue('size', newVal)
+                                                setSelectedWidth(newVal);
+                                            }}
                                         >
                                             {mattress_size_relation.width}
                                         </button>
@@ -140,27 +202,31 @@ const MattressesId = (props) => {
                                 Длина
                             </div>
                             <div className="features__options">
-                                {filterSizes(selectW, 'width', uniqLengths(props.price_list)).map(({
-                                                                        mattresses_prices_id: {
-                                                                            id,
-                                                                            mattress_size_relation
-                                                                        }
-                                                                    }) =>
+                                {filterSizes(selectW, 'width', props.price_list).map(({
+                                                                                          mattresses_prices_id: {
+                                                                                              id,
+                                                                                              mattress_size_relation
+                                                                                          }
+                                                                                      }) =>
                                     <button
                                         key={id}
                                         type={'button'}
                                         className={clsx(
                                             "features__option",
-                                            id === selectedLength ? 'features__option_selected' : ''
+                                            mattress_size_relation.length === selectL ? 'features__option_selected' : ''
                                         )}
-                                        onClick={() => setSelectedLength(selectedLength === id ? null : id)}
+                                        onClick={() => {
+                                            const newVal = selectedLength === id ? null : id
+                                            setValue('size', newVal)
+                                            setSelectedLength(newVal);
+                                        }}
                                     >
                                         {mattress_size_relation.length}
                                     </button>)}
                             </div>
                         </div>
 
-                    </form>
+                    </div>
                     <div className="product__extra features">
                         <div className="features__item">
                             <div className="features__name name">
@@ -168,7 +234,11 @@ const MattressesId = (props) => {
                             </div>
                             {props.additional_options.map(({additional_options_id}) => (
                                 <label className="features__checkbox checkbox" key={additional_options_id.id}>
-                                    <input className="checkbox__input" type="checkbox"/>
+                                    <input
+                                        className="checkbox__input"
+                                        type="checkbox"
+                                        {...register(`additional_options.${additional_options_id.id}`)}
+                                    />
                                     <span className="checkbox__box"/>
                                     {additional_options_id.description}
                                 </label>
@@ -233,7 +303,7 @@ const MattressesId = (props) => {
                         )}
                     </div>
                 </div>
-            </div>
+            </form>
         </Layout>
     );
 };

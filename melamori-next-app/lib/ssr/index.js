@@ -10,7 +10,7 @@ import axios from 'axios'
 const client = initializeApollo();
 
 
-export const priceResult = ({sale_percentage, price}) => fp.isNumber(sale_percentage)
+export const priceResult = ({sale_percentage, price}) => fp.isNumber(fp.toInteger(sale_percentage))
     ? fp.multiply(price, fp.divide(fp.subtract(100, sale_percentage), 100))
     : price
 
