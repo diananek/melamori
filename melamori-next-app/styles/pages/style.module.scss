@@ -1,0 +1,24 @@
+.cartGrid {
+    width: 75% !important;
+}
+
+@media (max-width: 1278px) {
+    .cartGrid {
+        width: 100% !important;
+    }
+    .cartSidebar {
+        width: 100% !important;
+    }
+}
+
+.cartSidebar {
+    width: 25% !important;
+}
+
+.cart {
+    display: flex;
+}
+
+.item {
+    width: calc(33% - 32px);
+}

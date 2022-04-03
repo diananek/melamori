@@ -8,7 +8,6 @@ import clsx from "clsx";
 import {priceResult} from "../../../lib/ssr";
 
 
-
 export const priceDelimiter = (price) => {
     let formatted = fp
         .toString((price.toFixed(2)))
@@ -57,6 +56,7 @@ const price_getter = {
 
 export const ProductCard = ({
                                 item = {},
+                                style = ''
                             }) => {
 
     const types = price_getter[item.__typename]
@@ -72,7 +72,7 @@ export const ProductCard = ({
     const isFavorite = fp.findIndex(fp.isEqual(`${item.__typename}/${item.id}`), favList) > -1
 
     return (
-        <article className="catalog__item product-card">
+        <article className={clsx(style, "catalog__item product-card")}>
             <div className="product-card__img">
                 <Link href={`/catalog/${item.__typename}/${item.id}`}>
                     <a href={`/catalog/${item.__typename}/${item.id}`}>

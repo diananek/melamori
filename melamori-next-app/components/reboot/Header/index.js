@@ -64,8 +64,8 @@ export const Header = () => {
                         {favoriteCounter > 0 && <span>{favoriteCounter > 9 ? '9+' : favoriteCounter}</span>}
                     </a>
                 </Link>
-                <Link href={'/'}>
-                    <a href={"/"} aria-label="cart" className="header__basket header__basket_catalog">
+                <Link href={'/my/cart'}>
+                    <a href={'/my/cart'} aria-label="cart" className="header__basket header__basket_catalog">
                         {cartCounter > 0 && <span>{cartCounter > 9 ? '9+' : cartCounter}</span>}
                     </a>
                 </Link>

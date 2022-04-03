@@ -49,7 +49,7 @@ const MattressesId = (props) => {
     const [pricing, setPricing] = useState(calcPrice.price)
     const [sale, setSale] = useState(calcPrice.price * (calcPrice.sale_percentage / 100 + 1))
 
-    console.log(calcPrice)
+    // console.log(calcPrice)
     const {register, handleSubmit, setValue, watch, getValues} = useForm({
         defaultValues: {
             additional_options: {},
@@ -119,6 +119,7 @@ const MattressesId = (props) => {
         dp(mainState.actions.addToCart({
             ...data,
             id: props.id,
+            type: props.__typename
         }))
     }
 
@@ -147,14 +148,14 @@ const MattressesId = (props) => {
                             </div>
                             <div className="product__prices">
                                 <div className="product__price price price_cur">
-                                    {priceDelimiter(sale)}
+                                    {priceDelimiter(pricing)}
                                     <span>
                                         ₽
                                     </span>
                                 </div>
                                 {calcPrice.sale_percentage > 0 && <>
                                     <div className="product__price price price_old">
-                                        {priceDelimiter(pricing)}
+                                        {priceDelimiter(sale)}
                                     </div>
                                     <div className="product__discount">
                                         -{calcPrice.sale_percentage}%
