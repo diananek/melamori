@@ -1,0 +1,12 @@
+mutation CREATE_ORDER {
+    create_orders_item(
+        data: {
+            items_prices_relation: {
+                item_price_id: {
+                    id: "ccc9eaed-5087-4c7d-9f27-466b7cca1ca9"
+                }
+            }
+            phone_number: "122"
+        }
+    )
+}

@@ -1,0 +1,37 @@
+query GET_BED_BY_ID (
+    $id: ID! = "06dea44d-5d34-4bc2-9d5f-5c06078b1c31"
+){
+    bed_collection_by_id(
+        id: $id
+    ) {
+        additional_options(limit: -1){
+            additional_options_id {
+                title
+                id
+                description
+                percentage
+                price
+            }
+        }
+        description
+        id
+        image{
+            title
+            id
+        }
+        price_list(limit: -1) {
+            id
+            bed_prices_id {
+                price
+                sale_percentage
+                bed_size_relation {
+                    id
+                    length
+                    width
+                }
+            }
+        }
+        status
+        title
+    }
+}

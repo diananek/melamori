@@ -4,6 +4,7 @@ import GET_BEDS from '../../graphql/schemas/getBeds.graphql'
 import GET_SOFA from '../../graphql/schemas/getSofa.graphql'
 import GET_MATTRESSES from '../../graphql/schemas/getMattresses.graphql'
 import GET_BY_MATTRESS_ID from '../../graphql/schemas/getMattressesById.graphql'
+import GET_BED_BY_ID from '../../graphql/schemas/getBedById.graphql'
 import fp from "lodash/fp";
 import axios from 'axios'
 
@@ -99,6 +100,12 @@ const dataGetter = {
             variables: param
         })).data.mattresses_by_id
     },
+    bed_by_id: async (param = {}) => {
+        return (await client.query({
+            query: GET_BED_BY_ID,
+            variables: param
+        })).data.bed_collection_by_id
+    }
 }
 
 

@@ -8,12 +8,14 @@ schema {
 union item_price_price_item_union = accessories_prices | bed_prices | mattresses_prices | soft_furniture_prices
 
 type Mutation {
-    create_orders_item(data: create_orders_input!): Boolean
-    create_orders_item_price_item(data: create_orders_item_price_input!): Boolean
-    create_orders_item_price_items(data: [create_orders_item_price_input!]): Boolean
-    create_orders_items(data: [create_orders_input!]): Boolean
-    create_orders_promotion_item(data: create_orders_promotion_input!): Boolean
-    create_orders_promotion_items(data: [create_orders_promotion_input!]): Boolean
+    create_item_price_item(data: create_item_price_input!): item_price
+    create_item_price_items(data: [create_item_price_input!], filter: item_price_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [item_price]
+    create_orders_item(data: create_orders_input!): orders
+    create_orders_item_price_item(data: create_orders_item_price_input!): orders_item_price
+    create_orders_item_price_items(data: [create_orders_item_price_input!], filter: orders_item_price_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [orders_item_price]
+    create_orders_items(data: [create_orders_input!], filter: orders_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [orders]
+    create_orders_promotion_item(data: create_orders_promotion_input!): orders_promotion
+    create_orders_promotion_items(data: [create_orders_promotion_input!], filter: orders_promotion_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [orders_promotion]
 }
 
 type Query {
@@ -83,6 +85,14 @@ type Query {
     mattresses_prices(filter: mattresses_prices_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses_prices]
     mattresses_prices_aggregated(filter: mattresses_prices_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [mattresses_prices_aggregated]
     mattresses_prices_by_id(id: ID!): mattresses_prices
+    orders(filter: orders_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [orders]
+    orders_by_id(id: ID!): orders
+    orders_item_price(filter: orders_item_price_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [orders_item_price]
+    orders_item_price_aggregated(filter: orders_item_price_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [orders_item_price_aggregated]
+    orders_item_price_by_id(id: ID!): orders_item_price
+    orders_promotion(filter: orders_promotion_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [orders_promotion]
+    orders_promotion_aggregated(filter: orders_promotion_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [orders_promotion_aggregated]
+    orders_promotion_by_id(id: ID!): orders_promotion
     promotion(filter: promotion_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [promotion]
     promotion_aggregated(filter: promotion_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [promotion_aggregated]
     promotion_by_id(id: ID!): promotion
@@ -145,14 +155,15 @@ type accessories_prices_aggregated_fields {
 }
 
 type accessories_sizes {
-    basic_size: String!
     date_created: Date
     date_created_func: datetime_functions
     date_updated: Date
     date_updated_func: datetime_functions
     id: ID
+    length: String!
     user_created: String
     user_updated: String
+    width: String!
 }
 
 type accessories_sizes_aggregated {
@@ -488,6 +499,7 @@ type mattresses {
 
 type mattresses_accessories {
     accessory_type: String
+    additional_options: String
     date_created: Date
     date_created_func: datetime_functions
     date_updated: Date
@@ -680,6 +692,50 @@ type mattresses_prices_aggregated {
 
 type mattresses_prices_aggregated_fields {
     price: Float
+}
+
+type orders {
+    id: ID
+}
+
+type orders_item_price {
+    id: ID
+}
+
+type orders_item_price_aggregated {
+    avg: orders_item_price_aggregated_fields
+    avgDistinct: orders_item_price_aggregated_fields
+    count: orders_item_price_aggregated_fields
+    countDistinct: orders_item_price_aggregated_fields
+    group: JSON
+    max: orders_item_price_aggregated_fields
+    min: orders_item_price_aggregated_fields
+    sum: orders_item_price_aggregated_fields
+    sumDistinct: orders_item_price_aggregated_fields
+}
+
+type orders_item_price_aggregated_fields {
+    id: Float
+}
+
+type orders_promotion {
+    id: ID
+}
+
+type orders_promotion_aggregated {
+    avg: orders_promotion_aggregated_fields
+    avgDistinct: orders_promotion_aggregated_fields
+    count: orders_promotion_aggregated_fields
+    countDistinct: orders_promotion_aggregated_fields
+    group: JSON
+    max: orders_promotion_aggregated_fields
+    min: orders_promotion_aggregated_fields
+    sum: orders_promotion_aggregated_fields
+    sumDistinct: orders_promotion_aggregated_fields
+}
+
+type orders_promotion_aggregated_fields {
+    id: Float
 }
 
 type promotion {
@@ -914,14 +970,15 @@ input accessories_prices_filter {
 input accessories_sizes_filter {
     _and: [accessories_sizes_filter]
     _or: [accessories_sizes_filter]
-    basic_size: string_filter_operators
     date_created: date_filter_operators
     date_created_func: datetime_function_filter_operators
     date_updated: date_filter_operators
     date_updated_func: datetime_function_filter_operators
     id: number_filter_operators
+    length: string_filter_operators
     user_created: string_filter_operators
     user_updated: string_filter_operators
+    width: string_filter_operators
 }
 
 input additional_options_filter {
@@ -1044,23 +1101,27 @@ input company_contacts_filter {
     user_updated: string_filter_operators
 }
 
-input create_orders_input {
-    choosen_promotions: [create_orders_promotion_input]
+input create_item_price_input {
+    choosen_additional_options: String
     date_created: Date
     date_created_func: datetime_functionsInput
     date_updated: Date
     date_updated_func: datetime_functionsInput
     id: ID
-    items_prices_relation: [create_orders_item_price_input]
-    phone_number: String!
-    status: String!
+    price: String
     user_created: String
     user_updated: String
 }
 
+input create_orders_input {
+    choosen_promotions: [create_orders_promotion_input]
+    items_prices_relation: [create_orders_item_price_input]
+    phone_number: String!
+}
+
 input create_orders_item_price_input {
     id: ID
-    item_price_id: String
+    item_price_id: create_item_price_input
     orders_id: create_orders_input
 }
 
@@ -1197,6 +1258,7 @@ input mattresses_accessories_filter {
     _and: [mattresses_accessories_filter]
     _or: [mattresses_accessories_filter]
     accessory_type: string_filter_operators
+    additional_options: string_filter_operators
     date_created: date_filter_operators
     date_created_func: datetime_function_filter_operators
     date_updated: date_filter_operators
@@ -1315,6 +1377,24 @@ input number_filter_operators {
     _nin: [Float]
     _nnull: Boolean
     _null: Boolean
+}
+
+input orders_filter {
+    _and: [orders_filter]
+    _or: [orders_filter]
+    id: string_filter_operators
+}
+
+input orders_item_price_filter {
+    _and: [orders_item_price_filter]
+    _or: [orders_item_price_filter]
+    id: number_filter_operators
+}
+
+input orders_promotion_filter {
+    _and: [orders_promotion_filter]
+    _or: [orders_promotion_filter]
+    id: number_filter_operators
 }
 
 input promotion_filter {

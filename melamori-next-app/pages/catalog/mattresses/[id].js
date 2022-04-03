@@ -44,12 +44,10 @@ const MattressesId = (props) => {
 
     const [submitted, setSubmitted] = useState(false)
 
-
     const [calcPrice, setCalcPrice] = useState(minPrice(props.price_list).mattresses_prices_id)
     const [pricing, setPricing] = useState(calcPrice.price)
     const [sale, setSale] = useState(calcPrice.price * (calcPrice.sale_percentage / 100 + 1))
 
-    // console.log(calcPrice)
     const {register, handleSubmit, setValue, watch, getValues} = useForm({
         defaultValues: {
             additional_options: {},

@@ -8,6 +8,7 @@ import GET_CART_ITEMS from '../../graphql/schemas/getCart.graphql'
 import fp from "lodash/fp";
 import {ProductCard} from "../../components/reboot/ProductCard";
 import clsx from "clsx";
+import {useForm} from "react-hook-form";
 
 
 export const cartMapper = (collection, price_collection, cart) => fp.pipe(
@@ -25,6 +26,8 @@ export const cartMapper = (collection, price_collection, cart) => fp.pipe(
 
 
 const Cart = () => {
+
+    const {handleSubmit, register} = useForm()
 
     const cartItems = useSelector('main.cart');
 
@@ -85,15 +88,16 @@ const Cart = () => {
                         <div className="catalog__container container">
                             <div className="catalog__grid">
                                 {(!called || loading)
-                                    || cartItems?.map(i => <ProductCard
+                                    || cartItems?.map((i, key) => <ProductCard
                                         style={styles.item}
                                         item={fp.find(['id', i.id], items[i.type])}
-                                        key={i.id}
+                                        key={key}
                                     />)}
                             </div>
                         </div>
                     </section>
-                    <section className={clsx('basket__order-section', styles.cartSidebar)}>
+                    <form onSubmit={handleSubmit((data) => console.log(data))}
+                          className={clsx('basket__order-section', styles.cartSidebar)}>
                         <div className="basket__block">
                             <div className="basket__dscr">
                                 <div className="basket__total-price">
@@ -121,7 +125,7 @@ const Cart = () => {
                                     </li>
                                 </ul>
                             </div>
-                            <form action="#" className="basket__order-form">
+                            <div className="basket__order-form">
                                 <label className="basket__form-label" htmlFor="user-tel">
                                     Ваш телефон
                                 </label>
@@ -130,16 +134,21 @@ const Cart = () => {
                                     className="basket__input"
                                     type="tel"
                                     placeholder="8 (123) 456–78–90"
+                                    {...register('phone')}
                                 />
                                 <button className="basket__btn">
                                     Подтвердить заказ
                                 </button>
                                 <label className="basket__checkbox checkbox">
-                                    <input className="checkbox__input" type="checkbox"/>
+                                    <input
+                                        className="checkbox__input"
+                                        type="checkbox"
+                                        {...register('sign')}
+                                    />
                                     <span className="basket__checkbox-box checkbox__box"/>
                                     Я согласен на обработку моих персональных данных
                                 </label>
-                            </form>
+                            </div>
                         </div>
                         <div className="basket__block">
                             <div className="basket__block-name">
@@ -156,15 +165,19 @@ const Cart = () => {
                             <div className="basket__block-name">
                                 Доп. услуги
                             </div>
-                            <form className="basket__extra-form">
+                            <div className="basket__extra-form">
                                 <label className="basket__checkbox checkbox">
-                                    <input className="checkbox__input" type="checkbox"/>
+                                    <input
+                                        className="checkbox__input"
+                                        type="checkbox"
+                                        {...register('opts.e')}
+                                    />
                                     <span className="basket__checkbox-box checkbox__box"/>
                                     Сборка и установка
                                 </label>
-                            </form>
+                            </div>
                         </div>
-                    </section>
+                    </form>
                 </div>
             </div>
         </Layout>

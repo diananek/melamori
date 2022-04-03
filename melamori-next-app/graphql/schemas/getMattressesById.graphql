@@ -11,8 +11,6 @@ query GET_BY_MATTRESS_ID(
                 percentage
                 price
                 title
-                user_created
-                user_updated
             }
         }
         bed_springs
@@ -52,8 +50,6 @@ query GET_BY_MATTRESS_ID(
                     diameter
                     id
                     length
-                    user_created
-                    user_updated
                     width
                 }
                 price
