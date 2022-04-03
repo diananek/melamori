@@ -1,0 +1,36 @@
+query GET_SOFA_BY_ID (
+    $id: ID! = "2b5f2d12-89e6-43b9-9412-6c6b18045c82"
+) {
+    soft_furniture_by_id(id: $id) {
+        additional_options{
+            additional_options_id{
+                description
+                id
+                percentage
+                price
+                title
+            }
+        }
+        description
+        furniture_type
+        id
+        image {
+            id
+            title
+        }
+        price_list {
+            soft_furniture_prices_id{
+                id
+                price
+                sale_percentage
+                soft_furniture_cloth_category_relation{
+                    id
+                    category
+                }
+                status
+            }
+        }
+        status
+        title
+    }
+}
