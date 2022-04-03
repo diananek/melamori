@@ -165,7 +165,6 @@ const MattressesId = (props) => {
                                     {
                                         submitted ? 'В корзине' :'Добавить в заказ'
                                     }
-
                                 </button>
                                 <button
                                     className={clsx('product__favorites', isFavorite && 'product__favorites_active')}

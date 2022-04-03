@@ -7,6 +7,7 @@ import {useDispatch, useSelector} from "../../../lib/hooks/useState";
 import {useEffect, useState} from "react";
 import {useForm} from "react-hook-form";
 import {priceDelimiter} from "../../../components/reboot/ProductCard";
+import {mainState} from "../../../lib/store/main";
 
 
 const minPrice = fp.minBy(
@@ -29,7 +30,7 @@ const BedItem = (props) => {
 
     const [submitted, setSubmitted] = useState(false)
 
-    const [calcPrice, setCalcPrice] = useState(minPrice(props.price_list).bed_prices_id)
+    const [calcPrice] = useState(minPrice(props.price_list).bed_prices_id)
     const [pricing, setPricing] = useState(calcPrice.price)
     const [sale, setSale] = useState(calcPrice.price * (calcPrice.sale_percentage / 100 + 1))
 
@@ -68,10 +69,20 @@ const BedItem = (props) => {
         }
     }, [calcPrice.price, calcPrice.sale_percentage, getValues, props.additional_options, watch])
 
+
+    const onAdd = (data) => {
+        setSubmitted(true)
+        dp(mainState.actions.addToCart({
+            ...data,
+            id: props.id,
+            type: props.__typename
+        }))
+    }
+
     console.log(props)
     return (
         <Layout hideSlider>
-            <form onSubmit={handleSubmit((d) => console.log(d))} className="product">
+            <form onSubmit={handleSubmit(onAdd)} className="product">
                 <div className="container product__grid">
                     <div className="product__img">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -107,7 +118,9 @@ const BedItem = (props) => {
                             </div>
                             <div className="product__actions">
                                 <button className="product__btn">
-                                    Добавить в заказ
+                                    {
+                                        submitted ? 'В корзине' :'Добавить в заказ'
+                                    }
                                 </button>
                                 <button
                                     className={clsx('product__favorites', isFavorite && 'product__favorites_active')}
