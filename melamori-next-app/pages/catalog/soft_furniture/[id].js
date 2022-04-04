@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Layout} from "../../../components/reboot/Layout";
 import {priceResult, Ssr} from "../../../lib/ssr";
 import fp from "lodash/fp";
@@ -23,12 +23,12 @@ const SoftId = props => {
 
     const [calcPrice, setCalcPrice] = useState(minPrice(props.price_list).soft_furniture_prices_id)
     const [pricing, setPricing] = useState(calcPrice.price)
-    const [sale, setSale] = useState(calcPrice.price * (calcPrice.sale_percentage / 100 + 1))
+    const [sale, setSale] = useState(calcPrice.price * (1 - calcPrice.sale_percentage / 100))
 
     const {register, handleSubmit, setValue, watch, getValues} = useForm({
         defaultValues: {
             additional_options: {},
-            size: null,
+            category: null,
         }
     });
 
@@ -37,6 +37,20 @@ const SoftId = props => {
     const favList = useSelector('main.favorites');
 
     const isFavorite = fp.findIndex(fp.isEqual(`${props.__typename}/${props.id}`), favList) > -1
+
+
+    useEffect(() => {
+        const sub = watch((data) => {
+            const newPrice = fp.find(['soft_furniture_prices_id.id', data.category], props.price_list).soft_furniture_prices_id
+            setCalcPrice(newPrice)
+            setPricing(newPrice.price)
+            setSale(newPrice.price * (1 - newPrice.sale_percentage / 100))
+
+        });
+        return () => {
+            sub.unsubscribe()
+        }
+    }, [props.price_list, watch])
 
 
     return (
@@ -58,14 +72,14 @@ const SoftId = props => {
                             </div>
                             <div className="product__prices">
                                 <div className="product__price price price_cur">
-                                    {priceDelimiter(pricing)}
+                                    {priceDelimiter(sale)}
                                     <span>
                                         ₽
                                     </span>
                                 </div>
                                 {calcPrice.sale_percentage > 0 && <>
                                     <div className="product__price price price_old">
-                                        {priceDelimiter(sale)}
+                                        {priceDelimiter(pricing)}
                                     </div>
                                     <div className="product__discount">
                                         -{calcPrice.sale_percentage}%
@@ -106,10 +120,30 @@ const SoftId = props => {
                         <div className="features__item ">
                             <div className="features__name name">Категория ткани</div>
                             <div className="features__options ">
-                                <button className="features__option features__option_selected ">Первая</button>
-                                <button className="features__option ">Вторая</button>
-                                <button className="features__option ">Третья</button>
-                                <button className="features__option ">Четвёртая</button>
+                                {/*<button className="features__option features__option_selected ">Первая</button>*/}
+                                {props.price_list.map((item) => {
+                                    // fp.get('soft_furniture_prices_id.soft_furniture_cloth_category_relation.category')
+                                    return (
+                                        <button
+                                            key={item.soft_furniture_prices_id.id}
+                                            type={'button'}
+                                            className={clsx(
+                                                "features__option",
+                                                item.soft_furniture_prices_id.id === getValues('category') ? 'features__option_selected' : ''
+                                            )}
+                                            onClick={() => {
+                                                setValue('category', item.soft_furniture_prices_id.id)
+                                            }}
+                                        >
+                                            {/*{item.soft_furniture_prices_id.id}*/}
+                                            {/*{watch('category')}*/}
+                                            {item.soft_furniture_prices_id.soft_furniture_cloth_category_relation.category}
+                                        </button>
+                                    )
+                                })}
+                                {/*<button className="features__option ">Вторая</button>*/}
+                                {/*<button className="features__option ">Третья</button>*/}
+                                {/*<button className="features__option ">Четвёртая</button>*/}
                             </div>
                         </div>
                     </div>

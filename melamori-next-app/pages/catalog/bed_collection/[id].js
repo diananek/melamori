@@ -32,7 +32,7 @@ const BedItem = (props) => {
 
     const [calcPrice] = useState(minPrice(props.price_list).bed_prices_id)
     const [pricing, setPricing] = useState(calcPrice.price)
-    const [sale, setSale] = useState(calcPrice.price * (calcPrice.sale_percentage / 100 + 1))
+    const [sale, setSale] = useState(calcPrice.price * (1- calcPrice.sale_percentage / 100))
 
 
     const dp = useDispatch();
@@ -103,14 +103,14 @@ const BedItem = (props) => {
                             </div>
                             <div className="product__prices">
                                 <div className="product__price price price_cur">
-                                    {priceDelimiter(pricing)}
+                                    {priceDelimiter(sale)}
                                     <span>
                                         ₽
                                     </span>
                                 </div>
                                 {calcPrice.sale_percentage > 0 && <>
                                     <div className="product__price price price_old">
-                                        {priceDelimiter(sale)}
+                                        {priceDelimiter(pricing)}
                                     </div>
                                     <div className="product__discount">
                                         -{calcPrice.sale_percentage}%
