@@ -185,38 +185,6 @@ const BedItem = (props) => {
                         </div>
                     </form>
                     <div className="product__props props">
-                        {/*<div className="props__item ">*/}
-                        {/*    <div className="props__name ">*/}
-                        {/*        Ширина*/}
-                        {/*    </div>*/}
-                        {/*    <div className="props__val">*/}
-                        {/*        162 см*/}
-                        {/*    </div>*/}
-                        {/*</div>*/}
-                        {/*<div className="props__item ">*/}
-                        {/*    <div className="props__name ">*/}
-                        {/*        Высота*/}
-                        {/*    </div>*/}
-                        {/*    <div className="props__val ">*/}
-                        {/*        55 см*/}
-                        {/*    </div>*/}
-                        {/*</div>*/}
-                        {/*<div className="props__item ">*/}
-                        {/*    <div className="props__name ">*/}
-                        {/*        Длина*/}
-                        {/*    </div>*/}
-                        {/*    <div className="props__val ">*/}
-                        {/*        220 см*/}
-                        {/*    </div>*/}
-                        {/*</div>*/}
-                        {/*<div className="props__item ">*/}
-                        {/*    <div className="props__name ">*/}
-                        {/*        Матрац*/}
-                        {/*    </div>*/}
-                        {/*    <div className="props__val ">*/}
-                        {/*        Не входит в комплектацию*/}
-                        {/*    </div>*/}
-                        {/*</div>*/}
                         <div className="props__item ">
                             <div className="props__name ">
                                 Дополнительно

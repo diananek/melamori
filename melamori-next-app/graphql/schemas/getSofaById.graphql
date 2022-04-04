@@ -23,6 +23,13 @@ query GET_SOFA_BY_ID (
                 id
                 price
                 sale_percentage
+                soft_furniture_size_relation{
+                    diameter
+                    width
+                    length
+                    height
+                    additional_size
+                }
                 soft_furniture_cloth_category_relation{
                     id
                     category

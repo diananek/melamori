@@ -7,6 +7,7 @@ import {useForm} from "react-hook-form";
 import clsx from "clsx";
 import {actions} from "../../../lib/store/main/actions";
 import {useDispatch, useSelector} from "../../../lib/hooks/useState";
+import {mainState} from "../../../lib/store/main";
 
 
 const minPrice = fp.minBy(
@@ -25,7 +26,7 @@ const SoftId = props => {
     const [pricing, setPricing] = useState(calcPrice.price)
     const [sale, setSale] = useState(calcPrice.price * (1 - calcPrice.sale_percentage / 100))
 
-    const {register, handleSubmit, setValue, watch, getValues} = useForm({
+    const {handleSubmit, setValue, watch, getValues} = useForm({
         defaultValues: {
             additional_options: {},
             category: null,
@@ -53,9 +54,19 @@ const SoftId = props => {
     }, [props.price_list, watch])
 
 
+    const onAdd = (data) => {
+        setSubmitted(true)
+        dp(mainState.actions.addToCart({
+            ...data,
+            category: data.category || calcPrice.id,
+            id: props.id,
+            type: props.__typename
+        }))
+    }
+
     return (
         <Layout hideSlider>
-            <div className="product">
+            <form onSubmit={handleSubmit(onAdd)} className="product">
                 <div className="container product__grid product__grid_sofa">
                     <div className="product__img">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -122,7 +133,6 @@ const SoftId = props => {
                             <div className="features__options ">
                                 {/*<button className="features__option features__option_selected ">Первая</button>*/}
                                 {props.price_list.map((item) => {
-                                    // fp.get('soft_furniture_prices_id.soft_furniture_cloth_category_relation.category')
                                     return (
                                         <button
                                             key={item.soft_furniture_prices_id.id}
@@ -135,42 +145,37 @@ const SoftId = props => {
                                                 setValue('category', item.soft_furniture_prices_id.id)
                                             }}
                                         >
-                                            {/*{item.soft_furniture_prices_id.id}*/}
-                                            {/*{watch('category')}*/}
                                             {item.soft_furniture_prices_id.soft_furniture_cloth_category_relation.category}
                                         </button>
                                     )
                                 })}
-                                {/*<button className="features__option ">Вторая</button>*/}
-                                {/*<button className="features__option ">Третья</button>*/}
-                                {/*<button className="features__option ">Четвёртая</button>*/}
                             </div>
                         </div>
                     </div>
                     <div className="product__props props">
                         <div className="props__item">
                             <div className="props__name">Ширина</div>
-                            <div className="props__val">162 см</div>
+                            <div className="props__val">{calcPrice.soft_furniture_size_relation.width}</div>
                         </div>
                         <div className="props__item">
                             <div className="props__name">Высота</div>
-                            <div className="props__val">55 см</div>
+                            <div className="props__val">{calcPrice.soft_furniture_size_relation.height}</div>
                         </div>
                         <div className="props__item">
                             <div className="props__name">Длина</div>
-                            <div className="props__val">220 см</div>
+                            <div className="props__val">{calcPrice.soft_furniture_size_relation.length}</div>
                         </div>
-                        <div className="props__item">
-                            <div className="props__name">Ширина в разложеном виде</div>
-                            <div className="props__val">182 см</div>
-                        </div>
+                        {calcPrice.soft_furniture_size_relation.additional_size && <div className="props__item">
+                            <div className="props__name">Размер в разложеном виде</div>
+                            <div className="props__val">{calcPrice.soft_furniture_size_relation.additional_size}</div>
+                        </div>}
                         <div className="props__item">
                             <div className="props__name">Дополнительно</div>
                             <div className="props__val" dangerouslySetInnerHTML={{__html: props.description}}/>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </Layout>
     );
 }
