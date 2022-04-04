@@ -8,8 +8,12 @@ schema {
 union item_price_price_item_union = accessories_prices | bed_prices | mattresses_prices | soft_furniture_prices
 
 type Mutation {
+    create_item_price_additional_options_item(data: create_item_price_additional_options_input!): item_price_additional_options
+    create_item_price_additional_options_items(data: [create_item_price_additional_options_input!], filter: item_price_additional_options_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [item_price_additional_options]
     create_item_price_item(data: create_item_price_input!): item_price
     create_item_price_items(data: [create_item_price_input!], filter: item_price_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [item_price]
+    create_item_price_price_item(data: create_item_price_price_input!): item_price_price
+    create_item_price_price_items(data: [create_item_price_price_input!], filter: item_price_price_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [item_price_price]
     create_orders_item(data: create_orders_input!): orders
     create_orders_item_price_item(data: create_orders_item_price_input!): orders_item_price
     create_orders_item_price_items(data: [create_orders_item_price_input!], filter: orders_item_price_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [orders_item_price]
@@ -63,6 +67,9 @@ type Query {
     mattresses_accessories_accessories_prices(filter: mattresses_accessories_accessories_prices_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses_accessories_accessories_prices]
     mattresses_accessories_accessories_prices_aggregated(filter: mattresses_accessories_accessories_prices_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [mattresses_accessories_accessories_prices_aggregated]
     mattresses_accessories_accessories_prices_by_id(id: ID!): mattresses_accessories_accessories_prices
+    mattresses_accessories_additional_options(filter: mattresses_accessories_additional_options_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses_accessories_additional_options]
+    mattresses_accessories_additional_options_aggregated(filter: mattresses_accessories_additional_options_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [mattresses_accessories_additional_options_aggregated]
+    mattresses_accessories_additional_options_by_id(id: ID!): mattresses_accessories_additional_options
     mattresses_accessories_by_id(id: ID!): mattresses_accessories
     mattresses_accessories_files(filter: mattresses_accessories_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses_accessories_files]
     mattresses_accessories_files_aggregated(filter: mattresses_accessories_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [mattresses_accessories_files_aggregated]
@@ -499,7 +506,7 @@ type mattresses {
 
 type mattresses_accessories {
     accessory_type: String
-    additional_options: String
+    additional_options(filter: mattresses_accessories_additional_options_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses_accessories_additional_options]
     date_created: Date
     date_created_func: datetime_functions
     date_updated: Date
@@ -536,6 +543,28 @@ type mattresses_accessories_accessories_prices_aggregated {
 }
 
 type mattresses_accessories_accessories_prices_aggregated_fields {
+    id: Float
+}
+
+type mattresses_accessories_additional_options {
+    additional_options_id(filter: additional_options_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): additional_options
+    id: ID
+    mattresses_accessories_id(filter: mattresses_accessories_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): mattresses_accessories
+}
+
+type mattresses_accessories_additional_options_aggregated {
+    avg: mattresses_accessories_additional_options_aggregated_fields
+    avgDistinct: mattresses_accessories_additional_options_aggregated_fields
+    count: mattresses_accessories_additional_options_aggregated_fields
+    countDistinct: mattresses_accessories_additional_options_aggregated_fields
+    group: JSON
+    max: mattresses_accessories_additional_options_aggregated_fields
+    min: mattresses_accessories_additional_options_aggregated_fields
+    sum: mattresses_accessories_additional_options_aggregated_fields
+    sumDistinct: mattresses_accessories_additional_options_aggregated_fields
+}
+
+type mattresses_accessories_additional_options_aggregated_fields {
     id: Float
 }
 
@@ -1101,16 +1130,29 @@ input company_contacts_filter {
     user_updated: string_filter_operators
 }
 
+input create_item_price_additional_options_input {
+    additional_options_id: String
+    id: ID
+    item_price_id: create_item_price_input
+}
+
 input create_item_price_input {
-    choosen_additional_options: String
+    choosen_additional_options: [create_item_price_additional_options_input]
     date_created: Date
     date_created_func: datetime_functionsInput
     date_updated: Date
     date_updated_func: datetime_functionsInput
     id: ID
-    price: String
+    price: [create_item_price_price_input]
     user_created: String
     user_updated: String
+}
+
+input create_item_price_price_input {
+    collection: String
+    id: ID
+    item: String
+    item_price_id: create_item_price_input
 }
 
 input create_orders_input {
@@ -1246,6 +1288,14 @@ input mattresses_accessories_accessories_prices_filter {
     mattresses_accessories_id: mattresses_accessories_filter
 }
 
+input mattresses_accessories_additional_options_filter {
+    _and: [mattresses_accessories_additional_options_filter]
+    _or: [mattresses_accessories_additional_options_filter]
+    additional_options_id: additional_options_filter
+    id: number_filter_operators
+    mattresses_accessories_id: mattresses_accessories_filter
+}
+
 input mattresses_accessories_files_filter {
     _and: [mattresses_accessories_files_filter]
     _or: [mattresses_accessories_files_filter]
@@ -1258,7 +1308,7 @@ input mattresses_accessories_filter {
     _and: [mattresses_accessories_filter]
     _or: [mattresses_accessories_filter]
     accessory_type: string_filter_operators
-    additional_options: string_filter_operators
+    additional_options: mattresses_accessories_additional_options_filter
     date_created: date_filter_operators
     date_created_func: datetime_function_filter_operators
     date_updated: date_filter_operators

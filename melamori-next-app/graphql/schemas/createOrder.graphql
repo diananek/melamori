@@ -1,12 +1,52 @@
-mutation CREATE_ORDER {
+mutation CREATE_ORDER(
+    $prices: [create_orders_item_price_input]
+    $phone: String!
+) {
     create_orders_item(
         data: {
-            items_prices_relation: {
-                item_price_id: {
-                    id: "ccc9eaed-5087-4c7d-9f27-466b7cca1ca9"
-                }
-            }
-            phone_number: "122"
+            items_prices_relation: $prices
+            phone_number: $phone
         }
-    )
+    ) {
+        id
+    }
 }
+
+
+#mutation CREATE_ORDER{
+#    create_orders_item(
+#        data: {
+#            items_prices_relation: [
+#                {
+#                    item_price_id: {
+#                        price: {
+#                            item: "679e59ae-957f-46de-90e3-04acad91fbaa"
+#                            collection: "mattresses_prices"
+#                        }
+#                        choosen_additional_options: [
+#                            {
+#                                additional_options_id: "b110dad6-ea4e-4354-941b-311d39e727b5"
+#                            },
+#                            {
+#                                additional_options_id: "b110dad6-ea4e-4354-941b-311d39e727b5"
+#                            },
+#                        ]
+#                    }
+#                }
+#            ]
+#            phone_number: "122"
+#        }
+#    ) {
+#        id
+#    }
+#}
+
+
+
+
+
+#item_price_id: {
+#price: {
+#item: "679e59ae-957f-46de-90e3-04acad91fbaa"
+#collection: "mattresses_prices"
+#}

@@ -38,7 +38,7 @@ const toStringSizes = fp.cond([
 
 ])
 
-const price_getter = {
+export const price_getter = {
     soft_furniture: {
         price: 'soft_furniture_prices_id',
         size: 'soft_furniture_size_relation'
@@ -115,9 +115,9 @@ export const ProductCard = ({
                 </div>
             </div>
             <div className="product-card__actions">
-                <button className="product-card__add">
-                    Добавить в заказ
-                </button>
+                {/*<button className="product-card__add">*/}
+                {/*    Добавить в заказ*/}
+                {/*</button>*/}
                 <button
                     className={clsx(
                         'product-card__fav product-card__fav_grey',

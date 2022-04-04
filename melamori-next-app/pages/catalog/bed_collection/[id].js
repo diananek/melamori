@@ -10,12 +10,15 @@ import {priceDelimiter} from "../../../components/reboot/ProductCard";
 import {mainState} from "../../../lib/store/main";
 
 
+// TODO: удалить 106 видов тканей
+
 const minPrice = fp.minBy(
     (item) => {
         const {price, sale_percentage} = fp.get('bed_prices_id', item);
         return priceResult({price, sale_percentage})
     }
 )
+
 
 
 const BedItem = (props) => {
