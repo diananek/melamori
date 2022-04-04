@@ -74,6 +74,7 @@ const BedItem = (props) => {
         setSubmitted(true)
         dp(mainState.actions.addToCart({
             ...data,
+            size: data.size || calcPrice.id,
             id: props.id,
             type: props.__typename
         }))
