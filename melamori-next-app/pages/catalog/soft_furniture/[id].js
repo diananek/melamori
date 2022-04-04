@@ -79,6 +79,7 @@ const SoftId = props => {
                                     }
                                 </button>
                                 <button
+                                    type={'button'}
                                     className={clsx('product__favorites', isFavorite && 'product__favorites_active')}
                                     onClick={() => dp(actions.addToFavorites(props))}
                                 >

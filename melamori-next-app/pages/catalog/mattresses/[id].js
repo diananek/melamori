@@ -46,7 +46,7 @@ const MattressesId = (props) => {
 
     const [calcPrice, setCalcPrice] = useState(minPrice(props.price_list).mattresses_prices_id)
     const [pricing, setPricing] = useState(calcPrice.price)
-    const [sale, setSale] = useState(calcPrice.price * (calcPrice.sale_percentage / 100 + 1))
+    const [sale, setSale] = useState(calcPrice.price * (1 - calcPrice.sale_percentage / 100))
 
     const {register, handleSubmit, setValue, watch, getValues} = useForm({
         defaultValues: {
@@ -75,7 +75,7 @@ const MattressesId = (props) => {
             }
 
             setPricing(addToPrice(calcPrice.price))
-            setSale(addToPrice(calcPrice.price * (calcPrice.sale_percentage / 100 + 1)))
+            setSale(addToPrice(calcPrice.price * (1 - calcPrice.sale_percentage / 100)))
 
         })
         return () => {
@@ -146,14 +146,14 @@ const MattressesId = (props) => {
                             </div>
                             <div className="product__prices">
                                 <div className="product__price price price_cur">
-                                    {priceDelimiter(pricing)}
+                                    {priceDelimiter(sale)}
                                     <span>
                                         ₽
                                     </span>
                                 </div>
                                 {calcPrice.sale_percentage > 0 && <>
                                     <div className="product__price price price_old">
-                                        {priceDelimiter(sale)}
+                                        {priceDelimiter(pricing)}
                                     </div>
                                     <div className="product__discount">
                                         -{calcPrice.sale_percentage}%
@@ -167,6 +167,7 @@ const MattressesId = (props) => {
                                     }
                                 </button>
                                 <button
+                                    type={'button'}
                                     className={clsx('product__favorites', isFavorite && 'product__favorites_active')}
                                     onClick={() => dp(actions.addToFavorites(props))}
                                 >
