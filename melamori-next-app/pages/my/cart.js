@@ -30,7 +30,8 @@ export const cartMapper = (collection, price_collection, cart, name) => fp.pipe(
 
 const types = {
     mattresses: 'size',
-    soft_furniture: 'category'
+    soft_furniture: 'category',
+    bed_collection: 'price',
 }
 
 const toPrices = {
@@ -75,7 +76,7 @@ const Cart = () => {
                         remappedItems.prices.push(item.category)
                         break;
                     case 'bed_collection':
-                        remappedItems.prices.push(item.size)
+                        remappedItems.prices.push(item.price)
                         break;
                     case 'mattresses':
                         remappedItems.prices.push(item.size)
@@ -92,7 +93,7 @@ const Cart = () => {
 
 
     const bed_collection = cartMapper
-    ('s', 'bed_prices_id', cartItems, 'size')
+    ('s', 'bed_prices_id', cartItems, 'price')
     ({data: {s: data?.bed_collection}})
 
     const mattresses = cartMapper

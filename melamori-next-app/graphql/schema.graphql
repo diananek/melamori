@@ -196,6 +196,7 @@ type additional_options {
     date_updated_func: datetime_functions
     description: String
     id: ID
+    option_type: String!
     percentage: Int
     price: Int
     title: String!
@@ -1019,6 +1020,7 @@ input additional_options_filter {
     date_updated_func: datetime_function_filter_operators
     description: string_filter_operators
     id: string_filter_operators
+    option_type: string_filter_operators
     percentage: number_filter_operators
     price: number_filter_operators
     title: string_filter_operators

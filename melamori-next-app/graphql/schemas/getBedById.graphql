@@ -8,6 +8,7 @@ query GET_BED_BY_ID (
             additional_options_id {
                 title
                 id
+                option_type
                 description
                 percentage
                 price
@@ -22,12 +23,18 @@ query GET_BED_BY_ID (
         price_list(limit: -1) {
             id
             bed_prices_id {
+                id
                 price
                 sale_percentage
+                bed_cloth_category_relation {
+                    category
+                    id
+                }
                 bed_size_relation {
                     id
                     length
                     width
+                    height
                 }
             }
         }

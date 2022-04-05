@@ -32,7 +32,7 @@ export const bedMapper = (collection, price_collection) => fp.pipe(
 )
 
 
-// TODO: add request for generate other props (mattresses, soft_furniture).
+
 // https://service.melamori-mebel.ru/items/bed_collection?meta=*&limit=0 url with meta example
 
 
