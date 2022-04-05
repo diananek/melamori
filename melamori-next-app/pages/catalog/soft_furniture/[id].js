@@ -8,7 +8,7 @@ import clsx from "clsx";
 import {actions} from "../../../lib/store/main/actions";
 import {useDispatch, useSelector} from "../../../lib/hooks/useState";
 import {mainState} from "../../../lib/store/main";
-
+import Image from 'next/image'
 
 const minPrice = fp.minBy(
     (item) => {
@@ -68,10 +68,12 @@ const SoftId = props => {
         <Layout hideSlider>
             <form onSubmit={handleSubmit(onAdd)} className="product">
                 <div className="container product__grid product__grid_sofa">
-                    <div className="product__img">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={`${process.env.serverUrl}${fp.get('image.id', props)}`}
-                             alt={fp.get('image.title', props)}/>
+                    <div className="product__img" style={{position: 'relative', width: '100%', height: '100%'}}>
+                        <Image
+                            layout='fill'
+                            objectFit='contain'
+                            src={`${process.env.serverUrl}${fp.get('image.id', props)}`}
+                            alt={fp.get('image.title', props)}/>
                     </div>
                     <div className="product__dscr dscr">
                         <div className="dscr__grid">
@@ -100,7 +102,7 @@ const SoftId = props => {
                             <div className="product__actions">
                                 <button className="product__btn">
                                     {
-                                        submitted ? 'В корзине' :'Добавить в заказ'
+                                        submitted ? 'В корзине' : 'Добавить в заказ'
                                     }
                                 </button>
                                 <button
