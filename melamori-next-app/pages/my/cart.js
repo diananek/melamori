@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {Layout} from "../../components/reboot/Layout";
-import {useSelector} from "../../lib/hooks/useState";
+import {useDispatch, useSelector} from "../../lib/hooks/useState";
 import {useLazyQuery, useMutation} from "@apollo/client";
 
 import styles from '../../styles/pages/style.module.scss'
@@ -13,6 +13,7 @@ import {useForm} from "react-hook-form";
 import * as yup from 'yup'
 import {yupResolver} from "@hookform/resolvers/yup";
 import {useRouter} from "next/router";
+import {mainState} from "../../lib/store/main";
 
 
 export const cartMapper = (collection, price_collection, cart, name) => fp.pipe(
@@ -142,6 +143,8 @@ const Cart = () => {
 
     const [orderReq] = useMutation(CREATE_ORDER)
 
+    const dp = useDispatch();
+
     const createOrder = (data) => {
         const sendPrices = cartItems.map((i) => {
             const mapOpts = []
@@ -165,6 +168,7 @@ const Cart = () => {
             }
         }).then(async (r) => {
             console.log(r)
+            dp(mainState.actions.dropCart())
             await push('/success')
         })
     }

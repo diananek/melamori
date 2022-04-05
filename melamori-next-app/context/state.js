@@ -12,7 +12,7 @@ export function AppWrapper({children}) {
 
     useEffect(() => {
         if (Cookie.get('site_consent')) {
-            console.log(cookieFav)
+            // console.log(cookieFav)
             if (Cookie.get('favorites_id') === undefined) {
                 Cookie.set('favorites_id', JSON.stringify([]), {
                     expires: 30

@@ -38,16 +38,19 @@ export const reducer = {
         }
     },
     [`${actions.deleteFromCart}`]: (state, payload) => {
-
-        // const o = [1, 2, 3, 4, 5, 6, 7]
-        // console.log([...fp.dropRight(o.length - 3, o), ...fp.drop(4, o)]);
-
         return {
             ...state,
             cart: [
                 ...fp.dropRight(state.cart.length - payload, state.cart),
                 ...fp.drop(payload + 1, state.cart)
             ]
+        }
+    },
+    [`${actions.dropCart}`]: (state) => {
+        localStorage.setItem('cartItems', JSON.stringify([]))
+        return {
+            ...state,
+            cart: []
         }
     },
 

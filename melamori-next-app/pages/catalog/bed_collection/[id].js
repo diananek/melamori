@@ -60,7 +60,7 @@ const BedItem = (props) => {
 
     useEffect(() => {
         const sub = watch((data) => {
-            console.log(data.price)
+            // console.log(data.price)
             data.size ? setOptions({
                 ...filterOpts, category: fp.filter(['other', data.size], filterOpts.category)
             }) : setOptions({...options, category: filterOpts.category})

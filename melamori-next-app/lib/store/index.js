@@ -32,7 +32,7 @@ export const reducer = (state, action) => {
 
     const r = fromStateGetter('reducer');
 
-    console.log(state, action)
+    // console.log(state, action)
     return {
         ...state,
         [`${namespace}`]: r[`${action.type}`](state[namespace], action.$payload),

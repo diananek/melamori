@@ -9,4 +9,5 @@ export const actions = {
     addToFavorites: main('ADD_TO_FAVORITES'),
     addToCart: main('ADD_TO_CART'),
     deleteFromCart: main('DELETE_FROM_CART'),
+    dropCart: main('DELETE_ALL_FROM_CART'),
 };

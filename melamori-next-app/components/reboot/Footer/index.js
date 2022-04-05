@@ -23,7 +23,7 @@ export const Footer = () => {
     const inst = fp.find(['contact_type', 'instagram'], sub)
     const other = fp.xorBy('contact_type', sub, [phone, email])
 
-    console.log(other)
+    // console.log(other)
     return (
         <footer className="footer">
             <div className="container footer__container">
