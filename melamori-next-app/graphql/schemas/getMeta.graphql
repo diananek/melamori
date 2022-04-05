@@ -1,0 +1,19 @@
+query GET_META {
+    company_contacts (limit: -1){
+        id
+        contact_type
+        contact
+    }
+    promotion (limit: -1){
+        description
+        id
+        image{
+            id
+            title
+        }
+        percentage
+        price
+        status
+        title
+    }
+}

@@ -38,17 +38,20 @@ export const Header = () => {
                                 </a>
                             </Link>
                         </li>
+                        <li/>
+                        <li/>
+                        <li/>
                         <li className="menu__item ">
                             <Link href="/">
                                 <a href={"/"} className="menu__link ">
-                                    Одеяла и подушки
+                        {/*            Одеяла и подушки*/}
                                 </a>
                             </Link>
                         </li>
                         <li className="menu__item ">
                             <Link href="/">
                                 <a href={"/"} className="menu__link ">
-                                    Уход за матрацем
+                        {/*            Уход за матрацем*/}
                                 </a>
                             </Link>
                         </li>

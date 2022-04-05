@@ -5,6 +5,7 @@ import fp from "lodash/fp";
 export const initState = {
     favorites: [],
     cart: [],
+    sub_data: {},
 };
 
 

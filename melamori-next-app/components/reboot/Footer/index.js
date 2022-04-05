@@ -1,6 +1,8 @@
 import React from 'react';
 import Image from 'next/image'
 import Link from 'next/link'
+import {useSelector} from "../../../lib/hooks/useState";
+import fp from "lodash/fp";
 
 
 const InstagramIcon = () => (
@@ -13,6 +15,15 @@ const InstagramIcon = () => (
 
 
 export const Footer = () => {
+
+    const sub = useSelector('main.sub_data.company_contacts')
+
+    const phone = fp.find(['contact_type', 'phone_number'], sub)
+    const email = fp.find(['contact_type', 'email'], sub)
+    const inst = fp.find(['contact_type', 'instagram'], sub)
+    const other = fp.xorBy('contact_type', sub, [phone, email])
+
+    console.log(other)
     return (
         <footer className="footer">
             <div className="container footer__container">
@@ -23,46 +34,55 @@ export const Footer = () => {
                     <div className="footer__section-title">Товары</div>
                     <ul className="footer__categories">
                         <li>
-                            <Link href={'/'}>
-                                <a href={"/"} className="footer__item goods__item">Кровати</a>
+                            <Link href={'/catalog/bed_collection'}>
+                                <a href={'/catalog/bed_collection'} className="footer__item goods__item">Кровати</a>
                             </Link>
                         </li>
                         <li>
-                            <Link href={'/'}>
-                                <a href={'/'} className="footer__item goods__item">Матрацы</a>
+                            <Link href={'/catalog/matressess'}>
+                                <a href={'/catalog/matressess'} className="footer__item goods__item">Матрацы</a>
                             </Link>
                         </li>
                         <li>
-                            <Link href={'/'}>
-                                <a href={'/'} className="footer__item goods__item">Мягкая мебель</a>
+                            <Link href={'/catalog/soft_furniture'}>
+                                <a href={'/catalog/soft_furniture'} className="footer__item goods__item">Мягкая мебель</a>
                             </Link>
                         </li>
-                        <li>
-                            <Link href={'/'}>
-                                <a href={'/'} className="footer__item goods__item">Одеяла и подушки</a>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link href={'/'}>
-                                <a href={''} className="footer__item goods__item">Уход за матрацем</a>
-                            </Link>
-                        </li>
+                        {/*<li>*/}
+                        {/*    <Link href={'/'}>*/}
+                        {/*        <a href={'/'} className="footer__item goods__item">Одеяла и подушки</a>*/}
+                        {/*    </Link>*/}
+                        {/*</li>*/}
+                        {/*<li>*/}
+                        {/*    <Link href={'/'}>*/}
+                        {/*        <a href={''} className="footer__item goods__item">Уход за матрацем</a>*/}
+                        {/*    </Link>*/}
+                        {/*</li>*/}
                     </ul>
                 </section>
                 <section className="footer__section contacts">
                     <div className="contacts__items">
                         <div className="contacts__item">
                             <div className="footer__section-title">Контакты</div>
-                            <a href="tel:81234567899" className="footer__item contacts__tel">8 (123)
-                                456–78–99</a>
-                            <a href="mailto:MeLamori@gmail.com"
-                               className="footer__item contacts__mail">MeLamori@gmail.com</a>
+                            <a href={`tel:${phone.contact}`} className="footer__item contacts__tel">
+                                {phone.contact}
+                            </a>
+                            <a href={`mailto:${email.contact}`} className="footer__item contacts__mail">
+                                {email.contact}
+                            </a>
+                            {other.map((i) => (
+                                <a href={i.contact} className="footer__item contacts__mail" key={i.id}>
+                                    <br/>
+                                    {i.contact_type}
+                                </a>
+                            ))}
                         </div>
                         <div className="contacts__item">
                             <div className="footer__cooperation">
                                 <div className="contacts__subtitle">По вопросам сотрудничества</div>
-                                <a href="tel:81234567890" className="footer__item contacts__tel">8 (123)
-                                    456–78–90</a>
+                                <a href={`tel:${phone.contact}`} className="footer__item contacts__tel">
+                                    {phone.contact}
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -75,7 +95,7 @@ export const Footer = () => {
                         </a>
                     </Link>
                     <div className="contacts__text">
-                        Подпишитесь на наш <a href="#" className="">инстаграм</a>,<br/> чтобы не
+                        Подпишитесь на наш <a href={inst.contact} className="">инстаграм</a>,<br/> чтобы не
                         пропустить акции!
                     </div>
                 </div>

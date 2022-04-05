@@ -6,6 +6,7 @@ import GET_MATTRESSES from '../../graphql/schemas/getMattresses.graphql'
 import GET_BY_MATTRESS_ID from '../../graphql/schemas/getMattressesById.graphql'
 import GET_BED_BY_ID from '../../graphql/schemas/getBedById.graphql'
 import GET_SOFA_BY_ID from '../../graphql/schemas/getSofaById.graphql'
+import GET_META from '../../graphql/schemas/getMeta.graphql'
 import fp from "lodash/fp";
 import axios from 'axios'
 
@@ -30,7 +31,6 @@ export const bedMapper = (collection, price_collection) => fp.pipe(
                 item.price_list) || null
         }))
 )
-
 
 
 // https://service.melamori-mebel.ru/items/bed_collection?meta=*&limit=0 url with meta example
@@ -112,11 +112,16 @@ const dataGetter = {
             query: GET_SOFA_BY_ID,
             variables: param
         })).data.soft_furniture_by_id
-    }
+    },
+    get_meta: async () => {
+        return (await client.query({
+            query: GET_META,
+        })).data
+    },
 }
 
 
-export const Ssr = async (page, {query}) => {
+export const Ssr = async (page, {query} = {query: {}}) => {
     return {
         props: dataGetter[page](query)
     }
