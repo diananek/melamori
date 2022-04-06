@@ -83,7 +83,7 @@ export const ProductCard = ({
                         />
                     </a>
                 </Link>
-                <button className={"product-card__fav"}/>
+                <button className={"product-card__fav"} aria-label={'favorite'}/>
                 {sale_percentage && <div className="product-card__discount">
                     -{sale_percentage}%
                 </div>}

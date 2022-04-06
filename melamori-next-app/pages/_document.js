@@ -24,7 +24,7 @@ export default class MyDocument extends Document {
                 {/*<script src={"https://code.jquery.com/jquery-3.6.0.min.js"} />*/}
                 {/*<script src="/static/js/dynamic-adapt.js"/>*/}
                 <script src="/static/js/script.js"/>
-                {/*<script src="/static/js/main.js"/>*/}
+                <script src="/static/js/main.js"/>
                 </body>
             </Html>
         )
