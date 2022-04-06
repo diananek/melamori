@@ -81,7 +81,9 @@ const BedItem = (props) => {
     const isFavorite = fp.findIndex(fp.isEqual(`${props.__typename}/${props.id}`), favList) > -1
 
     useEffect(() => {
-        const sub = watch(({additional_options, price}) => {
+        const sub = watch(({additional_options, price, size, category}) => {
+
+            // console.log(size, category, price)
             const addToPrice = (num) => {
                 let addition = {
                     raw: 0, percent: 0,
@@ -98,8 +100,10 @@ const BedItem = (props) => {
             }
 
             const priceId = fp.find(['bed_prices_id.id', price], props.price_list).bed_prices_id
-            setPricing(addToPrice(priceId.price))
-            setSale(addToPrice(priceId.price * (priceId.sale_percentage / 100 + 1)))
+
+            console.log(priceId.price * (1 - priceId.sale_percentage / 100), priceId)
+
+            setSale(addToPrice(priceId.price * (1 - priceId.sale_percentage / 100)))
 
         })
         return () => {
@@ -115,7 +119,6 @@ const BedItem = (props) => {
         }))
     }
 
-    // console.log(props)
     return (<Layout hideSlider>
         <form onSubmit={handleSubmit(onAdd)} className="product">
             <div className="container product__grid">
@@ -191,8 +194,7 @@ const BedItem = (props) => {
                                     type={'button'}
                                     className={clsx("features__option", current === i.relation ? 'features__option_selected' : '')}
                                     onClick={() => {
-                                        const newVal = current === i.id ? null : i.id
-                                        setValue('price', newVal)
+                                        setValue('price', i.id)
                                         setValue('size', i.relation)
                                     }}
                                 >
@@ -211,8 +213,7 @@ const BedItem = (props) => {
                                     type={'button'}
                                     className={clsx("features__option", current === i.relation ? 'features__option_selected' : '')}
                                     onClick={() => {
-                                        const newVal = current === i.id ? null : i.id
-                                        setValue('price', newVal)
+                                        setValue('price', i.id)
                                         setValue('category', i.relation)
                                     }}
                                 >
