@@ -10,7 +10,7 @@ import {priceResult} from "../../../lib/ssr";
 
 export const priceDelimiter = (price) => {
     let formatted = fp
-        .toString((price.toFixed(2)))
+        .toString((price.toFixed(0)))
         .split("")
 
 
@@ -83,15 +83,18 @@ export const ProductCard = ({
                         />
                     </a>
                 </Link>
-                <button className={"product-card__fav"} aria-label={'favorite'}/>
+                <button
+                    className={clsx("product-card__fav", isFavorite && 'product-card__fav_active')}
+                    aria-label={'favorite'}
+                    onClick={() => dp(actions.addToFavorites(item))}
+                />
                 {sale_percentage && <div className="product-card__discount">
                     -{sale_percentage}%
                 </div>}
             </div>
             <div className="product-card__prices">
                 <div className="product-card__price product-card__price_cur">
-                    {priceDelimiter(priceResult({sale_percentage, price}))}
-                    {/*{delimiter(23234243224.23)}*/}
+                    от {priceDelimiter(priceResult({sale_percentage, price}))}
                     <span>
                         ₽
                     </span>
@@ -111,9 +114,10 @@ export const ProductCard = ({
                     {item.title}
                 </div>
                 <div className="product-card__size">
-                    {toStringSizes(sizes)}
+                    {/*{toStringSizes(sizes)}*/}
                 </div>
             </div>
+
             <div className="product-card__actions">
                 {/*<button className="product-card__add">*/}
                 {/*    Добавить в заказ*/}

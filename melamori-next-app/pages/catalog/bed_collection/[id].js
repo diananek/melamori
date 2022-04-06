@@ -24,7 +24,7 @@ const BedItem = (props) => {
     const [submitted, setSubmitted] = useState(false)
 
     const [calcPrice] = useState(minPrice(props.price_list).bed_prices_id)
-    const [pricing, setPricing] = useState(calcPrice.price)
+    const [pricing] = useState(calcPrice.price)
     const [sale, setSale] = useState(calcPrice.price * (1 - calcPrice.sale_percentage / 100))
 
 
@@ -43,7 +43,7 @@ const BedItem = (props) => {
                 id: i.bed_prices_id.id,
                 relation: i.bed_prices_id.bed_size_relation.id,
                 other: i.bed_prices_id.bed_cloth_category_relation.id,
-                name: `${i.bed_prices_id.bed_size_relation.width} x ${i.bed_prices_id.bed_size_relation.length}`
+                name: i.bed_prices_id.bed_size_relation.sleep_size
             }
         }), category: props.price_list.map(i => {
             return {
@@ -81,7 +81,7 @@ const BedItem = (props) => {
     const isFavorite = fp.findIndex(fp.isEqual(`${props.__typename}/${props.id}`), favList) > -1
 
     useEffect(() => {
-        const sub = watch(({additional_options, price, size, category}) => {
+        const sub = watch(({additional_options, price}) => {
 
             // console.log(size, category, price)
             const addToPrice = (num) => {
@@ -118,6 +118,11 @@ const BedItem = (props) => {
             ...data, price: data.price || calcPrice.id, id: props.id, type: props.__typename
         }))
     }
+
+
+    const decorator = fp.filter(['additional_options_id.option_type', 'decoration'], props.additional_options)
+    const currentSize = fp.find(['bed_prices_id.id', getValues('price')], props.price_list).bed_prices_id.bed_size_relation
+
 
     return (<Layout hideSlider>
         <form onSubmit={handleSubmit(onAdd)} className="product">
@@ -223,33 +228,50 @@ const BedItem = (props) => {
                         </div>
                     </div>
 
-                    <div className="features__item ">
-                        <div className="features__name name">
-                            Украшения
-                        </div>
-                        <div className="features__options ">
-                            {fp.filter(['additional_options_id.option_type', 'decoration'], props.additional_options)
-                                .map(({additional_options_id: opt}) => {
-                                    const opts = getValues('additional_options');
-                                    return (<button
-                                        key={opt.id}
-                                        type={'button'}
-                                        className={clsx("features__option", opts[opt.id] ? 'features__option_selected' : '')}
-                                        onClick={() => {
-                                            setValue(`additional_options.${opt.id}`, !opts[opt.id])
-                                            // setValue('category', i.relation)
-                                        }}
-                                    >
-                                        {opt.title}
-                                    </button>)
-                                })}
-                        </div>
-                    </div>
+                    {decorator.length > 1 &&
+                        (<div className="features__item ">
+                            <div className="features__name name">
+                                Украшения
+                            </div>
+                            <div className="features__options ">
+                                {decorator
+                                    .map(({additional_options_id: opt}) => {
+                                        const opts = getValues('additional_options');
+                                        return (<button
+                                            key={opt.id}
+                                            type={'button'}
+                                            className={clsx("features__option", opts[opt.id] ? 'features__option_selected' : '')}
+                                            onClick={() => {
+                                                setValue(`additional_options.${opt.id}`, !opts[opt.id])
+                                                // setValue('category', i.relation)
+                                            }}
+                                        >
+                                            {opt.title}
+                                        </button>)
+                                    })}
+                            </div>
+                        </div>)}
                 </form>
                 <div className="product__props props">
                     <div className="props__item ">
+                        <div className="props__item ">
+                            <div className="props__name ">Ширина</div>
+                            <div className="props__val ">{currentSize.width}</div>
+                        </div>
+                        <div className="props__item ">
+                            <div className="props__name ">Высота</div>
+                            <div className="props__val ">{currentSize.height}</div>
+                        </div>
+                        <div className="props__item ">
+                            <div className="props__name ">Длина</div>
+                            <div className="props__val ">{currentSize.length}</div>
+                        </div>
+                        <div className="props__item ">
+                            <div className="props__name ">Матрац</div>
+                            <div className="props__val ">Не входит в комплектацию</div>
+                        </div>
                         <div className="props__name ">
-                            Дополнительно
+                            Описание
                         </div>
                         <div
                             className="props__val"

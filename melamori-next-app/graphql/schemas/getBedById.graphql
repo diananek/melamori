@@ -32,6 +32,7 @@ query GET_BED_BY_ID (
                 }
                 bed_size_relation {
                     id
+                    sleep_size
                     length
                     width
                     height

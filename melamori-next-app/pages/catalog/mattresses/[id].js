@@ -308,7 +308,7 @@ const MattressesId = (props) => {
                         </div>
                         <div className="props__item">
                             <div className="props__name">
-                                Дополнительно
+                                Описание
                             </div>
                             <div className="props__val">
                                 {props.description}

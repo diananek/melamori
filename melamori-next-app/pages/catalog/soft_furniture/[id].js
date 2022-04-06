@@ -172,7 +172,7 @@ const SoftId = props => {
                             <div className="props__val">{calcPrice.soft_furniture_size_relation.additional_size}</div>
                         </div>}
                         <div className="props__item">
-                            <div className="props__name">Дополнительно</div>
+                            <div className="props__name">Описание</div>
                             <div className="props__val" dangerouslySetInnerHTML={{__html: props.description}}/>
                         </div>
                     </div>
