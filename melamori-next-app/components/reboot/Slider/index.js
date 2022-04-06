@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from "next/image";
 import {useSelector} from "../../../lib/hooks/useState";
+import {motion} from 'framer-motion'
 
 export const Slider = () => {
 
@@ -12,7 +13,7 @@ export const Slider = () => {
                     <Image src="/img/logo.svg" alt="Логотип Me Lamori" layout='fill'/>
                 </div>
             </div>
-            <ul className="page__offers offers">
+            <motion.ul className="page__offers offers" drag={'x'} whileDrag={'scroll'} style={{ overflowX: 'auto' }}>
                 {promo.map((i) => (
                     <li className="offers__item offers__item_dark" key={i.id}>
                         <div className="offers__img">
@@ -70,7 +71,7 @@ export const Slider = () => {
                 {/*        <div className="offers__dscr">5% скидка молодожёнам</div>*/}
                 {/*    </div>*/}
                 {/*</li>*/}
-            </ul>
+            </motion.ul>
         </>
     );
 };

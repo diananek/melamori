@@ -135,7 +135,7 @@
         selectMenuItem();
         menuBurger();
         // selectOption();
-        offersScroll();
+        // offersScroll();
         // sortingItemClick();
         // favClick();
     }

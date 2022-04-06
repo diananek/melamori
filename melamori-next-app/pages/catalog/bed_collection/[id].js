@@ -256,18 +256,18 @@ const BedItem = (props) => {
                         />
                     </div>
                 </div>
-                <div className="product__extra features">
-                    <div className="features__item">
-                        <div className="features__name name">
-                            Доп. услуги
-                        </div>
-                        <label className="features__checkbox checkbox">
-                            <input className="checkbox__input" type="checkbox"/>
-                            <span className="checkbox__box"/>
-                            Подъёмный механизм
-                        </label>
-                    </div>
-                </div>
+                {/*<div className="product__extra features">*/}
+                {/*    <div className="features__item">*/}
+                {/*        <div className="features__name name">*/}
+                {/*            Доп. услуги*/}
+                {/*        </div>*/}
+                {/*        <label className="features__checkbox checkbox">*/}
+                {/*            <input className="checkbox__input" type="checkbox"/>*/}
+                {/*            <span className="checkbox__box"/>*/}
+                {/*            Подъёмный механизм*/}
+                {/*        </label>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
             </div>
         </form>
     </Layout>)
