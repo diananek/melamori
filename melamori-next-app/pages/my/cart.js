@@ -257,33 +257,33 @@ const Cart = () => {
                                 </span>
                             </div>
                         </div>
-                        <div className="basket__block">
-                            <div className="basket__block-name">
-                                Бонусы
-                            </div>
-                            <div className="basket__block-text">
-                                5% скидка на матрац при покупке кровати
-                            </div>
-                            <div className="basket__block-text">
-                                18 месяцев гарантия на всё
-                            </div>
-                        </div>
-                        <div className="basket__block">
-                            <div className="basket__block-name">
-                                Доп. услуги
-                            </div>
-                            <div className="basket__extra-form">
-                                <label className="basket__checkbox checkbox">
-                                    <input
-                                        className="checkbox__input"
-                                        type="checkbox"
-                                    />
-                                    {/*{...register('opts.e')}*/}
-                                    <span className="basket__checkbox-box checkbox__box"/>
-                                    Сборка и установка
-                                </label>
-                            </div>
-                        </div>
+                        {/*<div className="basket__block">*/}
+                        {/*    <div className="basket__block-name">*/}
+                        {/*        Бонусы*/}
+                        {/*    </div>*/}
+                        {/*    <div className="basket__block-text">*/}
+                        {/*        5% скидка на матрац при покупке кровати*/}
+                        {/*    </div>*/}
+                        {/*    <div className="basket__block-text">*/}
+                        {/*        18 месяцев гарантия на всё*/}
+                        {/*    </div>*/}
+                        {/*</div>*/}
+                        {/*<div className="basket__block">*/}
+                        {/*    <div className="basket__block-name">*/}
+                        {/*        Доп. услуги*/}
+                        {/*    </div>*/}
+                        {/*    <div className="basket__extra-form">*/}
+                        {/*        <label className="basket__checkbox checkbox">*/}
+                        {/*            <input*/}
+                        {/*                className="checkbox__input"*/}
+                        {/*                type="checkbox"*/}
+                        {/*            />*/}
+                        {/*            /!*{...register('opts.e')}*!/*/}
+                        {/*            <span className="basket__checkbox-box checkbox__box"/>*/}
+                        {/*            Сборка и установка*/}
+                        {/*        </label>*/}
+                        {/*    </div>*/}
+                        {/*</div>*/}
                     </form>
                 </div>
             </div>
