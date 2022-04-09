@@ -14,6 +14,7 @@ import * as yup from 'yup'
 import {yupResolver} from "@hookform/resolvers/yup";
 import {useRouter} from "next/router";
 import {mainState} from "../../lib/store/main";
+import {actions} from "../../lib/store/main/actions";
 
 
 export const cartMapper = (collection, price_collection, cart, name) => fp.pipe(
@@ -22,7 +23,7 @@ export const cartMapper = (collection, price_collection, cart, name) => fp.pipe(
             {
                 ...item,
                 price_list: fp.find(
-                    [`${price_collection}.id`, fp.find(['id', item.id], cart)[name]],
+                    [`${price_collection}.id`, fp.get(name, fp.find(['id', item.id], cart))],
                     item.price_list)
             }
         )
@@ -33,6 +34,11 @@ const types = {
     mattresses: 'size',
     soft_furniture: 'category',
     bed_collection: 'price',
+}
+
+function declOfNum(number, titles) {
+    const cases = [2, 0, 1, 1, 1, 2];
+    return titles[ (number%100>4 && number%100<20)? 2 : cases[(number%10<5)?number%10:5] ];
 }
 
 const toPrices = {
@@ -173,6 +179,10 @@ const Cart = () => {
         })
     }
 
+    const deleteItem = (index) => () => {
+        dp(actions.deleteFromCart(index))
+    }
+
     return (
         <Layout hideSlider>
             <div className="container">
@@ -181,7 +191,7 @@ const Cart = () => {
                         Корзина
                     </h1>
                     <div className="page__goods-count">
-                        {cartItems.length} товара
+                        {cartItems.length} {declOfNum(cartItems.length, ['товар', 'товара', 'товаров'])}
                     </div>
                 </div>
                 <div className={styles.cart}>
@@ -193,6 +203,7 @@ const Cart = () => {
                                         style={styles.item}
                                         item={fp.find(['id', i.id], items[i.type])}
                                         key={key}
+                                        deleteCallback={deleteItem(key)}
                                     />)}
                             </div>
                         </div>

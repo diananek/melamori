@@ -56,7 +56,8 @@ export const price_getter = {
 
 export const ProductCard = ({
                                 item = {},
-                                style = ''
+                                style = '',
+                                deleteCallback = null,
                             }) => {
 
     const types = price_getter[item.__typename]
@@ -119,9 +120,12 @@ export const ProductCard = ({
             </div>
 
             <div className="product-card__actions">
-                {/*<button className="product-card__add">*/}
-                {/*    Добавить в заказ*/}
-                {/*</button>*/}
+                {deleteCallback
+                    &&
+                    <button className="product-card__add" onClick={deleteCallback}>
+                        Удалить из заказа
+                    </button>
+                }
                 <button
                     className={clsx(
                         'product-card__fav product-card__fav_grey',
