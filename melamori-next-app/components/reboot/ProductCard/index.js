@@ -30,13 +30,13 @@ export const priceDelimiter = (price) => {
     )
 }
 
-const toStringSizes = fp.cond([
-    [fp.getOr(false, 'diameter'), ({
-                                       diameter,
-                                   }) => `${diameter} x ${diameter}`],
-    [fp.constant(true), (x) => `${(x?.length)} x ${(x?.width)}`]
-
-])
+// const toStringSizes = fp.cond([
+//     [fp.getOr(false, 'diameter'), ({
+//                                        diameter,
+//                                    }) => `${diameter} x ${diameter}`],
+//     [fp.constant(true), (x) => `${(x?.length)} x ${(x?.width)}`]
+//
+// ])
 
 export const price_getter = {
     soft_furniture: {
@@ -65,7 +65,7 @@ export const ProductCard = ({
     const sale_percentage = fp.get('sale_percentage', pl)
     const price = fp.get('price', pl)
 
-    const sizes = fp.get(`price_list.${types.price}.${types.size}`, item);
+    // const sizes = fp.get(`price_list.${types.price}.${types.size}`, item);
 
     const dp = useDispatch();
     const favList = useSelector('main.favorites')
@@ -105,9 +105,9 @@ export const ProductCard = ({
                 {sale_percentage && <div className="product-card__discount">
                     -{sale_percentage}%
                 </div>}
-                <div className="product-card__size">
-                    {toStringSizes(sizes)}
-                </div>
+                {/*<div className="product-card__size">*/}
+                {/*    {toStringSizes(sizes)}*/}
+                {/*</div>*/}
             </div>
             <div className="product-card__dscr">
                 <div className="product-card__name">

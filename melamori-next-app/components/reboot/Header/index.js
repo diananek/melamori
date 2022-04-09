@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Link from 'next/link'
 import Image from 'next/image'
 import {useSelector} from "../../../lib/hooks/useState";
@@ -8,6 +8,35 @@ export const Header = () => {
 
     const favoriteCounter = useSelector('main.favorites.length')
     const cartCounter = useSelector('main.cart.length')
+
+    useEffect(() => {
+        function selectMenuItem() {
+            let menu = document.body.querySelector('.menu');
+            if (menu) {
+                function menuHandler(e) {
+                    if (e.target.classList.contains('menu__link') && document.querySelector('.menu__link_selected')) {
+                        document.querySelector('.menu__link_selected').classList.remove('menu__link_selected');
+                        e.target.classList.add('menu__link_selected');
+                    }
+                }
+                menu.addEventListener('click', menuHandler);
+            }
+        }
+        function menuBurger() {
+            const menuIcon = document.querySelector('.menu__icon');
+
+            if (menuIcon) {
+                const menuBody = document.querySelector('.menu__list');
+                menuIcon.addEventListener('click', function() {
+                    document.body.classList.toggle('menu__list_lock');
+                    menuIcon.classList.toggle('menu__icon_active');
+                    menuBody.classList.toggle('menu__list_active');
+                });
+            }
+        }
+        menuBurger()
+        selectMenuItem()
+    }, [])
 
     return (
         <header className="header header_catalog">

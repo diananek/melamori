@@ -99,6 +99,7 @@ const nextConfig = (phase) => ({
     },
     env: {
         serverUrl: 'https://service.melamori-mebel.ru/assets/',
+        NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID: 'GTM-PLMPHN2'
     },
     ...composed(phase)
 })

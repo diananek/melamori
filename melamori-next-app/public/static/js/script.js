@@ -132,8 +132,8 @@
         }
     }
     window.main = function() {
-        selectMenuItem();
-        menuBurger();
+        // selectMenuItem();
+        // menuBurger();
         // selectOption();
         // offersScroll();
         // sortingItemClick();

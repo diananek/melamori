@@ -1,4 +1,5 @@
 import Document, {Html, Head, Main, NextScript} from 'next/document'
+import {GTM_ID} from "../lib/utils/gtm";
 
 export default class MyDocument extends Document {
 
@@ -16,6 +17,14 @@ export default class MyDocument extends Document {
                           rel="stylesheet"/>
                 </Head>
                 <body>
+                <noscript>
+                    <iframe
+                        src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+                        height="0"
+                        width="0"
+                        style={{ display: 'none', visibility: 'hidden' }}
+                    />
+                </noscript>
                 <Main/>
                 <NextScript/>
                 {/* eslint-disable @next/next/no-sync-scripts */}
@@ -23,8 +32,8 @@ export default class MyDocument extends Document {
                 {/*<script src="/static/js/cookieConsent.js"/>*/}
                 {/*<script src={"https://code.jquery.com/jquery-3.6.0.min.js"} />*/}
                 {/*<script src="/static/js/dynamic-adapt.js"/>*/}
-                <script src="/static/js/script.js"/>
-                <script src="/static/js/main.js"/>
+                {/*<script src="/static/js/script.js"/>*/}
+                {/*<script src="/static/js/main.js"/>*/}
                 </body>
             </Html>
         )
