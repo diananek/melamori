@@ -167,7 +167,7 @@ const MattressesId = (props) => {
                             <div className="product__actions">
                                 <button className="product__btn" type={'submit'}>
                                     {
-                                        submitted ? 'В корзине' :'Добавить в заказ'
+                                        submitted ? 'В корзине' : 'Добавить в заказ'
                                     }
                                 </button>
                                 <button
@@ -305,14 +305,16 @@ const MattressesId = (props) => {
                                 {props.bed_springs}
                             </div>
                         </div>
-                        <div className="props__item">
-                            <div className="props__name">
-                                Описание
+                        {props.description &&
+                            <div className="props__item">
+                                <div className="props__name">
+                                    Описание
+                                </div>
+                                <div className="props__val">
+                                    {props.description}
+                                </div>
                             </div>
-                            <div className="props__val">
-                                {props.description}
-                            </div>
-                        </div>
+                        }
                     </div>
                     <div className="product__materials materials">
                         <div className="materials__title name">

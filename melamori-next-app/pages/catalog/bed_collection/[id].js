@@ -269,13 +269,17 @@ const BedItem = (props) => {
                             <div className="props__name ">Матрац</div>
                             <div className="props__val ">Не входит в комплектацию</div>
                         </div>
-                        <div className="props__name ">
-                            Описание
-                        </div>
-                        <div
-                            className="props__val"
-                            dangerouslySetInnerHTML={{__html: props.description}}
-                        />
+                        {props.description &&
+                            <>
+                                <div className="props__name ">
+                                    Описание
+                                </div>
+                                <div
+                                    className="props__val"
+                                    dangerouslySetInnerHTML={{__html: props.description}}
+                                />
+                            </>
+                        }
                     </div>
                 </div>
                 {/*<div className="product__extra features">*/}
