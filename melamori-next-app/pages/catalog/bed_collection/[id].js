@@ -255,19 +255,19 @@ const BedItem = (props) => {
                     <div className="props__item ">
                         <div className="props__item ">
                             <div className="props__name ">Ширина</div>
-                            <div className="props__val ">{currentSize.width}</div>
+                            <div className="props__val props__bed_val">{currentSize.width}</div>
                         </div>
                         <div className="props__item ">
                             <div className="props__name ">Высота</div>
-                            <div className="props__val ">{currentSize.height}</div>
+                            <div className="props__val props__bed_val">{currentSize.height}</div>
                         </div>
                         <div className="props__item ">
                             <div className="props__name ">Длина</div>
-                            <div className="props__val ">{currentSize.length}</div>
+                            <div className="props__val props__bed_val">{currentSize.length}</div>
                         </div>
                         <div className="props__item ">
                             <div className="props__name ">Матрац</div>
-                            <div className="props__val ">Не входит в комплектацию</div>
+                            <div className="props__val props__bed_val">Не входит в комплектацию</div>
                         </div>
                         {props.description &&
                             <>
