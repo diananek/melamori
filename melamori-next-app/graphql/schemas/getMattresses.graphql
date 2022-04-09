@@ -1,5 +1,5 @@
 query GET_MATTRESSES(
-    $limit: Int = 30
+    $limit: Int = 16
     $page: Int = 1
 ) {
     mattresses (

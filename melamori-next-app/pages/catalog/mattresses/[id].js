@@ -179,26 +179,25 @@ const MattressesId = (props) => {
                                 </button>
                             </div>
                         </div>
-                        <div className="product__caution" data-da=".product__grid, 1920, 2">
-                            <div className="container">
-                                Вы оплачиваете товар только после разговора с менеджером. Оформляя заказ на сайте,
-                                вы
-                                оставляете заявку на звонок
-                            </div>
+                    </div>
+                    <div className="product__caution" data-da=".product__grid, 1920, 2">
+                        <div className="container">
+                            Вы оплачиваете товар только после разговора с менеджером. Оформляя заказ на сайте,
+                            вы
+                            оставляете заявку на звонок
                         </div>
                     </div>
-
                     <div className="product__info info">
                         <div className="info__container">
                             <p>
                                 18 месяцев гарантия
                             </p>
                             <p>
-                                От 7-ми дней срок изготовления
+                                Срок изготовления: от 2 недель
                             </p>
-                            <a href='' className="product__offer link">
+                            <p className="product__offer link">
                                 Бесплатная консультация с менеджером
-                            </a>
+                            </p>
                         </div>
                     </div>
                     <div className="product__features features">
@@ -276,7 +275,7 @@ const MattressesId = (props) => {
                                         {...register(`additional_options.${additional_options_id.id}`)}
                                     />
                                     <span className="checkbox__box"/>
-                                    {additional_options_id.description}
+                                    {additional_options_id.title}
                                 </label>
                             ))}
                         </div>

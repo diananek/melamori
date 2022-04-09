@@ -18,6 +18,19 @@ const minPrice = fp.minBy(
 )
 
 
+const softType = {
+    sofa:     'Диван',
+    commode:  'Комод',
+    puff:     'Пуф',
+    stand:    'Тумба',
+    bench:    'Банкетка',
+    chair:    'Стул',
+    armchair: 'Кресло',
+    couch:    'Кушетка',
+    recliner: 'Реклайнер',
+}
+
+
 const SoftId = props => {
 
     const [submitted, setSubmitted] = useState(false)
@@ -81,7 +94,7 @@ const SoftId = props => {
                                 {props.title}
                             </h2>
                             <div className="product__category">
-                                Диван
+                                {softType[props?.furniture_type]}
                             </div>
                             <div className="product__prices">
                                 <div className="product__price price price_cur">
@@ -114,19 +127,18 @@ const SoftId = props => {
                                 </button>
                             </div>
                         </div>
-                        <div className="product__caution" data-da=".product__grid, 1920, 2">
-                            <div className="container">
-                                Вы оплачиваете товар только после разговора с менеджером. Оформляя заказ на сайте, вы
-                                оставляете заявку на звонок
-                            </div>
+                    </div>
+                    <div className="product__caution" data-da=".product__grid, 1920, 2">
+                        <div className="container">
+                            Вы оплачиваете товар только после разговора с менеджером. Оформляя заказ на сайте, вы
+                            оставляете заявку на звонок
                         </div>
                     </div>
-
                     <div className="product__info info">
                         <div className="info__container ">
                             <p>18 месяцев гарантия</p>
-                            <p>От 7-ми дней срок изготовления </p>
-                            <a href="#" className="product__offer link "> Бесплатная консультация с менеджером</a>
+                            <p>Срок изготовления: от 2 недель</p>
+                            <p className="product__offer link "> Бесплатная консультация с менеджером</p>
                         </div>
                     </div>
                     <div className="product__features features">

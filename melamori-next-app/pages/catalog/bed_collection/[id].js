@@ -171,21 +171,20 @@ const BedItem = (props) => {
                             </button>
                         </div>
                     </div>
-                    <div className="product__caution" data-da=".product__grid, 1920, 2">
-                        <div className="container">
-                            Вы оплачиваете товар только после разговора с менеджером. Оформляя заказ на сайте, вы
-                            оставляете заявку на звонок
-                        </div>
+                </div>
+                <div className="product__caution" data-da=".product__grid, 1920, 2">
+                    <div className="container">
+                        Вы оплачиваете товар только после разговора с менеджером. Оформляя заказ на сайте, вы
+                        оставляете заявку на звонок
                     </div>
                 </div>
-
                 <div className="product__info info">
                     <div className="info__container ">
                         <p>18 месяцев гарантия</p>
-                        <p>От 7-ми дней срок изготовления </p>
-                        <a href="#" className="product__offer link">
+                        <p>Срок изготовления: от 2 недель </p>
+                        <p className="product__offer link">
                             Бесплатная консультация с менеджером
-                        </a>
+                        </p>
                     </div>
                 </div>
                 <form className="product__features features">

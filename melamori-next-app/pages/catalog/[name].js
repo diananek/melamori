@@ -17,8 +17,8 @@ const nameType = {
 
 
 const paginationNumbers = (num) => fp.pipe(
-    fp.clamp(3, Math.ceil(num / 30) - 3),
-    (res) => Array(fp.min([5, Math.ceil(num / 30)])).fill(undefined).map((_, index) => res + index - 2)
+    fp.clamp(3, Math.ceil(num / 16) - 3),
+    (res) => Array(fp.min([5, Math.ceil(num / 16)])).fill(undefined).map((_, index) => res + index - 2)
 )
 
 
