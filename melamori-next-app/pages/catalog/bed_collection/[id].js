@@ -81,7 +81,7 @@ const BedItem = (props) => {
     const isFavorite = fp.findIndex(fp.isEqual(`${props.__typename}/${props.id}`), favList) > -1
 
     useEffect(() => {
-        const sub = watch(({additional_options, price}) => {
+        const sub = watch(({additional_options, size, category}) => {
 
             // console.log(size, category, price)
             const addToPrice = (num) => {
@@ -99,7 +99,16 @@ const BedItem = (props) => {
                 return num + num * (addition.percent / 100) + addition.raw
             }
 
-            const priceId = fp.find(['bed_prices_id.id', price], props.price_list).bed_prices_id
+            const priceId = fp.find({
+                bed_prices_id: {
+                    bed_cloth_category_relation: {
+                        id: category
+                    },
+                    bed_size_relation: {
+                        id: size
+                    }
+                },
+            }, props.price_list).bed_prices_id
 
             console.log(priceId.price * (1 - priceId.sale_percentage / 100), priceId)
 
@@ -114,8 +123,18 @@ const BedItem = (props) => {
 
     const onAdd = (data) => {
         setSubmitted(true)
+        const priceId = fp.find({
+            bed_prices_id: {
+                bed_cloth_category_relation: {
+                    id: data.category
+                },
+                bed_size_relation: {
+                    id: data.size
+                }
+            },
+        }, props.price_list).bed_prices_id
         dp(mainState.actions.addToCart({
-            ...data, price: data.price || calcPrice.id, id: props.id, type: props.__typename
+            ...data, price: priceId.id || calcPrice.id, id: props.id, type: props.__typename
         }))
     }
 
@@ -198,7 +217,7 @@ const BedItem = (props) => {
                                     type={'button'}
                                     className={clsx("features__option", current === i.relation ? 'features__option_selected' : '')}
                                     onClick={() => {
-                                        setValue('price', i.id)
+                                        // setValue('price', i.id)
                                         setValue('size', i.relation)
                                     }}
                                 >
@@ -217,7 +236,6 @@ const BedItem = (props) => {
                                     type={'button'}
                                     className={clsx("features__option", current === i.relation ? 'features__option_selected' : '')}
                                     onClick={() => {
-                                        setValue('price', i.id)
                                         setValue('category', i.relation)
                                     }}
                                 >

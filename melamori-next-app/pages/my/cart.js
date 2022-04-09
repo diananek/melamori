@@ -14,21 +14,26 @@ import * as yup from 'yup'
 import {yupResolver} from "@hookform/resolvers/yup";
 import {useRouter} from "next/router";
 import {mainState} from "../../lib/store/main";
-import {actions} from "../../lib/store/main/actions";
+// import {actions} from "../../lib/store/main/actions";
 
 
 export const cartMapper = (collection, price_collection, cart, name) => fp.pipe(
-    fp.getOr([], `data.${collection}`),
-    fp.map((item) => (
-            {
-                ...item,
-                price_list: fp.find(
-                    [`${price_collection}.id`, fp.get(name, fp.find(['id', item.id], cart))],
-                    item.price_list)
-            }
-        )
-    )
+    fp.filter(['type', collection]),
+    fp.map((item) => {
+        const newItem = fp.find(['id', item.id], cart)
+        if (fp.isEmpty(newItem)) return null
+        let newVar = {
+            ...newItem,
+            price_list: fp.find(
+                [`${price_collection}.id`, item[name]],
+                newItem.price_list
+            )
+        };
+        console.log(newVar.id, newVar.price_list)
+        return newVar
+    })
 )
+
 
 const types = {
     mattresses: 'size',
@@ -38,7 +43,7 @@ const types = {
 
 function declOfNum(number, titles) {
     const cases = [2, 0, 1, 1, 1, 2];
-    return titles[ (number%100>4 && number%100<20)? 2 : cases[(number%10<5)?number%10:5] ];
+    return titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
 }
 
 const toPrices = {
@@ -100,16 +105,16 @@ const Cart = () => {
 
 
     const bed_collection = cartMapper
-    ('s', 'bed_prices_id', cartItems, 'price')
-    ({data: {s: data?.bed_collection}})
+    ('bed_collection', 'bed_prices_id', data?.bed_collection, 'price')
+    (cartItems)
 
     const mattresses = cartMapper
-    ('s', 'mattresses_prices_id', cartItems, 'size')
-    ({data: {s: data?.mattresses}})
+    ('mattresses', 'mattresses_prices_id', data?.mattresses, 'size')
+    (cartItems)
 
     const soft_furniture = cartMapper
-    ('s', 'soft_furniture_prices_id', cartItems, 'category')
-    ({data: {s: data?.soft_furniture}})
+    ('soft_furniture', 'soft_furniture_prices_id', data?.soft_furniture, 'category')
+    (cartItems)
 
 
     const items = {
@@ -179,9 +184,9 @@ const Cart = () => {
         })
     }
 
-    const deleteItem = (index) => () => {
-        dp(actions.deleteFromCart(index))
-    }
+    // const deleteItem = (index) => () => {
+    //     dp(actions.deleteFromCart(index))
+    // }
 
     return (
         <Layout hideSlider>
@@ -199,12 +204,37 @@ const Cart = () => {
                         <div className="catalog__container container">
                             <div className="catalog__grid">
                                 {(!called || loading)
-                                    || cartItems?.map((i, key) => <ProductCard
-                                        style={styles.item}
-                                        item={fp.find(['id', i.id], items[i.type])}
-                                        key={key}
-                                        deleteCallback={deleteItem(key)}
-                                    />)}
+                                    || (
+                                        <>
+                                            {cartMapper
+                                            ('bed_collection', 'bed_prices_id', data?.bed_collection, 'price')
+                                            (cartItems).map((card, key) => <ProductCard
+                                                    style={styles.item}
+                                                    item={card}
+                                                    key={key}
+                                                    // deleteCallback={deleteItem(key)}
+                                                />
+                                            )}
+                                            {cartMapper
+                                            ('mattresses', 'mattresses_prices_id', data?.mattresses, 'size')
+                                            (cartItems).map((card, key) => <ProductCard
+                                                    style={styles.item}
+                                                    item={card}
+                                                    key={key}
+                                                    // deleteCallback={deleteItem(key)}
+                                                />
+                                            )}
+                                            {cartMapper
+                                            ('soft_furniture', 'soft_furniture_prices_id', data?.soft_furniture, 'category')
+                                            (cartItems).map((card, key) => <ProductCard
+                                                    style={styles.item}
+                                                    item={card}
+                                                    key={key}
+                                                    // deleteCallback={deleteItem(key)}
+                                                />
+                                            )}
+                                        </>
+                                    )}
                             </div>
                         </div>
                     </section>

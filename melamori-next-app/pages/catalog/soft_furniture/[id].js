@@ -42,7 +42,7 @@ const SoftId = props => {
     const {handleSubmit, setValue, watch, getValues} = useForm({
         defaultValues: {
             additional_options: {},
-            category: null,
+            category: calcPrice.id,
         }
     });
 

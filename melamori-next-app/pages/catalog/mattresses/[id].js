@@ -85,9 +85,9 @@ const MattressesId = (props) => {
     }, [calcPrice.price, calcPrice.sale_percentage, getValues, props.additional_options, watch])
 
 
-    const [selectedWidth, setSelectedWidth] = useState(null)
+    const [selectedWidth, setSelectedWidth] = useState(calcPrice.id)
 
-    const [selectedLength, setSelectedLength] = useState(null)
+    const [selectedLength, setSelectedLength] = useState(calcPrice.id)
 
     const dp = useDispatch();
 
@@ -221,9 +221,9 @@ const MattressesId = (props) => {
                                                 mattress_size_relation.width === selectW ? 'features__option_selected' : ''
                                             )}
                                             onClick={() => {
-                                                const newVal = selectedWidth === id ? null : id
-                                                setValue('size', newVal)
-                                                setSelectedWidth(newVal);
+                                                // const newVal = selectedWidth === id
+                                                setValue('size', id)
+                                                setSelectedWidth(id);
                                             }}
                                         >
                                             {mattress_size_relation.width}
@@ -251,9 +251,8 @@ const MattressesId = (props) => {
                                             mattress_size_relation.length === selectL ? 'features__option_selected' : ''
                                         )}
                                         onClick={() => {
-                                            const newVal = selectedLength === id ? null : id
-                                            setValue('size', newVal)
-                                            setSelectedLength(newVal);
+                                            setValue('size', id)
+                                            setSelectedLength(id);
                                         }}
                                     >
                                         {mattress_size_relation.length}
