@@ -254,7 +254,9 @@ const BedItem = (props) => {
                 <div className="product__props props">
                     <div className="props__item ">
                         <div className="props__item ">
-                            <div className="props__name ">Ширина</div>
+                            <div className="props__name ">
+                                Ширина
+                            </div>
                             <div className="props__val props__bed_val">{currentSize.width}</div>
                         </div>
                         <div className="props__item ">
