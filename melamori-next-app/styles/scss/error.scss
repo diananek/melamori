@@ -11,6 +11,16 @@
             font-size: 320px;
         }
     }
+    &__h{
+        font-weight: 800;
+        font-size: 36px;
+        @media (min-width: 768px) {
+            font-size: 64px;
+        }
+        @media (min-width: 1920px) {
+            font-size: 130px;
+        }
+    }
     &__circle{
         width: 312px;
         height: 312px;
@@ -39,6 +49,21 @@
             font-size: 64px;
         }
     }
+    &__cart{
+        margin-bottom: 15px;
+        font-weight: 600;
+        font-size: 20px;
+        margin-top: 30px;
+        //line-height: 55px;
+        text-align: center;
+        @media (min-width: 768px) {
+            font-size: 40px;
+        }
+        @media (min-width: 1920px) {
+            font-size: 64px;
+        }
+    }
+
     @media (min-width: 768px) {
         margin: 109px 0 0 0;
         display: flex;
