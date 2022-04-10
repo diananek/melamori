@@ -208,7 +208,7 @@ const Cart = () => {
         }).then(async (r) => {
             console.log(r)
             dp(mainState.actions.dropCart())
-            await push('/success')
+            await push('/my/success')
         })
     }
 
