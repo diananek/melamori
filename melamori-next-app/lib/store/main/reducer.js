@@ -39,6 +39,7 @@ export const reducer = {
     },
     [`${actions.deleteFromCart}`]: (state, payload) => {
         // localStorage.setItem('cartItems', JSON.stringify(cart))
+
         const removed = [
             ...fp.slice(0, payload, state.cart),
             ...fp.slice(payload + 1, state.cart.length, state.cart),

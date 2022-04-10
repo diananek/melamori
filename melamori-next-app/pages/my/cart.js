@@ -14,23 +14,22 @@ import * as yup from 'yup'
 import {yupResolver} from "@hookform/resolvers/yup";
 import {useRouter} from "next/router";
 import {mainState} from "../../lib/store/main";
-// import {actions} from "../../lib/store/main/actions";
+import {actions} from "../../lib/store/main/actions";
 
 
 export const cartMapper = (collection, price_collection, cart, name) => fp.pipe(
     fp.filter(['type', collection]),
-    fp.map((item) => {
+    (arr) => arr.map((item, index) => {
         const newItem = fp.find(['id', item.id], cart)
         if (fp.isEmpty(newItem)) return null
-        let newVar = {
+        return {
             ...newItem,
             price_list: fp.find(
                 [`${price_collection}.id`, item[name]],
                 newItem.price_list
-            )
-        };
-        console.log(newVar.id, newVar.price_list)
-        return newVar
+            ),
+            key: {index, collection}
+        }
     })
 )
 
@@ -151,6 +150,35 @@ const Cart = () => {
         return price
     }
 
+    const withoutSales = () => {
+        let price = 0
+        if (!loading && called) {
+            cartItems.map(item => {
+
+                let itemPrice = 0;
+
+                const i = fp.find(['id', item.id], items[item.type]).price_list[price_getter[item.type].price]
+
+                itemPrice += i.price
+
+                const rawOpts = {
+                    percent: 0,
+                    add: 0
+                }
+                fp.find(['id', item.id], items[item.type]).additional_options.map(({additional_options_id}) => {
+                    // console.log(additional_options_id)
+
+                    rawOpts.percent += fp.isNumber(additional_options_id.percent) ? additional_options_id.percent : null
+                    rawOpts.add += fp.isNumber(additional_options_id.price) ? additional_options_id.price : null
+                })
+
+                itemPrice += itemPrice * (rawOpts.percent / 100) - rawOpts.add
+                price += itemPrice
+            })
+        }
+        return price
+    }
+
 
     const [orderReq] = useMutation(CREATE_ORDER)
 
@@ -184,9 +212,19 @@ const Cart = () => {
         })
     }
 
-    // const deleteItem = (index) => () => {
-    //     dp(actions.deleteFromCart(index))
-    // }
+    const deleteItem = (index) => () => {
+        let iterate = 0
+        cartItems.forEach(({type}, i) => {
+            if (type === index.collection) {
+                if (index.index === iterate) {
+                    debugger
+                    dp(actions.deleteFromCart(i))
+                }
+                else
+                    iterate += 1
+            }
+        })
+    }
 
     return (
         <Layout hideSlider>
@@ -212,7 +250,7 @@ const Cart = () => {
                                                     style={styles.item}
                                                     item={card}
                                                     key={key}
-                                                    // deleteCallback={deleteItem(key)}
+                                                    deleteCallback={deleteItem(card.key)}
                                                 />
                                             )}
                                             {cartMapper
@@ -221,7 +259,7 @@ const Cart = () => {
                                                     style={styles.item}
                                                     item={card}
                                                     key={key}
-                                                    // deleteCallback={deleteItem(key)}
+                                                    deleteCallback={deleteItem(card.key)}
                                                 />
                                             )}
                                             {cartMapper
@@ -230,7 +268,7 @@ const Cart = () => {
                                                     style={styles.item}
                                                     item={card}
                                                     key={key}
-                                                    // deleteCallback={deleteItem(key)}
+                                                    deleteCallback={deleteItem(card.key)}
                                                 />
                                             )}
                                         </>
@@ -254,17 +292,17 @@ const Cart = () => {
                                             Без скидки
                                         </span>
                                         <span className="discount__value">
-                                            200 000 ₽
+                                            {withoutSales()}
                                         </span>
                                     </li>
-                                    <li className="discount__item">
-                                        <span className="discount__title">
-                                            Без скидки
-                                        </span>
-                                        <span className="discount__value">
-                                            200 000 ₽
-                                        </span>
-                                    </li>
+                                    {/*<li className="discount__item">*/}
+                                    {/*    <span className="discount__title">*/}
+                                    {/*        Без скидки*/}
+                                    {/*    </span>*/}
+                                    {/*    <span className="discount__value">*/}
+                                    {/*        200 000 ₽*/}
+                                    {/*    </span>*/}
+                                    {/*</li>*/}
                                 </ul>
                             </div>
                             <div className="basket__order-form">
