@@ -53,11 +53,28 @@ const MattressesId = (props) => {
         defaultValues: {
             additional_options: {},
             size: null,
+            width: calcPrice.mattress_size_relation.width,
+            length: calcPrice.mattress_size_relation.length
         }
     });
 
     useEffect(() => {
-        const sub = watch(({additional_options}) => {
+        const sub = watch(({additional_options, width, length}) => {
+            const cPrice = fp.getOr(
+                calcPrice,
+                'mattresses_prices_id',
+                fp.find({
+                        mattresses_prices_id: {
+                            mattress_size_relation: {
+                                width,
+                                length,
+                            }
+                        },
+                        // 'mattresses_prices_id': data.size,
+                    },
+                    props.price_list
+                )
+            )
 
             const addToPrice = (num) => {
                 let addition = {
@@ -75,14 +92,14 @@ const MattressesId = (props) => {
                 return num + num * (addition.percent / 100) + addition.raw
             }
 
-            setPricing(addToPrice(calcPrice.price))
-            setSale(addToPrice(calcPrice.price * (1 - calcPrice.sale_percentage / 100)))
+            setPricing(addToPrice(cPrice.price))
+            setSale(addToPrice(cPrice.price * (1 - cPrice.sale_percentage / 100)))
 
         })
         return () => {
             sub.unsubscribe()
         }
-    }, [calcPrice.price, calcPrice.sale_percentage, getValues, props.additional_options, watch])
+    }, [calcPrice, calcPrice.price, calcPrice.sale_percentage, getValues, props.additional_options, props.price_list, watch])
 
 
     const [selectedWidth, setSelectedWidth] = useState(calcPrice.id)
@@ -104,8 +121,25 @@ const MattressesId = (props) => {
     useEffect(() => {
         const sub = watch((data, change) => {
 
-            if (change.name === 'size') {
-                setCalcPrice(fp.getOr(calcPrice, 'mattresses_prices_id', fp.find(['mattresses_prices_id.id', data.size], props.price_list)))
+            if (change.name === 'width' || change.name === 'length') {
+                setCalcPrice(
+                    fp.getOr(
+                        calcPrice,
+                        'mattresses_prices_id',
+                        fp.find({
+                                mattresses_prices_id: {
+                                    mattress_size_relation: {
+                                        width: data.width,
+                                        length: data.length,
+
+                                    }
+                                },
+                                // 'mattresses_prices_id': data.size,
+                            },
+                            props.price_list
+                        )
+                    )
+                )
             }
         })
         return () => {
@@ -222,7 +256,8 @@ const MattressesId = (props) => {
                                             )}
                                             onClick={() => {
                                                 // const newVal = selectedWidth === id
-                                                setValue('size', id)
+                                                setValue('width', mattress_size_relation.width)
+                                                // setValue('size', id)
                                                 setSelectedWidth(id);
                                             }}
                                         >
@@ -251,7 +286,7 @@ const MattressesId = (props) => {
                                             mattress_size_relation.length === selectL ? 'features__option_selected' : ''
                                         )}
                                         onClick={() => {
-                                            setValue('size', id)
+                                            setValue('length', mattress_size_relation.length)
                                             setSelectedLength(id);
                                         }}
                                     >
