@@ -19,14 +19,14 @@ const minPrice = fp.minBy(
 
 
 const softType = {
-    sofa:     'Диван',
-    commode:  'Комод',
-    puff:     'Пуф',
-    stand:    'Тумба',
-    bench:    'Банкетка',
-    chair:    'Стул',
+    sofa: 'Диван',
+    commode: 'Комод',
+    puff: 'Пуф',
+    stand: 'Тумба',
+    bench: 'Банкетка',
+    chair: 'Стул',
     armchair: 'Кресло',
-    couch:    'Кушетка',
+    couch: 'Кушетка',
     recliner: 'Реклайнер',
 }
 
@@ -167,18 +167,29 @@ const SoftId = props => {
                         </div>
                     </div>
                     <div className="product__props props">
-                        <div className="props__item">
-                            <div className="props__name">Ширина</div>
-                            <div className="props__val">{calcPrice.soft_furniture_size_relation.width}</div>
-                        </div>
+                        {fp.isEmpty(calcPrice.soft_furniture_size_relation.diameter) &&
+                            <div className="props__item">
+                                <div className="props__name">Ширина</div>
+                                <div className="props__val">{calcPrice.soft_furniture_size_relation.width}</div>
+                            </div>
+                        }
+                        {fp.isEmpty(calcPrice.soft_furniture_size_relation.diameter) ||
+                            <div className="props__item">
+                                <div className="props__name">Диаметр</div>
+                                <div className="props__val">{calcPrice.soft_furniture_size_relation.diameter}</div>
+                            </div>
+                        }
                         <div className="props__item">
                             <div className="props__name">Высота</div>
                             <div className="props__val">{calcPrice.soft_furniture_size_relation.height}</div>
                         </div>
-                        <div className="props__item">
-                            <div className="props__name">Длина</div>
-                            <div className="props__val">{calcPrice.soft_furniture_size_relation.length}</div>
-                        </div>
+
+                        {fp.isEmpty(calcPrice.soft_furniture_size_relation.diameter) &&
+                            <div className="props__item">
+                                <div className="props__name">Длина</div>
+                                <div className="props__val">{calcPrice.soft_furniture_size_relation.length}</div>
+                            </div>
+                        }
                         {calcPrice.soft_furniture_size_relation.additional_size && <div className="props__item">
                             <div className="props__name">Размер в разложеном виде</div>
                             <div className="props__val">{calcPrice.soft_furniture_size_relation.additional_size}</div>
