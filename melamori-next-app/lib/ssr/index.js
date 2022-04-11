@@ -90,7 +90,7 @@ const dataGetter = {
         const remapped = fp.mapValues(fp.toInteger, params)
         let response = client.query({
             query: GET_SOFA,
-            networkPolicy: 'cache-and-network',
+            networkPolicy: 'network-only',
             ssrMode: true,
             variables: remapped
         })
@@ -105,7 +105,7 @@ const dataGetter = {
     mattresses_by_id: async (param = {}) => {
         return (await client.query({
             query: GET_BY_MATTRESS_ID,
-            networkPolicy: 'cache-and-network',
+            networkPolicy: 'network-only',
             variables: param,
             ssrMode: true,
         })).data.mattresses_by_id
@@ -114,7 +114,7 @@ const dataGetter = {
         return (await client.query({
             query: GET_BED_BY_ID,
             variables: param,
-            networkPolicy: 'cache-and-network',
+            networkPolicy: 'network-only',
             ssrMode: true,
         })).data.bed_collection_by_id
     },
@@ -122,14 +122,13 @@ const dataGetter = {
         return (await client.query({
             query: GET_SOFA_BY_ID,
             variables: param,
-            fetchPolicy: 'cache-and-network',
-            ssrMode: true,
+            fetchPolicy: 'network-only',
         })).data.soft_furniture_by_id
     },
     get_meta: async () => {
         return (await client.query({
             query: GET_META,
-            networkPolicy: 'cache-and-network',
+            networkPolicy: 'network-only',
             ssrMode: true,
         })).data
     },
