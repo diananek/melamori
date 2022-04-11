@@ -122,7 +122,7 @@ const dataGetter = {
         return (await client.query({
             query: GET_SOFA_BY_ID,
             variables: param,
-            networkPolicy: 'cache-and-network',
+            fetchPolicy: 'cache-and-network',
             ssrMode: true,
         })).data.soft_furniture_by_id
     },
