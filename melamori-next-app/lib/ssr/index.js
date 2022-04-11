@@ -43,7 +43,7 @@ const dataGetter = {
         let response = await client.query({
             query: GET_BEDS,
             variables: remapped,
-            networkPolicy: 'no-cache',
+            networkPolicy: 'cache-and-network',
             ssrMode: true,
         })
         return {
@@ -56,7 +56,7 @@ const dataGetter = {
         let response = client.query({
             query: GET_BEDS,
             variables: remapped,
-            networkPolicy: 'no-cache',
+            networkPolicy: 'cache-and-network',
             ssrMode: true,
         })
         let meta = axios.get('https://service.melamori-mebel.ru/items/bed_collection?meta=*&limit=0')
@@ -73,7 +73,7 @@ const dataGetter = {
         let response = client.query({
             query: GET_MATTRESSES,
             variables: remapped,
-            networkPolicy: 'no-cache',
+            networkPolicy: 'cache-and-network',
             ssrMode: true,
         })
 
@@ -90,7 +90,7 @@ const dataGetter = {
         const remapped = fp.mapValues(fp.toInteger, params)
         let response = client.query({
             query: GET_SOFA,
-            networkPolicy: 'no-cache',
+            networkPolicy: 'cache-and-network',
             ssrMode: true,
             variables: remapped
         })
@@ -105,7 +105,7 @@ const dataGetter = {
     mattresses_by_id: async (param = {}) => {
         return (await client.query({
             query: GET_BY_MATTRESS_ID,
-            networkPolicy: 'no-cache',
+            networkPolicy: 'cache-and-network',
             variables: param,
             ssrMode: true,
         })).data.mattresses_by_id
@@ -114,7 +114,7 @@ const dataGetter = {
         return (await client.query({
             query: GET_BED_BY_ID,
             variables: param,
-            networkPolicy: 'no-cache',
+            networkPolicy: 'cache-and-network',
             ssrMode: true,
         })).data.bed_collection_by_id
     },
@@ -122,14 +122,14 @@ const dataGetter = {
         return (await client.query({
             query: GET_SOFA_BY_ID,
             variables: param,
-            networkPolicy: 'no-cache',
+            networkPolicy: 'cache-and-network',
             ssrMode: true,
         })).data.soft_furniture_by_id
     },
     get_meta: async () => {
         return (await client.query({
             query: GET_META,
-            networkPolicy: 'no-cache',
+            networkPolicy: 'cache-and-network',
             ssrMode: true,
         })).data
     },
@@ -137,7 +137,7 @@ const dataGetter = {
 
 
 export const Ssr = async (page, {query} = {query: {}}) => {
-    debugger
+    // debugger
     return {
         props: dataGetter[page](query)
     }
