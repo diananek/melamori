@@ -93,6 +93,7 @@ const composed = (phase) => {
 const nextConfig = (phase) => ({
     reactStrictMode: true,
     images: {
+        minimumCacheTTL: 0,
         domains: [
             'service.melamori-mebel.ru'
         ],
