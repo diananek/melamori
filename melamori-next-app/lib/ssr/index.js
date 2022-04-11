@@ -97,25 +97,28 @@ const dataGetter = {
     mattresses_by_id: async (param = {}) => {
         return (await client.query({
             query: GET_BY_MATTRESS_ID,
-            networkPolicy: 'network-only',
-            variables: param
+            networkPolicy: 'no-cache',
+            variables: param,
         })).data.mattresses_by_id
     },
     bed_by_id: async (param = {}) => {
         return (await client.query({
             query: GET_BED_BY_ID,
-            variables: param
+            variables: param,
+            networkPolicy: 'no-cache',
         })).data.bed_collection_by_id
     },
     sofa_by_id: async (param = {}) => {
         return (await client.query({
             query: GET_SOFA_BY_ID,
-            variables: param
+            variables: param,
+            networkPolicy: 'no-cache',
         })).data.soft_furniture_by_id
     },
     get_meta: async () => {
         return (await client.query({
             query: GET_META,
+            networkPolicy: 'no-cache',
         })).data
     },
 }
