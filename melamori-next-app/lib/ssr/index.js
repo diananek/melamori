@@ -43,7 +43,7 @@ const dataGetter = {
         let response = await client.query({
             query: GET_BEDS,
             variables: remapped,
-            networkPolicy: 'cache-and-network',
+            fetchPolicy: 'network-only',
             ssrMode: true,
         })
         return {
@@ -56,7 +56,7 @@ const dataGetter = {
         let response = client.query({
             query: GET_BEDS,
             variables: remapped,
-            networkPolicy: 'cache-and-network',
+            fetchPolicy: 'network-only',
             ssrMode: true,
         })
         let meta = axios.get('https://service.melamori-mebel.ru/items/bed_collection?meta=*&limit=0')
@@ -73,7 +73,7 @@ const dataGetter = {
         let response = client.query({
             query: GET_MATTRESSES,
             variables: remapped,
-            networkPolicy: 'cache-and-network',
+            fetchPolicy: 'network-only',
             ssrMode: true,
         })
 
@@ -90,7 +90,7 @@ const dataGetter = {
         const remapped = fp.mapValues(fp.toInteger, params)
         let response = client.query({
             query: GET_SOFA,
-            networkPolicy: 'network-only',
+            fetchPolicy: 'network-only',
             ssrMode: true,
             variables: remapped
         })
@@ -105,8 +105,8 @@ const dataGetter = {
     mattresses_by_id: async (param = {}) => {
         return (await client.query({
             query: GET_BY_MATTRESS_ID,
-            networkPolicy: 'network-only',
             variables: param,
+            fetchPolicy: 'network-only',
             ssrMode: true,
         })).data.mattresses_by_id
     },
@@ -114,7 +114,7 @@ const dataGetter = {
         return (await client.query({
             query: GET_BED_BY_ID,
             variables: param,
-            networkPolicy: 'network-only',
+            fetchPolicy: 'network-only',
             ssrMode: true,
         })).data.bed_collection_by_id
     },
@@ -123,12 +123,13 @@ const dataGetter = {
             query: GET_SOFA_BY_ID,
             variables: param,
             fetchPolicy: 'network-only',
+            ssrMode: true,
         })).data.soft_furniture_by_id
     },
     get_meta: async () => {
         return (await client.query({
             query: GET_META,
-            networkPolicy: 'network-only',
+            fetchPolicy: 'network-only',
             ssrMode: true,
         })).data
     },
