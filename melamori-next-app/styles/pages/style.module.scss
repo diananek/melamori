@@ -9,10 +9,18 @@
     .cartSidebar {
         width: 100% !important;
     }
+    .cart {
+        flex-direction: column;
+    }
+}
+@media (max-width: 1300px) {
+    .item {
+        width: calc(50% - 8px) !important;
+    }
 }
 
 .cartSidebar {
-    width: 25% !important;
+    width: 25%;
 }
 
 .cart {
