@@ -24,7 +24,7 @@ const BedItem = (props) => {
     const [submitted, setSubmitted] = useState(false)
 
     const [calcPrice] = useState(minPrice(props.price_list).bed_prices_id)
-    const [pricing] = useState(calcPrice.price)
+    const [pricing, setPricing] = useState(calcPrice.price)
     const [sale, setSale] = useState(calcPrice.price * (1 - calcPrice.sale_percentage / 100))
 
 
@@ -113,6 +113,7 @@ const BedItem = (props) => {
             console.log(priceId.price * (1 - priceId.sale_percentage / 100), priceId)
 
             setSale(addToPrice(priceId.price * (1 - priceId.sale_percentage / 100)))
+            setPricing(addToPrice(priceId.price))
 
         })
         return () => {
