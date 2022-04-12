@@ -75,6 +75,8 @@ MyApp.getInitialProps = async (appContext) => {
 
     const sub_data = (await client.query({
         query: GET_META,
+        fetchPolicy: 'network-only',
+        ssrMode: true,
     })).data
 
     return {
