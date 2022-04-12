@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@2bad/bitrix": "^2.4.0"
+  }
+}
