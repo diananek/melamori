@@ -8,6 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@2bad/bitrix": "^2.4.0",
     "@apollo/client": "^3.5.8",
     "@hookform/resolvers": "^2.8.8",
     "axios": "^0.26.1",
