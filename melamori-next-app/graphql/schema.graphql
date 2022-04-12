@@ -1170,7 +1170,6 @@ input create_orders_item_price_input {
 }
 
 input create_orders_promotion_input {
-    id: ID
     orders_id: create_orders_input
     promotion_id: String
 }

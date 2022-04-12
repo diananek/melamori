@@ -2,7 +2,7 @@
     width: 75% !important;
 }
 
-@media (max-width: 1278px) {
+@media (max-width: 1365px) {
     .cartGrid {
         width: 100% !important;
     }
@@ -12,12 +12,23 @@
     .cart {
         flex-direction: column;
     }
+    .bonuses{
+        display: flex;
+        flex-direction: column;
+    }
 }
-@media (max-width: 1300px) {
+@media (max-width: 1024px) {
+    .item {
+        width: calc(33% - 30px) !important;
+    }
+}
+
+@media (max-width: 767px) {
     .item {
         width: calc(50% - 8px) !important;
     }
 }
+
 
 .cartSidebar {
     width: 25%;

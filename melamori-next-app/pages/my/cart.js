@@ -65,6 +65,7 @@ const Cart = () => {
     })
 
     const cartItems = useSelector('main.cart');
+    const promo = useSelector('main.sub_data.promotion');
 
     const [loadCartItems, {data, loading, called}] = useLazyQuery(GET_CART_ITEMS)
 
@@ -200,9 +201,15 @@ const Cart = () => {
                 }
             }
         })
+        const promo = []
+        fp.mapKeys((key) => {
+            data.additional_options[key] && promo.push({promotion_id: key});
+        }, data.additional_options)
+        // debugger
         orderReq({
             variables: {
                 ...data,
+                promo,
                 prices: sendPrices,
             }
         }).then(async (r) => {
@@ -219,8 +226,7 @@ const Cart = () => {
                 if (index.index === iterate) {
                     debugger
                     dp(actions.deleteFromCart(i))
-                }
-                else
+                } else
                     iterate += 1
             }
         })
@@ -336,17 +342,24 @@ const Cart = () => {
                                 </span>
                             </div>
                         </div>
-                        {/*<div className="basket__block">*/}
-                        {/*    <div className="basket__block-name">*/}
-                        {/*        Бонусы*/}
-                        {/*    </div>*/}
-                        {/*    <div className="basket__block-text">*/}
-                        {/*        5% скидка на матрац при покупке кровати*/}
-                        {/*    </div>*/}
-                        {/*    <div className="basket__block-text">*/}
-                        {/*        18 месяцев гарантия на всё*/}
-                        {/*    </div>*/}
-                        {/*</div>*/}
+                        <div className={clsx('basket__block')}>
+                            <div className="basket__block-name">
+                                Бонусы
+                            </div>
+                            {promo.map((item) => (
+                                    <label className="features__checkbox checkbox" key={item.id}>
+                                        <input
+                                            className="checkbox__input"
+                                            type="checkbox"
+                                            {...register(`additional_options.${item.id}`)}
+                                        />
+                                        <span className="checkbox__box"/>
+                                        {item.description}
+                                    </label>
+                                )
+                            )}
+
+                        </div>
                         {/*<div className="basket__block">*/}
                         {/*    <div className="basket__block-name">*/}
                         {/*        Доп. услуги*/}
