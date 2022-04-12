@@ -39,8 +39,8 @@ export const Footer = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link href={'/catalog/matressess'}>
-                                <a href={'/catalog/matressess'} className="footer__item goods__item">Матрацы</a>
+                            <Link href={'/catalog/mattresses'}>
+                                <a href={'/catalog/mattresses'} className="footer__item goods__item">Матрацы</a>
                             </Link>
                         </li>
                         <li>
