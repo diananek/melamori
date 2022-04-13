@@ -53,7 +53,9 @@ const toPrices = {
 
 const validator = yup.object({
     sign: yup.bool().test('sign', 'Требуется согласие', fp.eq(true)),
-    phone: yup.string().required('Заполните номер телефона')
+    phone: yup.string().required('Заполните номер телефона'),
+    name: yup.string().required('Заполните имя'),
+    city: yup.string().required('Заполните город')
 })
 
 const Cart = () => {
@@ -312,19 +314,51 @@ const Cart = () => {
                                 </ul>
                             </div>
                             <div className="basket__order-form">
-                                <label className="basket__form-label" htmlFor="user-tel">
-                                    Ваш телефон
-                                </label>
-                                <input
-                                    id="user-tel"
-                                    className="basket__input"
-                                    type="tel"
-                                    placeholder="8 (123) 456–78–90"
-                                    {...register('phone')}
-                                />
-                                <span style={{color: "red"}}>
-                                    {errors?.phone?.message}
+                                <div>
+                                    <label className="basket__form-label" htmlFor="user-tel">
+                                        Ваш телефон
+                                    </label>
+                                    <input
+                                        id="user-tel"
+                                        className="basket__input"
+                                        type="tel"
+                                        placeholder="8 (123) 456–78–90"
+                                        {...register('phone')}
+                                    />
+                                    <span style={{color: "red"}}>
+                                        {errors?.phone?.message}
+                                    </span>
+                                </div>
+                                <div>
+                                    <label className="basket__form-label" htmlFor="user-tel">
+                                        Имя
+                                    </label>
+                                    <input
+                                        // id="user-tel"
+                                        className="basket__input"
+                                        type="text"
+                                        placeholder="Иванов Иван"
+                                        {...register('name')}
+                                    />
+                                    <span style={{color: "red"}}>
+                                    {errors?.name?.message}
                                 </span>
+                                </div>
+                                <div>
+                                    <label className="basket__form-label" htmlFor="user-tel">
+                                        Город
+                                    </label>
+                                    <input
+                                        // id="user-tel"
+                                        className="basket__input"
+                                        type="text"
+                                        placeholder="г. Пенза"
+                                        {...register('city')}
+                                    />
+                                    <span style={{color: "red"}}>
+                                    {errors?.city?.message}
+                                </span>
+                                </div>
                                 <button className="basket__btn">
                                     Подтвердить заказ
                                 </button>

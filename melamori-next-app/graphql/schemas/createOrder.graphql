@@ -2,12 +2,16 @@ mutation CREATE_ORDER(
     $prices: [create_orders_item_price_input]
     $promo: [create_orders_promotion_input] = []
     $phone: String!
+    $name: String!
+    $city: String!
 ) {
     create_orders_item(
         data: {
             items_prices_relation: $prices
             phone_number: $phone
             choosen_promotions: $promo
+            city: $city
+            name: $name
         }
     ) {
         id

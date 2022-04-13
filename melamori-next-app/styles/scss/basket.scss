@@ -16,11 +16,13 @@
     @media (min-width: 1920px) {
         margin-bottom: 110px;
     }
+
     &__block {
         padding: 24px 24px 34px 24px;
         border: 1px solid #B7CBD9;
         border-radius: 5px;
         margin-bottom: 24px;
+
         &:first-child {
             @media (min-width: 768px) {
                 grid-column: 1/3;
@@ -31,6 +33,7 @@
             }
         }
     }
+
     &__order-form {
         margin-top: 27px;
         position: relative;
@@ -40,14 +43,21 @@
         @media (min-width: 1366px) {
             margin: 31px 0 0 0;
         }
+
+        > div {
+            margin: 5px 0;
+        }
     }
+
     &__total-price {
         font-size: 40px;
         border-bottom: 1px solid #B7CBD9;
         padding-bottom: 10px;
+
         span {
             color: #58778D;
         }
+
         @media (min-width: 768px) {
             font-size: 32px;
         }
@@ -55,14 +65,17 @@
             font-size: 40px;
         }
     }
+
     &__discount {
         margin-top: 17px;
         line-height: 25px;
         color: #58778D;
     }
+
     &__form-label {
         font-weight: 600;
     }
+
     &__input {
         display: block;
         width: 100%;
@@ -78,6 +91,7 @@
             font-size: 18px;
         }
     }
+
     &__btn {
         width: 100%;
         height: 56px;
@@ -94,24 +108,30 @@
             font-size: 18px;
         }
     }
+
     &__checkbox {
         display: flex;
         line-height: 27px;
     }
+
     &__extra-form {
         position: relative;
     }
+
     &__block-name {
         font-weight: 600;
         margin-bottom: 18px;
     }
+
     &__block-text {
         line-height: 27px;
         margin-bottom: 16px;
+
         &:last-child {
             margin-bottom: 0;
         }
     }
+
     &__order-section {
         @media (min-width: 768px) {
             display: grid;
@@ -131,6 +151,7 @@
 
         }
     }
+
     &__dscr {
         @media (min-width: 768px) {
             flex: 1 0 312px;
@@ -139,6 +160,7 @@
             flex: 0 0 auto;
         }
     }
+
     &__checkbox-box {
         margin-top: 6px;
     }
@@ -149,6 +171,7 @@
         display: flex;
         justify-content: space-between;
     }
+
     &__value {
         text-align: right;
     }

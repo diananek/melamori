@@ -1159,7 +1159,9 @@ input create_item_price_price_input {
 
 input create_orders_input {
     choosen_promotions: [create_orders_promotion_input]
+    city: String
     items_prices_relation: [create_orders_item_price_input]
+    name: String
     phone_number: String!
 }
 
