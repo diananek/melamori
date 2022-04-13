@@ -1,8 +1,9 @@
 import Bitrix from '@2bad/bitrix'
 
-const bitrix = Bitrix(process.env.NEXT_PUBLIC_IS_DEV
-    ? 'https://b24-z9pkrw.bitrix24.ru/rest/1/11o4pfr9vbqpejn4/'
-    : 'https://melamori.bitrix24.ru/rest/88/d5dme1w1yxykd1id/'
+const bitrix = Bitrix(
+    // process.env.NEXT_PUBLIC_IS_DEV
+    // ? 'https://b24-z9pkrw.bitrix24.ru/rest/1/11o4pfr9vbqpejn4/'
+    'https://melamori.bitrix24.ru/rest/88/d5dme1w1yxykd1id/'
 )
 // const bitrix = Bitrix('https://b24-z9pkrw.bitrix24.ru/rest/88/ehstc0lz7lk4kmdp/')
 
