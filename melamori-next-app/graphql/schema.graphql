@@ -7,6 +7,8 @@ schema {
 
 union item_price_price_item_union = accessories_prices | bed_prices | mattresses_prices | soft_furniture_prices
 
+union main_page_popular_item_union = bed_collection | mattresses | mattresses_accessories | soft_furniture
+
 type Mutation {
     create_item_price_additional_options_item(data: create_item_price_additional_options_input!): item_price_additional_options
     create_item_price_additional_options_items(data: [create_item_price_additional_options_input!], filter: item_price_additional_options_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [item_price_additional_options]
@@ -60,6 +62,10 @@ type Query {
     item_price_price(filter: item_price_price_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [item_price_price]
     item_price_price_aggregated(filter: item_price_price_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [item_price_price_aggregated]
     item_price_price_by_id(id: ID!): item_price_price
+    main_page: main_page
+    main_page_popular(filter: main_page_popular_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [main_page_popular]
+    main_page_popular_aggregated(filter: main_page_popular_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [main_page_popular_aggregated]
+    main_page_popular_by_id(id: ID!): main_page_popular
     matresses_sizes(filter: matresses_sizes_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [matresses_sizes]
     matresses_sizes_by_id(id: ID!): matresses_sizes
     mattresses(filter: mattresses_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses]
@@ -466,6 +472,40 @@ type item_price_price_aggregated {
 }
 
 type item_price_price_aggregated_fields {
+    id: Float
+}
+
+type main_page {
+    date_created: Date
+    date_created_func: datetime_functions
+    date_updated: Date
+    date_updated_func: datetime_functions
+    id: ID
+    popular(filter: main_page_popular_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [main_page_popular]
+    user_created: String
+    user_updated: String
+}
+
+type main_page_popular {
+    collection: String
+    id: ID
+    item: main_page_popular_item_union
+    main_page_id(filter: main_page_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): main_page
+}
+
+type main_page_popular_aggregated {
+    avg: main_page_popular_aggregated_fields
+    avgDistinct: main_page_popular_aggregated_fields
+    count: main_page_popular_aggregated_fields
+    countDistinct: main_page_popular_aggregated_fields
+    group: JSON
+    max: main_page_popular_aggregated_fields
+    min: main_page_popular_aggregated_fields
+    sum: main_page_popular_aggregated_fields
+    sumDistinct: main_page_popular_aggregated_fields
+}
+
+type main_page_popular_aggregated_fields {
     id: Float
 }
 
@@ -1266,6 +1306,28 @@ input item_price_price_filter {
     id: number_filter_operators
     item: string_filter_operators
     item_price_id: item_price_filter
+}
+
+input main_page_filter {
+    _and: [main_page_filter]
+    _or: [main_page_filter]
+    date_created: date_filter_operators
+    date_created_func: datetime_function_filter_operators
+    date_updated: date_filter_operators
+    date_updated_func: datetime_function_filter_operators
+    id: string_filter_operators
+    popular: main_page_popular_filter
+    user_created: string_filter_operators
+    user_updated: string_filter_operators
+}
+
+input main_page_popular_filter {
+    _and: [main_page_popular_filter]
+    _or: [main_page_popular_filter]
+    collection: string_filter_operators
+    id: number_filter_operators
+    item: string_filter_operators
+    main_page_id: main_page_filter
 }
 
 input matresses_sizes_filter {

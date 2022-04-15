@@ -7,6 +7,7 @@ import GET_BY_MATTRESS_ID from '../../graphql/schemas/getMattressesById.graphql'
 import GET_BED_BY_ID from '../../graphql/schemas/getBedById.graphql'
 import GET_SOFA_BY_ID from '../../graphql/schemas/getSofaById.graphql'
 import GET_META from '../../graphql/schemas/getMeta.graphql'
+import GET_MAIN_ITEMS from '../../graphql/schemas/getMainItems.graphql'
 import fp from "lodash/fp";
 import axios from 'axios'
 
@@ -33,7 +34,49 @@ export const bedMapper = (collection, price_collection) => fp.pipe(
 )
 
 
+const colToPrice = {
+    bed_collection: 'bed_prices_id',
+    soft_furniture: 'soft_furniture_prices_id',
+    mattresses: 'mattresses_prices_id',
+}
+
+
+export const pricer = fp.map((raw) => {
+        const {item} = raw
+        return (
+            {
+                ...item,
+                price_list: fp.minBy(
+                    (i) => {
+                        const {price, sale_percentage} = fp.get(colToPrice[raw.collection], i);
+
+                        return priceResult({price, sale_percentage})
+                    },
+                    item.price_list) || null
+            });
+    }
+)
+
+
 // https://service.melamori-mebel.ru/items/bed_collection?meta=*&limit=0 url with meta example
+
+
+const itemsMultiMapper = (resp) => {
+    const incomingArray = fp.getOr([], 'data.main_page.popular', resp)
+
+
+    // fp.partialRight(fp.includes, Object.keys(colToPrice))
+
+    // const sp = fp.includes('bed_collection')
+
+    // console.log(sp(['bed_collection', 'mattresses', 'soft_furniture']))
+    let pricer1 = fp.filter(fp.pipe(
+        fp.get('collection'),
+        fp.includes,
+        (func) => func(Object.keys(colToPrice))
+    ), incomingArray);
+    return pricer(pricer1)
+}
 
 
 const dataGetter = {
@@ -41,13 +84,13 @@ const dataGetter = {
 
         const remapped = fp.mapValues(fp.toInteger, params)
         let response = await client.query({
-            query: GET_BEDS,
+            query: GET_MAIN_ITEMS,
             variables: remapped,
             fetchPolicy: 'network-only',
             ssrMode: true,
         })
         return {
-            items: bedMapper('bed_collection', 'bed_prices_id')(response),
+            items: itemsMultiMapper(response),
         }
     },
     bed_collection: async (params = {}) => {

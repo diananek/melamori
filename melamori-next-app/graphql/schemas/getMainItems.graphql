@@ -1,0 +1,86 @@
+query GET_MAIN_ITEMS{
+    main_page {
+        popular {
+            id
+            collection
+            item {
+                ... on bed_collection {
+                    ...beds
+                }
+                ... on mattresses {
+                    ...new_mattresses
+                }
+                ... on soft_furniture {
+                    ...sofa
+                }
+            }
+        }
+    }
+}
+
+fragment beds on bed_collection{
+    id
+    title
+    image {
+        id
+        title
+    }
+    price_list{
+        bed_prices_id(limit: -1){
+            price
+            sale_percentage
+            status
+            bed_size_relation{
+                height
+                length
+                width
+            }
+        }
+    }
+}
+
+fragment new_mattresses on mattresses{
+    id
+    title
+    image {
+        id
+        title
+    }
+    price_list(limit: -1) {
+        mattresses_prices_id {
+            price
+            sale_percentage
+            status
+            mattress_size_relation {
+                length
+                diameter
+                width
+            }
+        }
+    }
+}
+
+
+fragment sofa on soft_furniture{
+    id
+    title
+    image {
+        id
+        title
+    }
+    price_list(limit: -1) {
+        soft_furniture_prices_id {
+            price
+            sale_percentage
+            status
+            soft_furniture_size_relation{
+                length
+                width
+                diameter
+                height
+            }
+        }
+    }
+}
+
+

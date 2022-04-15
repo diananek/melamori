@@ -45,7 +45,7 @@ function declOfNum(number, titles) {
     return titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
 }
 
-const toPrices = {
+export const toPrices = {
     mattresses: "mattresses_prices",
     soft_furniture: "soft_furniture_prices",
     bed_collection: "bed_prices",
