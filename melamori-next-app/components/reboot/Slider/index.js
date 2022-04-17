@@ -1,6 +1,9 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import Image from "next/image";
 import {useSelector} from "../../../lib/hooks/useState";
+import {useElementScroll} from "framer-motion";
+import {motion} from 'framer-motion'
+
 
 export const Slider = () => {
 
@@ -52,6 +55,24 @@ export const Slider = () => {
         offersScroll()
     }, [])
 
+    const wrapper = useRef();
+    const {scrollXProgress} = useElementScroll(wrapper);
+    const [speed, setSpeed] = useState(1);
+    const [pre, setPre] = useState(null);
+
+    useEffect(() => {
+        const unsubscribe = scrollXProgress.onChange((s) => s < 0.1? setSpeed(1): s > 0.9 && setSpeed(-1))
+
+        const s = setInterval(() => {
+            wrapper.current.scrollBy(speed, 0)
+        }, 50);
+
+        return () => {
+            clearInterval(s)
+            unsubscribe()
+        }
+    }, [scrollXProgress, speed])
+
     const promo = useSelector('main.sub_data.promotion')
 
 
@@ -62,8 +83,16 @@ export const Slider = () => {
                     <Image src="/img/logo.svg" alt="Логотип Me Lamori" layout='fill'/>
                 </div>
             </div>
-            <ul
+            <motion.ul
                 className="page__offers offers"
+                ref={wrapper}
+                onHoverStart={() => {
+                    setPre(speed);
+                    setSpeed(0);
+                }}
+                onHoverEnd={() => {
+                    setSpeed(pre);
+                }}
                 style={{overflowX: 'auto'}}>
                 {promo.map((i) => (
                     <li className="offers__item offers__item_dark" key={i.id}>
@@ -76,7 +105,7 @@ export const Slider = () => {
                         </div>
                     </li>
                 ))}
-            </ul>
+            </motion.ul>
         </>
     );
 };
