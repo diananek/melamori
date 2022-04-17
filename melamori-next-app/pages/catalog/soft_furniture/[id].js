@@ -8,7 +8,8 @@ import clsx from "clsx";
 import {actions} from "../../../lib/store/main/actions";
 import {useDispatch, useSelector} from "../../../lib/hooks/useState";
 import {mainState} from "../../../lib/store/main";
-import Image from 'next/image'
+import {Image} from "antd";
+import 'antd/dist/antd.css'
 
 const minPrice = fp.minBy(
     (item) => {
@@ -83,8 +84,8 @@ const SoftId = props => {
                 <div className="container product__grid product__grid_sofa">
                     <div className="product__img" style={{position: 'relative', width: '100%', height: '100%'}}>
                         <Image
-                            layout='fill'
-                            objectFit='contain'
+                            // layout='fill'
+                            // objectFit='contain'
                             src={`${process.env.serverUrl}${fp.get('image.id', props)}`}
                             alt={fp.get('image.title', props)}/>
                     </div>

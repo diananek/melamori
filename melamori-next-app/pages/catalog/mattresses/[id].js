@@ -9,8 +9,9 @@ import {useForm} from "react-hook-form";
 import React, {useEffect, useState} from "react";
 import {priceDelimiter} from "../../../components/reboot/ProductCard";
 import {mainState} from "../../../lib/store/main";
-import Image from "next/image";
-
+// import Image from "next/image";
+import {Image} from "antd";
+import 'antd/dist/antd.css'
 
 const uniqWidths = fp.uniqBy('mattresses_prices_id.mattress_size_relation.width')
 const uniqLengths = fp.uniqBy('mattresses_prices_id.mattress_size_relation.length')
@@ -166,8 +167,8 @@ const MattressesId = (props) => {
                 <div className="container  product__grid_mattr product__grid">
                     <div className="product__img" style={{position: 'relative', width: '100%', height: '100%'}}>
                         <Image
-                            layout='fill'
-                            objectFit='contain'
+                            // layout='fill'
+                            // objectFit='contain'
                             src={`${process.env.serverUrl}${fp.get('image.id', props)}`}
                             alt={fp.get('image.title', props)}/>
                     </div>
