@@ -11,6 +11,7 @@
     "@2bad/bitrix": "^2.4.0",
     "@apollo/client": "^3.5.8",
     "@hookform/resolvers": "^2.8.8",
+    "antd": "^4.19.5",
     "axios": "^0.26.1",
     "classnames": "^2.3.1",
     "clsx": "^1.1.1",

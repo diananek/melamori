@@ -8,10 +8,9 @@ import React, {useEffect, useMemo, useState} from "react";
 import {useForm} from "react-hook-form";
 import {priceDelimiter} from "../../../components/reboot/ProductCard";
 import {mainState} from "../../../lib/store/main";
-import Image from "next/image";
+import {Image} from "antd";
+import 'antd/dist/antd.css'
 
-
-// TODO: удалить 106 видов тканей
 
 const minPrice = fp.minBy((item) => {
     const {price, sale_percentage} = fp.get('bed_prices_id', item);
@@ -149,8 +148,8 @@ const BedItem = (props) => {
             <div className="container product__grid">
                 <div className="product__img" style={{position: 'relative', width: '100%', height: '100%'}}>
                     <Image
-                        layout='fill'
-                        objectFit='contain'
+                        // layout='fill'
+                        // objectFit='contain'
                         src={`${process.env.serverUrl}${fp.get('image.id', props)}`}
                         alt={fp.get('image.title', props)}/>
                 </div>
