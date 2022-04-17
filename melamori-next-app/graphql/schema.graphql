@@ -38,6 +38,7 @@ type Query {
     bed_collection_additional_options(filter: bed_collection_additional_options_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [bed_collection_additional_options]
     bed_collection_additional_options_aggregated(filter: bed_collection_additional_options_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [bed_collection_additional_options_aggregated]
     bed_collection_additional_options_by_id(id: ID!): bed_collection_additional_options
+    bed_collection_aggregated(filter: bed_collection_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [bed_collection_aggregated]
     bed_collection_bed_prices(filter: bed_collection_bed_prices_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [bed_collection_bed_prices]
     bed_collection_bed_prices_aggregated(filter: bed_collection_bed_prices_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [bed_collection_bed_prices_aggregated]
     bed_collection_bed_prices_by_id(id: ID!): bed_collection_bed_prices
@@ -76,6 +77,7 @@ type Query {
     mattresses_accessories_additional_options(filter: mattresses_accessories_additional_options_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses_accessories_additional_options]
     mattresses_accessories_additional_options_aggregated(filter: mattresses_accessories_additional_options_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [mattresses_accessories_additional_options_aggregated]
     mattresses_accessories_additional_options_by_id(id: ID!): mattresses_accessories_additional_options
+    mattresses_accessories_aggregated(filter: mattresses_accessories_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [mattresses_accessories_aggregated]
     mattresses_accessories_by_id(id: ID!): mattresses_accessories
     mattresses_accessories_files(filter: mattresses_accessories_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses_accessories_files]
     mattresses_accessories_files_aggregated(filter: mattresses_accessories_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [mattresses_accessories_files_aggregated]
@@ -83,6 +85,7 @@ type Query {
     mattresses_additional_options(filter: mattresses_additional_options_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses_additional_options]
     mattresses_additional_options_aggregated(filter: mattresses_additional_options_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [mattresses_additional_options_aggregated]
     mattresses_additional_options_by_id(id: ID!): mattresses_additional_options
+    mattresses_aggregated(filter: mattresses_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [mattresses_aggregated]
     mattresses_by_id(id: ID!): mattresses
     mattresses_files(filter: mattresses_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses_files]
     mattresses_files_aggregated(filter: mattresses_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [mattresses_files_aggregated]
@@ -119,6 +122,7 @@ type Query {
     soft_furniture_additional_options(filter: soft_furniture_additional_options_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [soft_furniture_additional_options]
     soft_furniture_additional_options_aggregated(filter: soft_furniture_additional_options_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [soft_furniture_additional_options_aggregated]
     soft_furniture_additional_options_by_id(id: ID!): soft_furniture_additional_options
+    soft_furniture_aggregated(filter: soft_furniture_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [soft_furniture_aggregated]
     soft_furniture_by_id(id: ID!): soft_furniture
     soft_furniture_files(filter: soft_furniture_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [soft_furniture_files]
     soft_furniture_files_aggregated(filter: soft_furniture_files_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [soft_furniture_files_aggregated]
@@ -238,6 +242,7 @@ type bed_collection {
     image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
     images(filter: bed_collection_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [bed_collection_files]
     price_list(filter: bed_collection_bed_prices_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [bed_collection_bed_prices]
+    sale_remaining: Int
     "Статус заполнения карточки товара. Черновик - недозаполненная карточка, опубликовано - карточка готова к отображению на сайте, в архиве - карточка помещена в архив по причине прекращения производства товара."
     status: String!
     title: String!
@@ -265,6 +270,22 @@ type bed_collection_additional_options_aggregated {
 
 type bed_collection_additional_options_aggregated_fields {
     id: Float
+}
+
+type bed_collection_aggregated {
+    avg: bed_collection_aggregated_fields
+    avgDistinct: bed_collection_aggregated_fields
+    count: bed_collection_aggregated_fields
+    countDistinct: bed_collection_aggregated_fields
+    group: JSON
+    max: bed_collection_aggregated_fields
+    min: bed_collection_aggregated_fields
+    sum: bed_collection_aggregated_fields
+    sumDistinct: bed_collection_aggregated_fields
+}
+
+type bed_collection_aggregated_fields {
+    sale_remaining: Float
 }
 
 type bed_collection_bed_prices {
@@ -538,6 +559,7 @@ type mattresses {
     materials(filter: mattresses_mattresses_materials_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses_mattresses_materials]
     other_hardness: String
     price_list(filter: mattresses_mattresses_prices_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses_mattresses_prices]
+    sale_remaining: Int
     sleep_place_weight: String
     status: String!
     title: String!
@@ -559,6 +581,7 @@ type mattresses_accessories {
     image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
     images(filter: mattresses_accessories_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses_accessories_files]
     price_list(filter: mattresses_accessories_accessories_prices_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses_accessories_accessories_prices]
+    sale_remaining: Int
     status: String!
     title: String!
     user_created: String
@@ -609,6 +632,22 @@ type mattresses_accessories_additional_options_aggregated_fields {
     id: Float
 }
 
+type mattresses_accessories_aggregated {
+    avg: mattresses_accessories_aggregated_fields
+    avgDistinct: mattresses_accessories_aggregated_fields
+    count: mattresses_accessories_aggregated_fields
+    countDistinct: mattresses_accessories_aggregated_fields
+    group: JSON
+    max: mattresses_accessories_aggregated_fields
+    min: mattresses_accessories_aggregated_fields
+    sum: mattresses_accessories_aggregated_fields
+    sumDistinct: mattresses_accessories_aggregated_fields
+}
+
+type mattresses_accessories_aggregated_fields {
+    sale_remaining: Float
+}
+
 type mattresses_accessories_files {
     directus_files_id(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
     id: ID
@@ -651,6 +690,22 @@ type mattresses_additional_options_aggregated {
 
 type mattresses_additional_options_aggregated_fields {
     id: Float
+}
+
+type mattresses_aggregated {
+    avg: mattresses_aggregated_fields
+    avgDistinct: mattresses_aggregated_fields
+    count: mattresses_aggregated_fields
+    countDistinct: mattresses_aggregated_fields
+    group: JSON
+    max: mattresses_aggregated_fields
+    min: mattresses_aggregated_fields
+    sum: mattresses_aggregated_fields
+    sumDistinct: mattresses_aggregated_fields
+}
+
+type mattresses_aggregated_fields {
+    sale_remaining: Float
 }
 
 type mattresses_files {
@@ -894,6 +949,7 @@ type soft_furniture {
     image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
     images(filter: soft_furniture_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [soft_furniture_files]
     price_list(filter: soft_furniture_soft_furniture_prices_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [soft_furniture_soft_furniture_prices]
+    sale_remaining: Int
     status: String!
     title: String!
     user_created: String
@@ -920,6 +976,22 @@ type soft_furniture_additional_options_aggregated {
 
 type soft_furniture_additional_options_aggregated_fields {
     id: Float
+}
+
+type soft_furniture_aggregated {
+    avg: soft_furniture_aggregated_fields
+    avgDistinct: soft_furniture_aggregated_fields
+    count: soft_furniture_aggregated_fields
+    countDistinct: soft_furniture_aggregated_fields
+    group: JSON
+    max: soft_furniture_aggregated_fields
+    min: soft_furniture_aggregated_fields
+    sum: soft_furniture_aggregated_fields
+    sumDistinct: soft_furniture_aggregated_fields
+}
+
+type soft_furniture_aggregated_fields {
+    sale_remaining: Float
 }
 
 type soft_furniture_files {
@@ -1105,6 +1177,7 @@ input bed_collection_filter {
     image: directus_files_filter
     images: bed_collection_files_filter
     price_list: bed_collection_bed_prices_filter
+    sale_remaining: number_filter_operators
     status: string_filter_operators
     title: string_filter_operators
     user_created: string_filter_operators
@@ -1385,6 +1458,7 @@ input mattresses_accessories_filter {
     image: directus_files_filter
     images: mattresses_accessories_files_filter
     price_list: mattresses_accessories_accessories_prices_filter
+    sale_remaining: number_filter_operators
     status: string_filter_operators
     title: string_filter_operators
     user_created: string_filter_operators
@@ -1425,6 +1499,7 @@ input mattresses_filter {
     materials: mattresses_mattresses_materials_filter
     other_hardness: string_filter_operators
     price_list: mattresses_mattresses_prices_filter
+    sale_remaining: number_filter_operators
     sleep_place_weight: string_filter_operators
     status: string_filter_operators
     title: string_filter_operators
@@ -1573,6 +1648,7 @@ input soft_furniture_filter {
     image: directus_files_filter
     images: soft_furniture_files_filter
     price_list: soft_furniture_soft_furniture_prices_filter
+    sale_remaining: number_filter_operators
     status: string_filter_operators
     title: string_filter_operators
     user_created: string_filter_operators

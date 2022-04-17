@@ -20,6 +20,7 @@ query GET_BY_MATTRESS_ID(
         hardness
         height
         id
+        sale_remaining
         image{
             id
             title

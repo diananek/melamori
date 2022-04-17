@@ -25,9 +25,9 @@ export const bedMapper = (collection, price_collection) => fp.pipe(
             ...item,
             price_list: fp.minBy(
                 (item) => {
-                    const {price, sale_percentage} = fp.get(price_collection, item);
+                    const {price, sale_percentage, status} = fp.get(price_collection, item);
 
-                    return priceResult({price, sale_percentage})
+                    return status === 'active' ? priceResult({price, sale_percentage}): price
                 },
                 item.price_list) || null
         }))

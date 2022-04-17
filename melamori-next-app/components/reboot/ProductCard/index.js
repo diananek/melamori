@@ -64,6 +64,7 @@ export const ProductCard = ({
     const pl = item.price_list[types.price];
 
     const sale_percentage = fp.get('sale_percentage', pl)
+    const active = fp.get('status', pl)
     const price = fp.get('price', pl)
 
     // const sizes = fp.get(`price_list.${types.price}.${types.size}`, item);
@@ -89,7 +90,7 @@ export const ProductCard = ({
                     aria-label={'favorite'}
                     onClick={() => dp(actions.addToFavorites(item))}
                 />
-                {sale_percentage && <div className="product-card__discount">
+                {active=== 'active' && <div className="product-card__discount">
                     -{sale_percentage}%
                 </div>}
             </div>
@@ -100,10 +101,10 @@ export const ProductCard = ({
                         ₽
                     </span>
                 </div>
-                {sale_percentage && <div className="product-card__price product-card__price_old">
+                {active=== 'active' && <div className="product-card__price product-card__price_old">
                     {priceDelimiter(price)}
                 </div>}
-                {sale_percentage && <div className="product-card__discount">
+                {active=== 'active' && <div className="product-card__discount">
                     -{sale_percentage}%
                 </div>}
                 {/*<div className="product-card__size">*/}

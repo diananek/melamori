@@ -18,6 +18,7 @@ query GET_SOFA_BY_ID (
             id
             title
         }
+        sale_remaining
         price_list {
             soft_furniture_prices_id{
                 id

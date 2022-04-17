@@ -20,6 +20,7 @@ query GET_BED_BY_ID (
             title
             id
         }
+        sale_remaining
         price_list(limit: -1) {
             id
             bed_prices_id {

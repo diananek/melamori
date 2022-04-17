@@ -190,7 +190,7 @@ const MattressesId = (props) => {
                                         ₽
                                     </span>
                                 </div>
-                                {calcPrice.sale_percentage > 0 && <>
+                                {(calcPrice.sale_percentage > 0 && calcPrice.status === 'active') && <>
                                     <div className="product__price price price_old">
                                         {priceDelimiter(pricing)}
                                     </div>
@@ -198,6 +198,9 @@ const MattressesId = (props) => {
                                         -{calcPrice.sale_percentage}%
                                     </div>
                                 </>}
+                            </div>
+                            <div className={'product__prices'} style={{ marginTop: '80px'}}>
+                                {props.sale_remaining > 0 && `Осталось по акции: ${props.sale_remaining}`}
                             </div>
                             <div className="product__actions">
                                 <button className="product__btn" type={'submit'}>

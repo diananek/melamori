@@ -12,10 +12,10 @@ export const Slider = () => {
             const ele = document.querySelector('.page__offers');
 
             if (ele) {
-                let pos = { top: 0, left: 0, x: 0, y: 0 };
+                let pos = {top: 0, left: 0, x: 0, y: 0};
 
 
-                const mouseDownHandler = function(e) {
+                const mouseDownHandler = function (e) {
                     // Change the cursor and prevent user from selecting the text
                     ele.style.cursor = 'grabbing';
                     ele.style.userSelect = 'none';
@@ -32,7 +32,7 @@ export const Slider = () => {
                     document.addEventListener('mouseup', mouseUpHandler);
                 };
 
-                const mouseMoveHandler = function(e) {
+                const mouseMoveHandler = function (e) {
                     // How far the mouse has been moved
                     const dx = e.clientX - pos.x;
                     const dy = e.clientY - pos.y;
@@ -42,7 +42,7 @@ export const Slider = () => {
                     ele.scrollLeft = pos.left - dx;
                 };
 
-                const mouseUpHandler = function() {
+                const mouseUpHandler = function () {
                     document.removeEventListener('mousemove', mouseMoveHandler);
                     document.removeEventListener('mouseup', mouseUpHandler);
 
@@ -52,6 +52,7 @@ export const Slider = () => {
                 ele.addEventListener('mousedown', mouseDownHandler);
             }
         }
+
         offersScroll()
     }, [])
 
@@ -61,11 +62,11 @@ export const Slider = () => {
     const [pre, setPre] = useState(null);
 
     useEffect(() => {
-        const unsubscribe = scrollXProgress.onChange((s) => s < 0.1? setSpeed(1): s > 0.9 && setSpeed(-1))
+        const unsubscribe = scrollXProgress.onChange((s) => s < 0.1 ? setSpeed(1) : s > 0.9 && setSpeed(-1))
 
         const s = setInterval(() => {
             wrapper.current.scrollBy(speed, 0)
-        }, 50);
+        }, 25);
 
         return () => {
             clearInterval(s)
