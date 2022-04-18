@@ -112,6 +112,3 @@ export const Footer = () => {
         </footer>
     );
 };
-
-
-// TODO: цвет ссылки на инсту.
