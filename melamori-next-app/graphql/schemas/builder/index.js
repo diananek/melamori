@@ -1,35 +1,53 @@
+import fp from "lodash/fp";
 
 
-// export const calculationQuery = () => {
-//
-//     const mattresses = []
-//
-//     const QUERY = `
-//         query CALCULATION {
-//             ${mattresses.map((i) => `
-//                 mattresses_by_id(
-//                     id: "c94f26b2-3aa9-4915-95a7-8ce0d98662d9"
-//                 ){
-//                     price_list (
-//                         filter: {
-//                             mattresses_prices_id: {
-//                                 id: {
-//                                     _eq: "e930af07-9a08-4d34-9ec9-0063778121a9"
-//                                 }
-//                             }
-//                         }
-//                     ) {
-//                         mattresses_prices_id {
-//                             price
-//                             sale_percentage
-//                         }
-//                     }
-//                 }
-//             `)}
-//         }
-//     `
-//
-//     return [
-//         QUERY
-//     ]
-// }
+export const calculationQuery = (input) => {
+
+    const grouped = fp.groupBy('item_price_id.price[0].collection', input.items_prices_relation)
+
+    const {bed_prices, mattresses_prices} = grouped
+
+    const QUERY = `
+        query CALCULATION {
+            ${mattresses_prices.map((i) => `
+                mattresses_prices_by_id(id: "${i.item_price_id.price[0].item}"){
+                    id
+                    price
+                    sale_percentage
+                }
+                ${i.item_price_id.choosen_additional_options.map((i) => `
+                    item_price_additional_options_by_id(id: ${i}){
+                        id
+                        additional_options_id{
+                            price
+                            percentage
+                        }
+                    }
+                `)}
+            `)}
+            ${bed_prices.map((i) => `
+                mattresses_prices_by_id(id: "${i.item_price_id.price[0].item}"){
+                    id
+                    price
+                    sale_percentage
+                }
+                ${i.item_price_id.choosen_additional_options.map((i) => `
+                    item_price_additional_options_by_id(id: ${i}){
+                        id
+                        additional_options_id{
+                            price
+                            percentage
+                        }
+                    }
+                `)}
+            `)}
+            
+        }
+    `
+    console.log(QUERY)
+
+    return [
+        QUERY,
+        grouped
+    ]
+}

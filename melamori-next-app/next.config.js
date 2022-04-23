@@ -76,13 +76,13 @@ const withGQL = (nextConfig = {}) => {
 
 const composed = (phase) => {
     const plugins = [
-        withGQL,
+        withGQL
     ]
     if (phase === PHASE_DEVELOPMENT_SERVER)
         return composer(plugins)
     else {
         return composer([
-            ...plugins,
+            ...plugins
             // [withPWA, pwaConfig]
         ])
     }
@@ -96,9 +96,10 @@ const nextConfig = (phase) => ({
         minimumCacheTTL: 0,
         domains: [
             'service.melamori-mebel.ru'
-        ],
+        ]
     },
     env: {
+        DIRECTUS_KEY: '037edf56-74fa-4e5d-aa89-d97798182198',
         serverUrl: 'https://service.melamori-mebel.ru/assets/',
         NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID: 'GTM-PLMPHN2',
         NEXT_PUBLIC_IS_DEV: phase === PHASE_DEVELOPMENT_SERVER

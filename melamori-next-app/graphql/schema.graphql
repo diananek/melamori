@@ -10,21 +10,246 @@ union item_price_price_item_union = accessories_prices | bed_prices | mattresses
 union main_page_popular_item_union = bed_collection | mattresses | mattresses_accessories | soft_furniture
 
 type Mutation {
+    create_accessories_prices_item(data: create_accessories_prices_input!): accessories_prices
+    create_accessories_prices_items(data: [create_accessories_prices_input!], filter: accessories_prices_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [accessories_prices]
+    create_accessories_sizes_item(data: create_accessories_sizes_input!): accessories_sizes
+    create_accessories_sizes_items(data: [create_accessories_sizes_input!], filter: accessories_sizes_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [accessories_sizes]
+    create_additional_options_item(data: create_additional_options_input!): additional_options
+    create_additional_options_items(data: [create_additional_options_input!], filter: additional_options_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [additional_options]
+    create_bed_collection_additional_options_item(data: create_bed_collection_additional_options_input!): bed_collection_additional_options
+    create_bed_collection_additional_options_items(data: [create_bed_collection_additional_options_input!], filter: bed_collection_additional_options_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [bed_collection_additional_options]
+    create_bed_collection_bed_prices_item(data: create_bed_collection_bed_prices_input!): bed_collection_bed_prices
+    create_bed_collection_bed_prices_items(data: [create_bed_collection_bed_prices_input!], filter: bed_collection_bed_prices_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [bed_collection_bed_prices]
+    create_bed_collection_files_item(data: create_bed_collection_files_input!): bed_collection_files
+    create_bed_collection_files_items(data: [create_bed_collection_files_input!], filter: bed_collection_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [bed_collection_files]
+    create_bed_collection_item(data: create_bed_collection_input!): bed_collection
+    create_bed_collection_items(data: [create_bed_collection_input!], filter: bed_collection_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [bed_collection]
+    create_bed_prices_item(data: create_bed_prices_input!): bed_prices
+    create_bed_prices_items(data: [create_bed_prices_input!], filter: bed_prices_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [bed_prices]
+    create_bed_sizes_item(data: create_bed_sizes_input!): bed_sizes
+    create_bed_sizes_items(data: [create_bed_sizes_input!], filter: bed_sizes_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [bed_sizes]
+    create_cloth_category_item(data: create_cloth_category_input!): cloth_category
+    create_cloth_category_items(data: [create_cloth_category_input!], filter: cloth_category_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [cloth_category]
+    create_company_contacts_item(data: create_company_contacts_input!): company_contacts
+    create_company_contacts_items(data: [create_company_contacts_input!], filter: company_contacts_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [company_contacts]
     create_item_price_additional_options_item(data: create_item_price_additional_options_input!): item_price_additional_options
     create_item_price_additional_options_items(data: [create_item_price_additional_options_input!], filter: item_price_additional_options_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [item_price_additional_options]
     create_item_price_item(data: create_item_price_input!): item_price
     create_item_price_items(data: [create_item_price_input!], filter: item_price_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [item_price]
     create_item_price_price_item(data: create_item_price_price_input!): item_price_price
     create_item_price_price_items(data: [create_item_price_price_input!], filter: item_price_price_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [item_price_price]
+    create_main_page_popular_item(data: create_main_page_popular_input!): main_page_popular
+    create_main_page_popular_items(data: [create_main_page_popular_input!], filter: main_page_popular_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [main_page_popular]
+    create_matresses_sizes_item(data: create_matresses_sizes_input!): matresses_sizes
+    create_matresses_sizes_items(data: [create_matresses_sizes_input!], filter: matresses_sizes_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [matresses_sizes]
+    create_mattresses_accessories_accessories_prices_item(data: create_mattresses_accessories_accessories_prices_input!): mattresses_accessories_accessories_prices
+    create_mattresses_accessories_accessories_prices_items(data: [create_mattresses_accessories_accessories_prices_input!], filter: mattresses_accessories_accessories_prices_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses_accessories_accessories_prices]
+    create_mattresses_accessories_additional_options_item(data: create_mattresses_accessories_additional_options_input!): mattresses_accessories_additional_options
+    create_mattresses_accessories_additional_options_items(data: [create_mattresses_accessories_additional_options_input!], filter: mattresses_accessories_additional_options_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses_accessories_additional_options]
+    create_mattresses_accessories_files_item(data: create_mattresses_accessories_files_input!): mattresses_accessories_files
+    create_mattresses_accessories_files_items(data: [create_mattresses_accessories_files_input!], filter: mattresses_accessories_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses_accessories_files]
+    create_mattresses_accessories_item(data: create_mattresses_accessories_input!): mattresses_accessories
+    create_mattresses_accessories_items(data: [create_mattresses_accessories_input!], filter: mattresses_accessories_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses_accessories]
+    create_mattresses_additional_options_item(data: create_mattresses_additional_options_input!): mattresses_additional_options
+    create_mattresses_additional_options_items(data: [create_mattresses_additional_options_input!], filter: mattresses_additional_options_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses_additional_options]
+    create_mattresses_files_item(data: create_mattresses_files_input!): mattresses_files
+    create_mattresses_files_items(data: [create_mattresses_files_input!], filter: mattresses_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses_files]
+    create_mattresses_item(data: create_mattresses_input!): mattresses
+    create_mattresses_items(data: [create_mattresses_input!], filter: mattresses_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses]
+    create_mattresses_materials_item(data: create_mattresses_materials_input!): mattresses_materials
+    create_mattresses_materials_items(data: [create_mattresses_materials_input!], filter: mattresses_materials_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses_materials]
+    create_mattresses_mattresses_materials_item(data: create_mattresses_mattresses_materials_input!): mattresses_mattresses_materials
+    create_mattresses_mattresses_materials_items(data: [create_mattresses_mattresses_materials_input!], filter: mattresses_mattresses_materials_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses_mattresses_materials]
+    create_mattresses_mattresses_prices_item(data: create_mattresses_mattresses_prices_input!): mattresses_mattresses_prices
+    create_mattresses_mattresses_prices_items(data: [create_mattresses_mattresses_prices_input!], filter: mattresses_mattresses_prices_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses_mattresses_prices]
+    create_mattresses_prices_item(data: create_mattresses_prices_input!): mattresses_prices
+    create_mattresses_prices_items(data: [create_mattresses_prices_input!], filter: mattresses_prices_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses_prices]
     create_orders_item(data: create_orders_input!): orders
     create_orders_item_price_item(data: create_orders_item_price_input!): orders_item_price
     create_orders_item_price_items(data: [create_orders_item_price_input!], filter: orders_item_price_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [orders_item_price]
     create_orders_items(data: [create_orders_input!], filter: orders_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [orders]
     create_orders_promotion_item(data: create_orders_promotion_input!): orders_promotion
     create_orders_promotion_items(data: [create_orders_promotion_input!], filter: orders_promotion_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [orders_promotion]
+    create_promotion_item(data: create_promotion_input!): promotion
+    create_promotion_items(data: [create_promotion_input!], filter: promotion_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [promotion]
+    create_sofa_collection_additional_options_item(data: create_sofa_collection_additional_options_input!): sofa_collection_additional_options
+    create_sofa_collection_additional_options_items(data: [create_sofa_collection_additional_options_input!], filter: sofa_collection_additional_options_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [sofa_collection_additional_options]
+    create_sofa_collection_sofa_prices_item(data: create_sofa_collection_sofa_prices_input!): sofa_collection_sofa_prices
+    create_sofa_collection_sofa_prices_items(data: [create_sofa_collection_sofa_prices_input!], filter: sofa_collection_sofa_prices_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [sofa_collection_sofa_prices]
+    create_soft_furniture_additional_options_item(data: create_soft_furniture_additional_options_input!): soft_furniture_additional_options
+    create_soft_furniture_additional_options_items(data: [create_soft_furniture_additional_options_input!], filter: soft_furniture_additional_options_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [soft_furniture_additional_options]
+    create_soft_furniture_files_item(data: create_soft_furniture_files_input!): soft_furniture_files
+    create_soft_furniture_files_items(data: [create_soft_furniture_files_input!], filter: soft_furniture_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [soft_furniture_files]
+    create_soft_furniture_item(data: create_soft_furniture_input!): soft_furniture
+    create_soft_furniture_items(data: [create_soft_furniture_input!], filter: soft_furniture_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [soft_furniture]
+    create_soft_furniture_prices_item(data: create_soft_furniture_prices_input!): soft_furniture_prices
+    create_soft_furniture_prices_items(data: [create_soft_furniture_prices_input!], filter: soft_furniture_prices_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [soft_furniture_prices]
+    create_soft_furniture_sizes_item(data: create_soft_furniture_sizes_input!): soft_furniture_sizes
+    create_soft_furniture_sizes_items(data: [create_soft_furniture_sizes_input!], filter: soft_furniture_sizes_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [soft_furniture_sizes]
+    create_soft_furniture_soft_furniture_prices_item(data: create_soft_furniture_soft_furniture_prices_input!): soft_furniture_soft_furniture_prices
+    create_soft_furniture_soft_furniture_prices_items(data: [create_soft_furniture_soft_furniture_prices_input!], filter: soft_furniture_soft_furniture_prices_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [soft_furniture_soft_furniture_prices]
+    delete_accessories_prices_item(id: ID!): delete_one
+    delete_accessories_prices_items(ids: [ID]!): delete_many
+    delete_accessories_sizes_item(id: ID!): delete_one
+    delete_accessories_sizes_items(ids: [ID]!): delete_many
+    delete_additional_options_item(id: ID!): delete_one
+    delete_additional_options_items(ids: [ID]!): delete_many
+    delete_bed_collection_additional_options_item(id: ID!): delete_one
+    delete_bed_collection_additional_options_items(ids: [ID]!): delete_many
+    delete_bed_collection_bed_prices_item(id: ID!): delete_one
+    delete_bed_collection_bed_prices_items(ids: [ID]!): delete_many
+    delete_bed_collection_files_item(id: ID!): delete_one
+    delete_bed_collection_files_items(ids: [ID]!): delete_many
+    delete_bed_collection_item(id: ID!): delete_one
+    delete_bed_collection_items(ids: [ID]!): delete_many
+    delete_bed_prices_item(id: ID!): delete_one
+    delete_bed_prices_items(ids: [ID]!): delete_many
+    delete_bed_sizes_item(id: ID!): delete_one
+    delete_bed_sizes_items(ids: [ID]!): delete_many
+    delete_cloth_category_item(id: ID!): delete_one
+    delete_cloth_category_items(ids: [ID]!): delete_many
+    delete_company_contacts_item(id: ID!): delete_one
+    delete_company_contacts_items(ids: [ID]!): delete_many
+    delete_item_price_additional_options_item(id: ID!): delete_one
+    delete_item_price_additional_options_items(ids: [ID]!): delete_many
+    delete_item_price_item(id: ID!): delete_one
+    delete_item_price_items(ids: [ID]!): delete_many
+    delete_item_price_price_item(id: ID!): delete_one
+    delete_item_price_price_items(ids: [ID]!): delete_many
+    delete_main_page_popular_item(id: ID!): delete_one
+    delete_main_page_popular_items(ids: [ID]!): delete_many
+    delete_matresses_sizes_item(id: ID!): delete_one
+    delete_matresses_sizes_items(ids: [ID]!): delete_many
+    delete_mattresses_accessories_accessories_prices_item(id: ID!): delete_one
+    delete_mattresses_accessories_accessories_prices_items(ids: [ID]!): delete_many
+    delete_mattresses_accessories_additional_options_item(id: ID!): delete_one
+    delete_mattresses_accessories_additional_options_items(ids: [ID]!): delete_many
+    delete_mattresses_accessories_files_item(id: ID!): delete_one
+    delete_mattresses_accessories_files_items(ids: [ID]!): delete_many
+    delete_mattresses_accessories_item(id: ID!): delete_one
+    delete_mattresses_accessories_items(ids: [ID]!): delete_many
+    delete_mattresses_additional_options_item(id: ID!): delete_one
+    delete_mattresses_additional_options_items(ids: [ID]!): delete_many
+    delete_mattresses_files_item(id: ID!): delete_one
+    delete_mattresses_files_items(ids: [ID]!): delete_many
+    delete_mattresses_item(id: ID!): delete_one
+    delete_mattresses_items(ids: [ID]!): delete_many
+    delete_mattresses_materials_item(id: ID!): delete_one
+    delete_mattresses_materials_items(ids: [ID]!): delete_many
+    delete_mattresses_mattresses_materials_item(id: ID!): delete_one
+    delete_mattresses_mattresses_materials_items(ids: [ID]!): delete_many
+    delete_mattresses_mattresses_prices_item(id: ID!): delete_one
+    delete_mattresses_mattresses_prices_items(ids: [ID]!): delete_many
+    delete_mattresses_prices_item(id: ID!): delete_one
+    delete_mattresses_prices_items(ids: [ID]!): delete_many
+    delete_orders_item(id: ID!): delete_one
+    delete_orders_item_price_item(id: ID!): delete_one
+    delete_orders_item_price_items(ids: [ID]!): delete_many
+    delete_orders_items(ids: [ID]!): delete_many
+    delete_orders_promotion_item(id: ID!): delete_one
+    delete_orders_promotion_items(ids: [ID]!): delete_many
+    delete_promotion_item(id: ID!): delete_one
+    delete_promotion_items(ids: [ID]!): delete_many
+    delete_sofa_collection_additional_options_item(id: ID!): delete_one
+    delete_sofa_collection_additional_options_items(ids: [ID]!): delete_many
+    delete_sofa_collection_sofa_prices_item(id: ID!): delete_one
+    delete_sofa_collection_sofa_prices_items(ids: [ID]!): delete_many
+    delete_soft_furniture_additional_options_item(id: ID!): delete_one
+    delete_soft_furniture_additional_options_items(ids: [ID]!): delete_many
+    delete_soft_furniture_files_item(id: ID!): delete_one
+    delete_soft_furniture_files_items(ids: [ID]!): delete_many
+    delete_soft_furniture_item(id: ID!): delete_one
+    delete_soft_furniture_items(ids: [ID]!): delete_many
+    delete_soft_furniture_prices_item(id: ID!): delete_one
+    delete_soft_furniture_prices_items(ids: [ID]!): delete_many
+    delete_soft_furniture_sizes_item(id: ID!): delete_one
+    delete_soft_furniture_sizes_items(ids: [ID]!): delete_many
+    delete_soft_furniture_soft_furniture_prices_item(id: ID!): delete_one
+    delete_soft_furniture_soft_furniture_prices_items(ids: [ID]!): delete_many
+    update_SEO(data: update_SEO_input!): SEO
+    update_accessories_prices_item(data: update_accessories_prices_input!, id: ID!): accessories_prices
+    update_accessories_prices_items(data: update_accessories_prices_input!, filter: accessories_prices_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [accessories_prices]
+    update_accessories_sizes_item(data: update_accessories_sizes_input!, id: ID!): accessories_sizes
+    update_accessories_sizes_items(data: update_accessories_sizes_input!, filter: accessories_sizes_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [accessories_sizes]
+    update_additional_options_item(data: update_additional_options_input!, id: ID!): additional_options
+    update_additional_options_items(data: update_additional_options_input!, filter: additional_options_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [additional_options]
+    update_bed_collection_additional_options_item(data: update_bed_collection_additional_options_input!, id: ID!): bed_collection_additional_options
+    update_bed_collection_additional_options_items(data: update_bed_collection_additional_options_input!, filter: bed_collection_additional_options_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [bed_collection_additional_options]
+    update_bed_collection_bed_prices_item(data: update_bed_collection_bed_prices_input!, id: ID!): bed_collection_bed_prices
+    update_bed_collection_bed_prices_items(data: update_bed_collection_bed_prices_input!, filter: bed_collection_bed_prices_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [bed_collection_bed_prices]
+    update_bed_collection_files_item(data: update_bed_collection_files_input!, id: ID!): bed_collection_files
+    update_bed_collection_files_items(data: update_bed_collection_files_input!, filter: bed_collection_files_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [bed_collection_files]
+    update_bed_collection_item(data: update_bed_collection_input!, id: ID!): bed_collection
+    update_bed_collection_items(data: update_bed_collection_input!, filter: bed_collection_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [bed_collection]
+    update_bed_prices_item(data: update_bed_prices_input!, id: ID!): bed_prices
+    update_bed_prices_items(data: update_bed_prices_input!, filter: bed_prices_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [bed_prices]
+    update_bed_sizes_item(data: update_bed_sizes_input!, id: ID!): bed_sizes
+    update_bed_sizes_items(data: update_bed_sizes_input!, filter: bed_sizes_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [bed_sizes]
+    update_cloth_category_item(data: update_cloth_category_input!, id: ID!): cloth_category
+    update_cloth_category_items(data: update_cloth_category_input!, filter: cloth_category_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [cloth_category]
+    update_company_contacts_item(data: update_company_contacts_input!, id: ID!): company_contacts
+    update_company_contacts_items(data: update_company_contacts_input!, filter: company_contacts_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [company_contacts]
+    update_item_price_additional_options_item(data: update_item_price_additional_options_input!, id: ID!): item_price_additional_options
+    update_item_price_additional_options_items(data: update_item_price_additional_options_input!, filter: item_price_additional_options_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [item_price_additional_options]
+    update_item_price_item(data: update_item_price_input!, id: ID!): item_price
+    update_item_price_items(data: update_item_price_input!, filter: item_price_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [item_price]
+    update_item_price_price_item(data: update_item_price_price_input!, id: ID!): item_price_price
+    update_item_price_price_items(data: update_item_price_price_input!, filter: item_price_price_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [item_price_price]
+    update_main_page(data: update_main_page_input!): main_page
+    update_main_page_popular_item(data: update_main_page_popular_input!, id: ID!): main_page_popular
+    update_main_page_popular_items(data: update_main_page_popular_input!, filter: main_page_popular_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [main_page_popular]
+    update_matresses_sizes_item(data: update_matresses_sizes_input!, id: ID!): matresses_sizes
+    update_matresses_sizes_items(data: update_matresses_sizes_input!, filter: matresses_sizes_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [matresses_sizes]
+    update_mattresses_accessories_accessories_prices_item(data: update_mattresses_accessories_accessories_prices_input!, id: ID!): mattresses_accessories_accessories_prices
+    update_mattresses_accessories_accessories_prices_items(data: update_mattresses_accessories_accessories_prices_input!, filter: mattresses_accessories_accessories_prices_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses_accessories_accessories_prices]
+    update_mattresses_accessories_additional_options_item(data: update_mattresses_accessories_additional_options_input!, id: ID!): mattresses_accessories_additional_options
+    update_mattresses_accessories_additional_options_items(data: update_mattresses_accessories_additional_options_input!, filter: mattresses_accessories_additional_options_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses_accessories_additional_options]
+    update_mattresses_accessories_files_item(data: update_mattresses_accessories_files_input!, id: ID!): mattresses_accessories_files
+    update_mattresses_accessories_files_items(data: update_mattresses_accessories_files_input!, filter: mattresses_accessories_files_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses_accessories_files]
+    update_mattresses_accessories_item(data: update_mattresses_accessories_input!, id: ID!): mattresses_accessories
+    update_mattresses_accessories_items(data: update_mattresses_accessories_input!, filter: mattresses_accessories_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses_accessories]
+    update_mattresses_additional_options_item(data: update_mattresses_additional_options_input!, id: ID!): mattresses_additional_options
+    update_mattresses_additional_options_items(data: update_mattresses_additional_options_input!, filter: mattresses_additional_options_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses_additional_options]
+    update_mattresses_files_item(data: update_mattresses_files_input!, id: ID!): mattresses_files
+    update_mattresses_files_items(data: update_mattresses_files_input!, filter: mattresses_files_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses_files]
+    update_mattresses_item(data: update_mattresses_input!, id: ID!): mattresses
+    update_mattresses_items(data: update_mattresses_input!, filter: mattresses_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses]
+    update_mattresses_materials_item(data: update_mattresses_materials_input!, id: ID!): mattresses_materials
+    update_mattresses_materials_items(data: update_mattresses_materials_input!, filter: mattresses_materials_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses_materials]
+    update_mattresses_mattresses_materials_item(data: update_mattresses_mattresses_materials_input!, id: ID!): mattresses_mattresses_materials
+    update_mattresses_mattresses_materials_items(data: update_mattresses_mattresses_materials_input!, filter: mattresses_mattresses_materials_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses_mattresses_materials]
+    update_mattresses_mattresses_prices_item(data: update_mattresses_mattresses_prices_input!, id: ID!): mattresses_mattresses_prices
+    update_mattresses_mattresses_prices_items(data: update_mattresses_mattresses_prices_input!, filter: mattresses_mattresses_prices_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses_mattresses_prices]
+    update_mattresses_prices_item(data: update_mattresses_prices_input!, id: ID!): mattresses_prices
+    update_mattresses_prices_items(data: update_mattresses_prices_input!, filter: mattresses_prices_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [mattresses_prices]
+    update_orders_item(data: update_orders_input!, id: ID!): orders
+    update_orders_item_price_item(data: update_orders_item_price_input!, id: ID!): orders_item_price
+    update_orders_item_price_items(data: update_orders_item_price_input!, filter: orders_item_price_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [orders_item_price]
+    update_orders_items(data: update_orders_input!, filter: orders_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [orders]
+    update_orders_promotion_item(data: update_orders_promotion_input!, id: ID!): orders_promotion
+    update_orders_promotion_items(data: update_orders_promotion_input!, filter: orders_promotion_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [orders_promotion]
+    update_promotion_item(data: update_promotion_input!, id: ID!): promotion
+    update_promotion_items(data: update_promotion_input!, filter: promotion_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [promotion]
+    update_sofa_collection_additional_options_item(data: update_sofa_collection_additional_options_input!, id: ID!): sofa_collection_additional_options
+    update_sofa_collection_additional_options_items(data: update_sofa_collection_additional_options_input!, filter: sofa_collection_additional_options_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [sofa_collection_additional_options]
+    update_sofa_collection_sofa_prices_item(data: update_sofa_collection_sofa_prices_input!, id: ID!): sofa_collection_sofa_prices
+    update_sofa_collection_sofa_prices_items(data: update_sofa_collection_sofa_prices_input!, filter: sofa_collection_sofa_prices_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [sofa_collection_sofa_prices]
+    update_soft_furniture_additional_options_item(data: update_soft_furniture_additional_options_input!, id: ID!): soft_furniture_additional_options
+    update_soft_furniture_additional_options_items(data: update_soft_furniture_additional_options_input!, filter: soft_furniture_additional_options_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [soft_furniture_additional_options]
+    update_soft_furniture_files_item(data: update_soft_furniture_files_input!, id: ID!): soft_furniture_files
+    update_soft_furniture_files_items(data: update_soft_furniture_files_input!, filter: soft_furniture_files_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [soft_furniture_files]
+    update_soft_furniture_item(data: update_soft_furniture_input!, id: ID!): soft_furniture
+    update_soft_furniture_items(data: update_soft_furniture_input!, filter: soft_furniture_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [soft_furniture]
+    update_soft_furniture_prices_item(data: update_soft_furniture_prices_input!, id: ID!): soft_furniture_prices
+    update_soft_furniture_prices_items(data: update_soft_furniture_prices_input!, filter: soft_furniture_prices_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [soft_furniture_prices]
+    update_soft_furniture_sizes_item(data: update_soft_furniture_sizes_input!, id: ID!): soft_furniture_sizes
+    update_soft_furniture_sizes_items(data: update_soft_furniture_sizes_input!, filter: soft_furniture_sizes_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [soft_furniture_sizes]
+    update_soft_furniture_soft_furniture_prices_item(data: update_soft_furniture_soft_furniture_prices_input!, id: ID!): soft_furniture_soft_furniture_prices
+    update_soft_furniture_soft_furniture_prices_items(data: update_soft_furniture_soft_furniture_prices_input!, filter: soft_furniture_soft_furniture_prices_filter, ids: [ID]!, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [soft_furniture_soft_furniture_prices]
 }
 
 type Query {
+    SEO: SEO
     accessories_prices(filter: accessories_prices_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [accessories_prices]
     accessories_prices_aggregated(filter: accessories_prices_filter, groupBy: [String], limit: Int, search: String, sort: [String]): [accessories_prices_aggregated]
     accessories_prices_by_id(id: ID!): accessories_prices
@@ -137,6 +362,15 @@ type Query {
     soft_furniture_soft_furniture_prices_by_id(id: ID!): soft_furniture_soft_furniture_prices
 }
 
+type SEO {
+    company_info: String
+    description: String
+    fabric_info: String
+    icon(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    id: ID
+    title: String
+}
+
 type accessories_prices {
     accessory_material_relation(filter: mattresses_materials_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): mattresses_materials
     accessory_size_relation(filter: accessories_sizes_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): accessories_sizes
@@ -149,8 +383,8 @@ type accessories_prices {
     price: Int!
     sale_percentage: Int
     status: String!
-    user_created: String
-    user_updated: String
+    user_created(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+    user_updated(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
 }
 
 type accessories_prices_aggregated {
@@ -178,8 +412,8 @@ type accessories_sizes {
     date_updated_func: datetime_functions
     id: ID
     length: String!
-    user_created: String
-    user_updated: String
+    user_created(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+    user_updated(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
     width: String!
 }
 
@@ -210,8 +444,8 @@ type additional_options {
     percentage: Int
     price: Int
     title: String!
-    user_created: String
-    user_updated: String
+    user_created(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+    user_updated(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
 }
 
 type additional_options_aggregated {
@@ -246,8 +480,8 @@ type bed_collection {
     "Статус заполнения карточки товара. Черновик - недозаполненная карточка, опубликовано - карточка готова к отображению на сайте, в архиве - карточка помещена в архив по причине прекращения производства товара."
     status: String!
     title: String!
-    user_created: String
-    user_updated: String
+    user_created(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+    user_updated(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
 }
 
 type bed_collection_additional_options {
@@ -344,8 +578,8 @@ type bed_prices {
     price: Int!
     sale_percentage: Int
     status: String!
-    user_created: String
-    user_updated: String
+    user_created(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+    user_updated(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
 }
 
 type bed_prices_aggregated {
@@ -374,8 +608,8 @@ type bed_sizes {
     id: ID
     length: String
     sleep_size: String!
-    user_created: String
-    user_updated: String
+    user_created(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+    user_updated(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
     width: String
 }
 
@@ -386,8 +620,8 @@ type cloth_category {
     date_updated: Date
     date_updated_func: datetime_functions
     id: ID
-    user_created: String
-    user_updated: String
+    user_created(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+    user_updated(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
 }
 
 type company_contacts {
@@ -398,8 +632,8 @@ type company_contacts {
     date_updated: Date
     date_updated_func: datetime_functions
     id: ID
-    user_created: String
-    user_updated: String
+    user_created(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+    user_updated(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
 }
 
 type datetime_functions {
@@ -413,6 +647,14 @@ type datetime_functions {
     year: Int
 }
 
+type delete_many {
+    ids: [ID]!
+}
+
+type delete_one {
+    id: ID!
+}
+
 type directus_files {
     charset: String
     description: String
@@ -421,22 +663,66 @@ type directus_files {
     filename_disk: String
     filename_download: String!
     filesize: Int
-    folder: String
+    folder(filter: directus_folders_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_folders
     height: Int
     id: ID
     location: String
     metadata: JSON
-    modified_by: String
+    modified_by(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
     modified_on: Date!
     modified_on_func: datetime_functions
     storage: String!
     tags: JSON
     title: String
     type: String
-    uploaded_by: String
+    uploaded_by(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
     uploaded_on: Date!
     uploaded_on_func: datetime_functions
     width: Int
+}
+
+type directus_folders {
+    id: ID
+    name: String!
+    parent(filter: directus_folders_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_folders
+}
+
+type directus_roles {
+    admin_access: Boolean!
+    app_access: Boolean!
+    description: String
+    enforce_tfa: Boolean!
+    icon: String!
+    id: ID
+    ip_access: [String]
+    name: String!
+    users(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [directus_users]
+}
+
+type directus_users {
+    auth_data: JSON
+    avatar(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+    description: String
+    email: String
+    email_notifications: Boolean
+    external_identifier: String
+    first_name: String
+    id: ID
+    language: String
+    last_access: Date
+    last_access_func: datetime_functions
+    last_name: String
+    last_page: String
+    location: String
+    password: String
+    provider: String!
+    role(filter: directus_roles_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_roles
+    status: String!
+    tags: JSON
+    tfa_secret: String
+    theme: String
+    title: String
+    token: String
 }
 
 type item_price {
@@ -447,8 +733,8 @@ type item_price {
     date_updated_func: datetime_functions
     id: ID
     price(filter: item_price_price_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [item_price_price]
-    user_created: String
-    user_updated: String
+    user_created(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+    user_updated(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
 }
 
 type item_price_additional_options {
@@ -503,8 +789,8 @@ type main_page {
     date_updated_func: datetime_functions
     id: ID
     popular(filter: main_page_popular_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [main_page_popular]
-    user_created: String
-    user_updated: String
+    user_created(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+    user_updated(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
 }
 
 type main_page_popular {
@@ -538,8 +824,8 @@ type matresses_sizes {
     diameter: String
     id: ID
     length: String
-    user_created: String
-    user_updated: String
+    user_created(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+    user_updated(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
     width: String
 }
 
@@ -563,8 +849,8 @@ type mattresses {
     sleep_place_weight: String
     status: String!
     title: String!
-    user_created: String
-    user_updated: String
+    user_created(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+    user_updated(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
 }
 
 type mattresses_accessories {
@@ -584,8 +870,8 @@ type mattresses_accessories {
     sale_remaining: Int
     status: String!
     title: String!
-    user_created: String
-    user_updated: String
+    user_created(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+    user_updated(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
 }
 
 type mattresses_accessories_accessories_prices {
@@ -740,8 +1026,8 @@ type mattresses_materials {
     image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
     material_type: String!
     title: String!
-    user_created: String
-    user_updated: String
+    user_created(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+    user_updated(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
 }
 
 type mattresses_mattresses_materials {
@@ -799,8 +1085,8 @@ type mattresses_prices {
     price: Int!
     sale_percentage: String
     status: String!
-    user_created: String
-    user_updated: String
+    user_created(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+    user_updated(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
 }
 
 type mattresses_prices_aggregated {
@@ -820,11 +1106,25 @@ type mattresses_prices_aggregated_fields {
 }
 
 type orders {
+    choosen_promotions(filter: orders_promotion_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [orders_promotion]
+    city: String
+    date_created: Date
+    date_created_func: datetime_functions
+    date_updated: Date
+    date_updated_func: datetime_functions
     id: ID
+    items_prices_relation(filter: orders_item_price_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [orders_item_price]
+    name: String
+    phone_number: String!
+    status: String!
+    user_created(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+    user_updated(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
 }
 
 type orders_item_price {
     id: ID
+    item_price_id(filter: item_price_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): item_price
+    orders_id(filter: orders_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): orders
 }
 
 type orders_item_price_aggregated {
@@ -845,6 +1145,8 @@ type orders_item_price_aggregated_fields {
 
 type orders_promotion {
     id: ID
+    orders_id(filter: orders_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): orders
+    promotion_id(filter: promotion_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): promotion
 }
 
 type orders_promotion_aggregated {
@@ -875,8 +1177,8 @@ type promotion {
     price: Int
     status: String!
     title: String!
-    user_created: String
-    user_updated: String
+    user_created(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+    user_updated(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
 }
 
 type promotion_aggregated {
@@ -952,8 +1254,8 @@ type soft_furniture {
     sale_remaining: Int
     status: String!
     title: String!
-    user_created: String
-    user_updated: String
+    user_created(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+    user_updated(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
 }
 
 type soft_furniture_additional_options {
@@ -1028,8 +1330,8 @@ type soft_furniture_prices {
     soft_furniture_relation(filter: soft_furniture_soft_furniture_prices_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [soft_furniture_soft_furniture_prices]
     soft_furniture_size_relation(filter: soft_furniture_sizes_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): soft_furniture_sizes
     status: String!
-    user_created: String
-    user_updated: String
+    user_created(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+    user_updated(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
 }
 
 type soft_furniture_prices_aggregated {
@@ -1058,8 +1360,8 @@ type soft_furniture_sizes {
     height: String
     id: ID
     length: String
-    user_created: String
-    user_updated: String
+    user_created(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
+    user_updated(filter: directus_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_users
     width: String
 }
 
@@ -1105,8 +1407,8 @@ input accessories_prices_filter {
     price: number_filter_operators
     sale_percentage: number_filter_operators
     status: string_filter_operators
-    user_created: string_filter_operators
-    user_updated: string_filter_operators
+    user_created: directus_users_filter
+    user_updated: directus_users_filter
 }
 
 input accessories_sizes_filter {
@@ -1118,8 +1420,8 @@ input accessories_sizes_filter {
     date_updated_func: datetime_function_filter_operators
     id: number_filter_operators
     length: string_filter_operators
-    user_created: string_filter_operators
-    user_updated: string_filter_operators
+    user_created: directus_users_filter
+    user_updated: directus_users_filter
     width: string_filter_operators
 }
 
@@ -1136,8 +1438,8 @@ input additional_options_filter {
     percentage: number_filter_operators
     price: number_filter_operators
     title: string_filter_operators
-    user_created: string_filter_operators
-    user_updated: string_filter_operators
+    user_created: directus_users_filter
+    user_updated: directus_users_filter
 }
 
 input bed_collection_additional_options_filter {
@@ -1180,8 +1482,8 @@ input bed_collection_filter {
     sale_remaining: number_filter_operators
     status: string_filter_operators
     title: string_filter_operators
-    user_created: string_filter_operators
-    user_updated: string_filter_operators
+    user_created: directus_users_filter
+    user_updated: directus_users_filter
 }
 
 input bed_prices_filter {
@@ -1198,8 +1500,8 @@ input bed_prices_filter {
     price: number_filter_operators
     sale_percentage: number_filter_operators
     status: string_filter_operators
-    user_created: string_filter_operators
-    user_updated: string_filter_operators
+    user_created: directus_users_filter
+    user_updated: directus_users_filter
 }
 
 input bed_sizes_filter {
@@ -1213,9 +1515,16 @@ input bed_sizes_filter {
     id: string_filter_operators
     length: string_filter_operators
     sleep_size: string_filter_operators
-    user_created: string_filter_operators
-    user_updated: string_filter_operators
+    user_created: directus_users_filter
+    user_updated: directus_users_filter
     width: string_filter_operators
+}
+
+input boolean_filter_operators {
+    _eq: Boolean
+    _neq: Boolean
+    _nnull: Boolean
+    _null: Boolean
 }
 
 input cloth_category_filter {
@@ -1227,8 +1536,8 @@ input cloth_category_filter {
     date_updated: date_filter_operators
     date_updated_func: datetime_function_filter_operators
     id: string_filter_operators
-    user_created: string_filter_operators
-    user_updated: string_filter_operators
+    user_created: directus_users_filter
+    user_updated: directus_users_filter
 }
 
 input company_contacts_filter {
@@ -1241,12 +1550,215 @@ input company_contacts_filter {
     date_updated: date_filter_operators
     date_updated_func: datetime_function_filter_operators
     id: string_filter_operators
-    user_created: string_filter_operators
-    user_updated: string_filter_operators
+    user_created: directus_users_filter
+    user_updated: directus_users_filter
+}
+
+input create_accessories_prices_input {
+    accessory_material_relation: create_mattresses_materials_input
+    accessory_size_relation: create_accessories_sizes_input
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    id: ID
+    mattresses_accessories_relation: [create_mattresses_accessories_accessories_prices_input]
+    price: Int!
+    sale_percentage: Int
+    status: String!
+    user_created: create_directus_users_input
+    user_updated: create_directus_users_input
+}
+
+input create_accessories_sizes_input {
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    id: ID
+    length: String!
+    user_created: create_directus_users_input
+    user_updated: create_directus_users_input
+    width: String!
+}
+
+input create_additional_options_input {
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    description: String
+    id: ID
+    option_type: String!
+    percentage: Int
+    price: Int
+    title: String!
+    user_created: create_directus_users_input
+    user_updated: create_directus_users_input
+}
+
+input create_bed_collection_additional_options_input {
+    additional_options_id: create_additional_options_input
+    bed_collection_id: create_bed_collection_input
+    id: ID
+}
+
+input create_bed_collection_bed_prices_input {
+    bed_collection_id: create_bed_collection_input
+    bed_prices_id: create_bed_prices_input
+    id: ID
+}
+
+input create_bed_collection_files_input {
+    bed_collection_id: create_bed_collection_input
+    directus_files_id: create_directus_files_input
+    id: ID
+}
+
+input create_bed_collection_input {
+    additional_options: [create_bed_collection_additional_options_input]
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    description: String
+    id: ID
+    image: create_directus_files_input
+    images: [create_bed_collection_files_input]
+    price_list: [create_bed_collection_bed_prices_input]
+    sale_remaining: Int
+    "Статус заполнения карточки товара. Черновик - недозаполненная карточка, опубликовано - карточка готова к отображению на сайте, в архиве - карточка помещена в архив по причине прекращения производства товара."
+    status: String!
+    title: String!
+    user_created: create_directus_users_input
+    user_updated: create_directus_users_input
+}
+
+input create_bed_prices_input {
+    bed_cloth_category_relation: create_cloth_category_input
+    bed_relation: [create_bed_collection_bed_prices_input]
+    bed_size_relation: create_bed_sizes_input
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    id: ID
+    price: Int!
+    sale_percentage: Int
+    status: String!
+    user_created: create_directus_users_input
+    user_updated: create_directus_users_input
+}
+
+input create_bed_sizes_input {
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    height: String
+    id: ID
+    length: String
+    sleep_size: String!
+    user_created: create_directus_users_input
+    user_updated: create_directus_users_input
+    width: String
+}
+
+input create_cloth_category_input {
+    category: String
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    id: ID
+    user_created: create_directus_users_input
+    user_updated: create_directus_users_input
+}
+
+input create_company_contacts_input {
+    contact: String
+    contact_type: String
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    id: ID
+    user_created: create_directus_users_input
+    user_updated: create_directus_users_input
+}
+
+input create_directus_files_input {
+    charset: String
+    description: String
+    duration: Int
+    embed: String
+    filename_disk: String
+    filename_download: String!
+    filesize: Int
+    folder: create_directus_folders_input
+    height: Int
+    id: ID
+    location: String
+    metadata: JSON
+    modified_by: create_directus_users_input
+    modified_on: Date!
+    modified_on_func: datetime_functionsInput
+    storage: String!
+    tags: JSON
+    title: String
+    type: String
+    uploaded_by: create_directus_users_input
+    uploaded_on: Date!
+    uploaded_on_func: datetime_functionsInput
+    width: Int
+}
+
+input create_directus_folders_input {
+    id: ID
+    name: String!
+    parent: create_directus_folders_input
+}
+
+input create_directus_roles_input {
+    admin_access: Boolean!
+    app_access: Boolean!
+    description: String
+    enforce_tfa: Boolean!
+    icon: String!
+    id: ID
+    ip_access: [String]
+    name: String!
+    users: [create_directus_users_input]
+}
+
+input create_directus_users_input {
+    auth_data: JSON
+    avatar: create_directus_files_input
+    description: String
+    email: String
+    email_notifications: Boolean
+    external_identifier: String
+    first_name: String
+    id: ID
+    language: String
+    last_access: Date
+    last_access_func: datetime_functionsInput
+    last_name: String
+    last_page: String
+    location: String
+    password: String
+    provider: String!
+    role: create_directus_roles_input
+    status: String!
+    tags: JSON
+    tfa_secret: String
+    theme: String
+    title: String
+    token: String
 }
 
 input create_item_price_additional_options_input {
-    additional_options_id: String
+    additional_options_id: create_additional_options_input
     id: ID
     item_price_id: create_item_price_input
 }
@@ -1259,8 +1771,8 @@ input create_item_price_input {
     date_updated_func: datetime_functionsInput
     id: ID
     price: [create_item_price_price_input]
-    user_created: String
-    user_updated: String
+    user_created: create_directus_users_input
+    user_updated: create_directus_users_input
 }
 
 input create_item_price_price_input {
@@ -1270,12 +1782,167 @@ input create_item_price_price_input {
     item_price_id: create_item_price_input
 }
 
+input create_main_page_input {
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    id: ID
+    popular: [create_main_page_popular_input]
+    user_created: create_directus_users_input
+    user_updated: create_directus_users_input
+}
+
+input create_main_page_popular_input {
+    collection: String
+    id: ID
+    item: String
+    main_page_id: create_main_page_input
+}
+
+input create_matresses_sizes_input {
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    diameter: String
+    id: ID
+    length: String
+    user_created: create_directus_users_input
+    user_updated: create_directus_users_input
+    width: String
+}
+
+input create_mattresses_accessories_accessories_prices_input {
+    accessories_prices_id: create_accessories_prices_input
+    id: ID
+    mattresses_accessories_id: create_mattresses_accessories_input
+}
+
+input create_mattresses_accessories_additional_options_input {
+    additional_options_id: create_additional_options_input
+    id: ID
+    mattresses_accessories_id: create_mattresses_accessories_input
+}
+
+input create_mattresses_accessories_files_input {
+    directus_files_id: create_directus_files_input
+    id: ID
+    mattresses_accessories_id: create_mattresses_accessories_input
+}
+
+input create_mattresses_accessories_input {
+    accessory_type: String
+    additional_options: [create_mattresses_accessories_additional_options_input]
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    description: String
+    filler: create_mattresses_materials_input
+    height: String
+    id: ID
+    image: create_directus_files_input
+    images: [create_mattresses_accessories_files_input]
+    price_list: [create_mattresses_accessories_accessories_prices_input]
+    sale_remaining: Int
+    status: String!
+    title: String!
+    user_created: create_directus_users_input
+    user_updated: create_directus_users_input
+}
+
+input create_mattresses_additional_options_input {
+    additional_options_id: create_additional_options_input
+    id: ID
+    mattresses_id: create_mattresses_input
+}
+
+input create_mattresses_files_input {
+    directus_files_id: create_directus_files_input
+    id: ID
+    mattresses_id: create_mattresses_input
+}
+
+input create_mattresses_input {
+    additional_options: [create_mattresses_additional_options_input]
+    bed_springs: String
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    description: String
+    hardness: String
+    height: String
+    id: ID
+    image: create_directus_files_input
+    images: [create_mattresses_files_input]
+    materials: [create_mattresses_mattresses_materials_input]
+    other_hardness: String
+    price_list: [create_mattresses_mattresses_prices_input]
+    sale_remaining: Int
+    sleep_place_weight: String
+    status: String!
+    title: String!
+    user_created: create_directus_users_input
+    user_updated: create_directus_users_input
+}
+
+input create_mattresses_materials_input {
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    description: String
+    id: ID
+    image: create_directus_files_input
+    material_type: String!
+    title: String!
+    user_created: create_directus_users_input
+    user_updated: create_directus_users_input
+}
+
+input create_mattresses_mattresses_materials_input {
+    id: ID
+    mattresses_id: create_mattresses_input
+    mattresses_materials_id: create_mattresses_materials_input
+}
+
+input create_mattresses_mattresses_prices_input {
+    id: ID
+    mattresses_id: create_mattresses_input
+    mattresses_prices_id: create_mattresses_prices_input
+}
+
+input create_mattresses_prices_input {
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    id: ID
+    mattress_relation: [create_mattresses_mattresses_prices_input]
+    mattress_size_relation: create_matresses_sizes_input
+    price: Int!
+    sale_percentage: String
+    status: String!
+    user_created: create_directus_users_input
+    user_updated: create_directus_users_input
+}
+
 input create_orders_input {
     choosen_promotions: [create_orders_promotion_input]
     city: String
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    id: ID
     items_prices_relation: [create_orders_item_price_input]
     name: String
     phone_number: String!
+    status: String!
+    user_created: create_directus_users_input
+    user_updated: create_directus_users_input
 }
 
 input create_orders_item_price_input {
@@ -1285,8 +1952,102 @@ input create_orders_item_price_input {
 }
 
 input create_orders_promotion_input {
+    id: ID
     orders_id: create_orders_input
-    promotion_id: String
+    promotion_id: create_promotion_input
+}
+
+input create_promotion_input {
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    description: String
+    id: ID
+    image: create_directus_files_input
+    percentage: Int
+    price: Int
+    status: String!
+    title: String!
+    user_created: create_directus_users_input
+    user_updated: create_directus_users_input
+}
+
+input create_sofa_collection_additional_options_input {
+    additional_options_id: create_additional_options_input
+    id: ID
+}
+
+input create_sofa_collection_sofa_prices_input {
+    id: ID
+}
+
+input create_soft_furniture_additional_options_input {
+    additional_options_id: create_additional_options_input
+    id: ID
+    soft_furniture_id: create_soft_furniture_input
+}
+
+input create_soft_furniture_files_input {
+    directus_files_id: create_directus_files_input
+    id: ID
+    soft_furniture_id: create_soft_furniture_input
+}
+
+input create_soft_furniture_input {
+    additional_options: [create_soft_furniture_additional_options_input]
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    description: String
+    furniture_type: String!
+    id: ID
+    image: create_directus_files_input
+    images: [create_soft_furniture_files_input]
+    price_list: [create_soft_furniture_soft_furniture_prices_input]
+    sale_remaining: Int
+    status: String!
+    title: String!
+    user_created: create_directus_users_input
+    user_updated: create_directus_users_input
+}
+
+input create_soft_furniture_prices_input {
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    id: ID
+    price: Int!
+    sale_percentage: String
+    soft_furniture_cloth_category_relation: create_cloth_category_input
+    soft_furniture_relation: [create_soft_furniture_soft_furniture_prices_input]
+    soft_furniture_size_relation: create_soft_furniture_sizes_input
+    status: String!
+    user_created: create_directus_users_input
+    user_updated: create_directus_users_input
+}
+
+input create_soft_furniture_sizes_input {
+    additional_size: String
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    diameter: String
+    height: String
+    id: ID
+    length: String
+    user_created: create_directus_users_input
+    user_updated: create_directus_users_input
+    width: String
+}
+
+input create_soft_furniture_soft_furniture_prices_input {
+    id: ID
+    soft_furniture_id: create_soft_furniture_input
+    soft_furniture_prices_id: create_soft_furniture_prices_input
 }
 
 input date_filter_operators {
@@ -1332,22 +2093,72 @@ input directus_files_filter {
     filename_disk: string_filter_operators
     filename_download: string_filter_operators
     filesize: number_filter_operators
-    folder: string_filter_operators
+    folder: directus_folders_filter
     height: number_filter_operators
     id: string_filter_operators
     location: string_filter_operators
     metadata: string_filter_operators
-    modified_by: string_filter_operators
+    modified_by: directus_users_filter
     modified_on: date_filter_operators
     modified_on_func: datetime_function_filter_operators
     storage: string_filter_operators
     tags: string_filter_operators
     title: string_filter_operators
     type: string_filter_operators
-    uploaded_by: string_filter_operators
+    uploaded_by: directus_users_filter
     uploaded_on: date_filter_operators
     uploaded_on_func: datetime_function_filter_operators
     width: number_filter_operators
+}
+
+input directus_folders_filter {
+    _and: [directus_folders_filter]
+    _or: [directus_folders_filter]
+    id: string_filter_operators
+    name: string_filter_operators
+    parent: directus_folders_filter
+}
+
+input directus_roles_filter {
+    _and: [directus_roles_filter]
+    _or: [directus_roles_filter]
+    admin_access: boolean_filter_operators
+    app_access: boolean_filter_operators
+    description: string_filter_operators
+    enforce_tfa: boolean_filter_operators
+    icon: string_filter_operators
+    id: string_filter_operators
+    ip_access: string_filter_operators
+    name: string_filter_operators
+    users: directus_users_filter
+}
+
+input directus_users_filter {
+    _and: [directus_users_filter]
+    _or: [directus_users_filter]
+    auth_data: string_filter_operators
+    avatar: directus_files_filter
+    description: string_filter_operators
+    email: string_filter_operators
+    email_notifications: boolean_filter_operators
+    external_identifier: string_filter_operators
+    first_name: string_filter_operators
+    id: string_filter_operators
+    language: string_filter_operators
+    last_access: date_filter_operators
+    last_access_func: datetime_function_filter_operators
+    last_name: string_filter_operators
+    last_page: string_filter_operators
+    location: string_filter_operators
+    password: string_filter_operators
+    provider: string_filter_operators
+    role: directus_roles_filter
+    status: string_filter_operators
+    tags: string_filter_operators
+    tfa_secret: string_filter_operators
+    theme: string_filter_operators
+    title: string_filter_operators
+    token: string_filter_operators
 }
 
 input item_price_additional_options_filter {
@@ -1368,8 +2179,8 @@ input item_price_filter {
     date_updated_func: datetime_function_filter_operators
     id: string_filter_operators
     price: item_price_price_filter
-    user_created: string_filter_operators
-    user_updated: string_filter_operators
+    user_created: directus_users_filter
+    user_updated: directus_users_filter
 }
 
 input item_price_price_filter {
@@ -1390,8 +2201,8 @@ input main_page_filter {
     date_updated_func: datetime_function_filter_operators
     id: string_filter_operators
     popular: main_page_popular_filter
-    user_created: string_filter_operators
-    user_updated: string_filter_operators
+    user_created: directus_users_filter
+    user_updated: directus_users_filter
 }
 
 input main_page_popular_filter {
@@ -1413,8 +2224,8 @@ input matresses_sizes_filter {
     diameter: string_filter_operators
     id: string_filter_operators
     length: string_filter_operators
-    user_created: string_filter_operators
-    user_updated: string_filter_operators
+    user_created: directus_users_filter
+    user_updated: directus_users_filter
     width: string_filter_operators
 }
 
@@ -1461,8 +2272,8 @@ input mattresses_accessories_filter {
     sale_remaining: number_filter_operators
     status: string_filter_operators
     title: string_filter_operators
-    user_created: string_filter_operators
-    user_updated: string_filter_operators
+    user_created: directus_users_filter
+    user_updated: directus_users_filter
 }
 
 input mattresses_additional_options_filter {
@@ -1503,8 +2314,8 @@ input mattresses_filter {
     sleep_place_weight: string_filter_operators
     status: string_filter_operators
     title: string_filter_operators
-    user_created: string_filter_operators
-    user_updated: string_filter_operators
+    user_created: directus_users_filter
+    user_updated: directus_users_filter
 }
 
 input mattresses_materials_filter {
@@ -1519,8 +2330,8 @@ input mattresses_materials_filter {
     image: directus_files_filter
     material_type: string_filter_operators
     title: string_filter_operators
-    user_created: string_filter_operators
-    user_updated: string_filter_operators
+    user_created: directus_users_filter
+    user_updated: directus_users_filter
 }
 
 input mattresses_mattresses_materials_filter {
@@ -1552,8 +2363,8 @@ input mattresses_prices_filter {
     price: number_filter_operators
     sale_percentage: string_filter_operators
     status: string_filter_operators
-    user_created: string_filter_operators
-    user_updated: string_filter_operators
+    user_created: directus_users_filter
+    user_updated: directus_users_filter
 }
 
 input number_filter_operators {
@@ -1572,19 +2383,35 @@ input number_filter_operators {
 input orders_filter {
     _and: [orders_filter]
     _or: [orders_filter]
+    choosen_promotions: orders_promotion_filter
+    city: string_filter_operators
+    date_created: date_filter_operators
+    date_created_func: datetime_function_filter_operators
+    date_updated: date_filter_operators
+    date_updated_func: datetime_function_filter_operators
     id: string_filter_operators
+    items_prices_relation: orders_item_price_filter
+    name: string_filter_operators
+    phone_number: string_filter_operators
+    status: string_filter_operators
+    user_created: directus_users_filter
+    user_updated: directus_users_filter
 }
 
 input orders_item_price_filter {
     _and: [orders_item_price_filter]
     _or: [orders_item_price_filter]
     id: number_filter_operators
+    item_price_id: item_price_filter
+    orders_id: orders_filter
 }
 
 input orders_promotion_filter {
     _and: [orders_promotion_filter]
     _or: [orders_promotion_filter]
     id: number_filter_operators
+    orders_id: orders_filter
+    promotion_id: promotion_filter
 }
 
 input promotion_filter {
@@ -1601,8 +2428,8 @@ input promotion_filter {
     price: number_filter_operators
     status: string_filter_operators
     title: string_filter_operators
-    user_created: string_filter_operators
-    user_updated: string_filter_operators
+    user_created: directus_users_filter
+    user_updated: directus_users_filter
 }
 
 input sofa_collection_additional_options_filter {
@@ -1651,8 +2478,8 @@ input soft_furniture_filter {
     sale_remaining: number_filter_operators
     status: string_filter_operators
     title: string_filter_operators
-    user_created: string_filter_operators
-    user_updated: string_filter_operators
+    user_created: directus_users_filter
+    user_updated: directus_users_filter
 }
 
 input soft_furniture_prices_filter {
@@ -1669,8 +2496,8 @@ input soft_furniture_prices_filter {
     soft_furniture_relation: soft_furniture_soft_furniture_prices_filter
     soft_furniture_size_relation: soft_furniture_sizes_filter
     status: string_filter_operators
-    user_created: string_filter_operators
-    user_updated: string_filter_operators
+    user_created: directus_users_filter
+    user_updated: directus_users_filter
 }
 
 input soft_furniture_sizes_filter {
@@ -1685,8 +2512,8 @@ input soft_furniture_sizes_filter {
     height: string_filter_operators
     id: string_filter_operators
     length: string_filter_operators
-    user_created: string_filter_operators
-    user_updated: string_filter_operators
+    user_created: directus_users_filter
+    user_updated: directus_users_filter
     width: string_filter_operators
 }
 
@@ -1713,4 +2540,509 @@ input string_filter_operators {
     _nstarts_with: String
     _null: Boolean
     _starts_with: String
+}
+
+input update_SEO_input {
+    company_info: String
+    description: String
+    fabric_info: String
+    icon: update_directus_files_input
+    id: ID
+    title: String
+}
+
+input update_accessories_prices_input {
+    accessory_material_relation: update_mattresses_materials_input
+    accessory_size_relation: update_accessories_sizes_input
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    id: ID
+    mattresses_accessories_relation: [update_mattresses_accessories_accessories_prices_input]
+    price: Int
+    sale_percentage: Int
+    status: String
+    user_created: update_directus_users_input
+    user_updated: update_directus_users_input
+}
+
+input update_accessories_sizes_input {
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    id: ID
+    length: String
+    user_created: update_directus_users_input
+    user_updated: update_directus_users_input
+    width: String
+}
+
+input update_additional_options_input {
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    description: String
+    id: ID
+    option_type: String
+    percentage: Int
+    price: Int
+    title: String
+    user_created: update_directus_users_input
+    user_updated: update_directus_users_input
+}
+
+input update_bed_collection_additional_options_input {
+    additional_options_id: update_additional_options_input
+    bed_collection_id: update_bed_collection_input
+    id: ID
+}
+
+input update_bed_collection_bed_prices_input {
+    bed_collection_id: update_bed_collection_input
+    bed_prices_id: update_bed_prices_input
+    id: ID
+}
+
+input update_bed_collection_files_input {
+    bed_collection_id: update_bed_collection_input
+    directus_files_id: update_directus_files_input
+    id: ID
+}
+
+input update_bed_collection_input {
+    additional_options: [update_bed_collection_additional_options_input]
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    description: String
+    id: ID
+    image: update_directus_files_input
+    images: [update_bed_collection_files_input]
+    price_list: [update_bed_collection_bed_prices_input]
+    sale_remaining: Int
+    "Статус заполнения карточки товара. Черновик - недозаполненная карточка, опубликовано - карточка готова к отображению на сайте, в архиве - карточка помещена в архив по причине прекращения производства товара."
+    status: String
+    title: String
+    user_created: update_directus_users_input
+    user_updated: update_directus_users_input
+}
+
+input update_bed_prices_input {
+    bed_cloth_category_relation: update_cloth_category_input
+    bed_relation: [update_bed_collection_bed_prices_input]
+    bed_size_relation: update_bed_sizes_input
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    id: ID
+    price: Int
+    sale_percentage: Int
+    status: String
+    user_created: update_directus_users_input
+    user_updated: update_directus_users_input
+}
+
+input update_bed_sizes_input {
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    height: String
+    id: ID
+    length: String
+    sleep_size: String
+    user_created: update_directus_users_input
+    user_updated: update_directus_users_input
+    width: String
+}
+
+input update_cloth_category_input {
+    category: String
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    id: ID
+    user_created: update_directus_users_input
+    user_updated: update_directus_users_input
+}
+
+input update_company_contacts_input {
+    contact: String
+    contact_type: String
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    id: ID
+    user_created: update_directus_users_input
+    user_updated: update_directus_users_input
+}
+
+input update_directus_files_input {
+    charset: String
+    description: String
+    duration: Int
+    embed: String
+    filename_disk: String
+    filename_download: String
+    filesize: Int
+    folder: update_directus_folders_input
+    height: Int
+    id: ID
+    location: String
+    metadata: JSON
+    modified_by: update_directus_users_input
+    modified_on: Date
+    modified_on_func: datetime_functionsInput
+    storage: String
+    tags: JSON
+    title: String
+    type: String
+    uploaded_by: update_directus_users_input
+    uploaded_on: Date
+    uploaded_on_func: datetime_functionsInput
+    width: Int
+}
+
+input update_directus_folders_input {
+    id: ID
+    name: String
+    parent: update_directus_folders_input
+}
+
+input update_directus_roles_input {
+    admin_access: Boolean
+    app_access: Boolean
+    description: String
+    enforce_tfa: Boolean
+    icon: String
+    id: ID
+    ip_access: [String]
+    name: String
+    users: [update_directus_users_input]
+}
+
+input update_directus_users_input {
+    auth_data: JSON
+    avatar: update_directus_files_input
+    description: String
+    email: String
+    email_notifications: Boolean
+    external_identifier: String
+    first_name: String
+    id: ID
+    language: String
+    last_access: Date
+    last_access_func: datetime_functionsInput
+    last_name: String
+    last_page: String
+    location: String
+    password: String
+    provider: String
+    role: update_directus_roles_input
+    status: String
+    tags: JSON
+    tfa_secret: String
+    theme: String
+    title: String
+    token: String
+}
+
+input update_item_price_additional_options_input {
+    additional_options_id: update_additional_options_input
+    id: ID
+    item_price_id: update_item_price_input
+}
+
+input update_item_price_input {
+    choosen_additional_options: [update_item_price_additional_options_input]
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    id: ID
+    price: [update_item_price_price_input]
+    user_created: update_directus_users_input
+    user_updated: update_directus_users_input
+}
+
+input update_item_price_price_input {
+    collection: String
+    id: ID
+    item: String
+    item_price_id: update_item_price_input
+}
+
+input update_main_page_input {
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    id: ID
+    popular: [update_main_page_popular_input]
+    user_created: update_directus_users_input
+    user_updated: update_directus_users_input
+}
+
+input update_main_page_popular_input {
+    collection: String
+    id: ID
+    item: String
+    main_page_id: update_main_page_input
+}
+
+input update_matresses_sizes_input {
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    diameter: String
+    id: ID
+    length: String
+    user_created: update_directus_users_input
+    user_updated: update_directus_users_input
+    width: String
+}
+
+input update_mattresses_accessories_accessories_prices_input {
+    accessories_prices_id: update_accessories_prices_input
+    id: ID
+    mattresses_accessories_id: update_mattresses_accessories_input
+}
+
+input update_mattresses_accessories_additional_options_input {
+    additional_options_id: update_additional_options_input
+    id: ID
+    mattresses_accessories_id: update_mattresses_accessories_input
+}
+
+input update_mattresses_accessories_files_input {
+    directus_files_id: update_directus_files_input
+    id: ID
+    mattresses_accessories_id: update_mattresses_accessories_input
+}
+
+input update_mattresses_accessories_input {
+    accessory_type: String
+    additional_options: [update_mattresses_accessories_additional_options_input]
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    description: String
+    filler: update_mattresses_materials_input
+    height: String
+    id: ID
+    image: update_directus_files_input
+    images: [update_mattresses_accessories_files_input]
+    price_list: [update_mattresses_accessories_accessories_prices_input]
+    sale_remaining: Int
+    status: String
+    title: String
+    user_created: update_directus_users_input
+    user_updated: update_directus_users_input
+}
+
+input update_mattresses_additional_options_input {
+    additional_options_id: update_additional_options_input
+    id: ID
+    mattresses_id: update_mattresses_input
+}
+
+input update_mattresses_files_input {
+    directus_files_id: update_directus_files_input
+    id: ID
+    mattresses_id: update_mattresses_input
+}
+
+input update_mattresses_input {
+    additional_options: [update_mattresses_additional_options_input]
+    bed_springs: String
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    description: String
+    hardness: String
+    height: String
+    id: ID
+    image: update_directus_files_input
+    images: [update_mattresses_files_input]
+    materials: [update_mattresses_mattresses_materials_input]
+    other_hardness: String
+    price_list: [update_mattresses_mattresses_prices_input]
+    sale_remaining: Int
+    sleep_place_weight: String
+    status: String
+    title: String
+    user_created: update_directus_users_input
+    user_updated: update_directus_users_input
+}
+
+input update_mattresses_materials_input {
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    description: String
+    id: ID
+    image: update_directus_files_input
+    material_type: String
+    title: String
+    user_created: update_directus_users_input
+    user_updated: update_directus_users_input
+}
+
+input update_mattresses_mattresses_materials_input {
+    id: ID
+    mattresses_id: update_mattresses_input
+    mattresses_materials_id: update_mattresses_materials_input
+}
+
+input update_mattresses_mattresses_prices_input {
+    id: ID
+    mattresses_id: update_mattresses_input
+    mattresses_prices_id: update_mattresses_prices_input
+}
+
+input update_mattresses_prices_input {
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    id: ID
+    mattress_relation: [update_mattresses_mattresses_prices_input]
+    mattress_size_relation: update_matresses_sizes_input
+    price: Int
+    sale_percentage: String
+    status: String
+    user_created: update_directus_users_input
+    user_updated: update_directus_users_input
+}
+
+input update_orders_input {
+    choosen_promotions: [update_orders_promotion_input]
+    city: String
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    id: ID
+    items_prices_relation: [update_orders_item_price_input]
+    name: String
+    phone_number: String
+    status: String
+    user_created: update_directus_users_input
+    user_updated: update_directus_users_input
+}
+
+input update_orders_item_price_input {
+    id: ID
+    item_price_id: update_item_price_input
+    orders_id: update_orders_input
+}
+
+input update_orders_promotion_input {
+    id: ID
+    orders_id: update_orders_input
+    promotion_id: update_promotion_input
+}
+
+input update_promotion_input {
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    description: String
+    id: ID
+    image: update_directus_files_input
+    percentage: Int
+    price: Int
+    status: String
+    title: String
+    user_created: update_directus_users_input
+    user_updated: update_directus_users_input
+}
+
+input update_sofa_collection_additional_options_input {
+    additional_options_id: update_additional_options_input
+    id: ID
+}
+
+input update_sofa_collection_sofa_prices_input {
+    id: ID
+}
+
+input update_soft_furniture_additional_options_input {
+    additional_options_id: update_additional_options_input
+    id: ID
+    soft_furniture_id: update_soft_furniture_input
+}
+
+input update_soft_furniture_files_input {
+    directus_files_id: update_directus_files_input
+    id: ID
+    soft_furniture_id: update_soft_furniture_input
+}
+
+input update_soft_furniture_input {
+    additional_options: [update_soft_furniture_additional_options_input]
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    description: String
+    furniture_type: String
+    id: ID
+    image: update_directus_files_input
+    images: [update_soft_furniture_files_input]
+    price_list: [update_soft_furniture_soft_furniture_prices_input]
+    sale_remaining: Int
+    status: String
+    title: String
+    user_created: update_directus_users_input
+    user_updated: update_directus_users_input
+}
+
+input update_soft_furniture_prices_input {
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    id: ID
+    price: Int
+    sale_percentage: String
+    soft_furniture_cloth_category_relation: update_cloth_category_input
+    soft_furniture_relation: [update_soft_furniture_soft_furniture_prices_input]
+    soft_furniture_size_relation: update_soft_furniture_sizes_input
+    status: String
+    user_created: update_directus_users_input
+    user_updated: update_directus_users_input
+}
+
+input update_soft_furniture_sizes_input {
+    additional_size: String
+    date_created: Date
+    date_created_func: datetime_functionsInput
+    date_updated: Date
+    date_updated_func: datetime_functionsInput
+    diameter: String
+    height: String
+    id: ID
+    length: String
+    user_created: update_directus_users_input
+    user_updated: update_directus_users_input
+    width: String
+}
+
+input update_soft_furniture_soft_furniture_prices_input {
+    id: ID
+    soft_furniture_id: update_soft_furniture_input
+    soft_furniture_prices_id: update_soft_furniture_prices_input
 }

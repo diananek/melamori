@@ -28,6 +28,15 @@ export const createApolloClient = () => new ApolloClient({
     }),
 });
 
+export const createSysClient = (token) => new ApolloClient({
+    link: from([
+        new RetryLink(),
+        createHttpLink({uri: 'https://service.melamori-mebel.ru/graphql', headers: {"Authorization": `Bearer ${token}`}}),
+    ]),
+    cache: new InMemoryCache(),
+});
+
+
 
 export const initializeApollo = (initialState = null, token = null) => {
     // @ts-ignore

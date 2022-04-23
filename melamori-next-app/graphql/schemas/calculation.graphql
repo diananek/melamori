@@ -1,32 +1,61 @@
-query CALCULATION{
-    mattresses_prices_aggregated(
-        groupBy: ["sale_percentage", "id"]
-        filter: {
-            id: {
-                _in: ["01423fbb-5885-4184-a5dc-9deabf197d1c", "bd293859-e9a5-4690-b954-e3c4f12bf734", "014a17f8-8204-40d8-9024-ba4415bf7744"]
-            }
-        }
-    ){
-        sum {
-            price
-        }
-        group
-    }
-    additional_options_aggregated (
-        filter: {
-            id:{
-                _in: [
-                    "b20038f1-3530-453c-8e4b-157bd6c54750",
-                    "86cca2a1-b49d-4496-baa8-c5dae440b205",
-                    "16959f39-bded-48df-a564-df6ca40cef23",
-                    "8560e8a6-21ae-4805-95b4-75c50312b591"
-                ]
-            }
-        }
+query CALCULATION(
+    $id: ID ="d5e187ee-d11e-4efc-8afc-b03432813484"
+) {
+    orders_by_id(
+        id: $id
     ) {
-        sum {
-            percentage
-            price
+        choosen_promotions{
+            promotion_id {
+                price
+                percentage
+                title
+            }
+        }
+        items_prices_relation{
+            item_price_id{
+                choosen_additional_options {
+                    additional_options_id{
+                        price
+                        percentage
+                        title
+                    }
+                }
+                price{
+                    item {
+                        ... on mattresses_prices {
+                            sale_percentage
+                            price
+                            mattress_relation {
+                                mattresses_id{
+                                    id
+                                    title
+                                }
+                            }
+                        }
+                        ... on bed_prices {
+                            sale: sale_percentage
+                            price
+                            bed_relation{
+                                bed_collection_id{
+                                    id
+                                    title
+                                }
+                            }
+                        }
+                        ... on soft_furniture_prices {
+                            sale_percentage
+                            price
+                            soft_furniture_relation{
+                                soft_furniture_id{
+                                    id
+                                    title
+                                }
+                            }
+                        }
+                    }
+                    collection
+                }
+            }
         }
     }
 }
