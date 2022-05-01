@@ -10,6 +10,7 @@ import {useDispatch, useSelector} from "../../../lib/hooks/useState";
 import {mainState} from "../../../lib/store/main";
 import {Image} from "antd";
 import 'antd/dist/antd.css'
+import {BackIcon} from "../../../components/reboot/icons";
 
 const minPrice = fp.minBy(
     (item) => {
@@ -81,6 +82,9 @@ const SoftId = props => {
     return (
         <Layout hideSlider>
             <form onSubmit={handleSubmit(onAdd)} className="product">
+                <div className={'back'}>
+                    <BackIcon />
+                </div>
                 <div className="container product__grid product__grid_sofa">
                     <div className="product__img" style={{position: 'relative', width: '100%', height: '100%'}}>
                         <Image

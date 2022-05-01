@@ -1,10 +1,14 @@
 .product {
     padding: 65px 0 0 0;
+    > .back {
+        padding: 0 50px;
+    }
     @media (min-width: 768px) {
         padding: 100px 0 0 0;
     }
     @media (min-width: 1920px) {
-        padding: 107px+37px 0 0 0;
+        padding: 50px 0 0 0;
+
         &__about {
             margin-right: 152px;
         }

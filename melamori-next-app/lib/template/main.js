@@ -104,7 +104,7 @@ ${mock
         return `
 ${nameCond(item)}: ${info.title} <br>
 Цена: ${price} <br>
-Скидка: ${sale_percentage || sale}% <br>
+Скидка: ${sale_percentage || sale}% <br> 
 <br>
 `;
     }).join('')}`)

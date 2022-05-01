@@ -12,6 +12,7 @@ import {mainState} from "../../../lib/store/main";
 // import Image from "next/image";
 import {Image} from "antd";
 import 'antd/dist/antd.css'
+import {BackIcon} from "../../../components/reboot/icons";
 
 const uniqWidths = fp.uniqBy('mattresses_prices_id.mattress_size_relation.width')
 const uniqLengths = fp.uniqBy('mattresses_prices_id.mattress_size_relation.length')
@@ -164,6 +165,9 @@ const MattressesId = (props) => {
                 className="product"
                 onSubmit={handleSubmit(onAdd)}
             >
+                <div className={'back'}>
+                    <BackIcon />
+                </div>
                 <div className="container  product__grid_mattr product__grid">
                     <div className="product__img" style={{position: 'relative', width: '100%', height: '100%'}}>
                         <Image

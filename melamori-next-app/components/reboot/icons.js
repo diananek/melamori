@@ -1,3 +1,6 @@
+import Link from "next/link";
+import {useRouter} from "next/router";
+
 export const Logo = () => (
     <svg width="132" height="29" viewBox="0 0 132 29" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path fillRule="evenodd" clipRule="evenodd"
@@ -100,3 +103,42 @@ export const TgIcon = () => (
     </svg>
 
 )
+
+
+
+export const BackIcon= () => {
+
+    const {pathname} = useRouter()
+
+    const backPath = pathname.split('/').slice(0, -1).join('/')
+
+    return (
+        <Link href={backPath}>
+            <a href={backPath}>
+                <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g filter="url(#filter0_d_89_3370)">
+                        <circle cx="26" cy="24" r="20" fill="white"/>
+                    </g>
+                    <line x1="19" y1="24.3667" x2="34" y2="24.3667" stroke="#020D2B"/>
+                    <path d="M24.3571 19L19 24.5L24.3571 30" stroke="#020D2B"/>
+                    <defs>
+                        <filter id="filter0_d_89_3370" x="0" y="0" width="52" height="52" filterUnits="userSpaceOnUse"
+                                colorInterpolationFilters="sRGB">
+                            <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+                            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                           result="hardAlpha"/>
+                            <feOffset dy="2"/>
+                            <feGaussianBlur stdDeviation="3"/>
+                            <feColorMatrix type="matrix"
+                                           values="0 0 0 0 0.0102083 0 0 0 0 0.0628072 0 0 0 0 0.204167 0 0 0 0.2 0"/>
+                            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_89_3370"/>
+                            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_89_3370" result="shape"/>
+                        </filter>
+                    </defs>
+                </svg>
+            </a>
+        </Link>
+
+    );
+}
+
