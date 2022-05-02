@@ -10,4 +10,6 @@ export const actions = {
     addToCart: main('ADD_TO_CART'),
     deleteFromCart: main('DELETE_FROM_CART'),
     dropCart: main('DELETE_ALL_FROM_CART'),
+    openModal: main('DISPLAY_MODAL'),
+    closeModal: main('HIDE_MODAL'),
 };

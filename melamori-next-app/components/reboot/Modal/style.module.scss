@@ -1,0 +1,29 @@
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+.modal {
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.43);
+}
+
+.window {
+  //text-align: center;
+  padding: 15px 20px;
+  width: 300px;
+  height: auto;
+  margin: 100px auto;
+  background-color: white;
+}
+
+.header {
+  text-align: center;
+  font-size: 23px;
+}

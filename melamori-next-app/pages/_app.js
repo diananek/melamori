@@ -14,6 +14,7 @@ import Script from 'next/script'
 import {GTM_ID, pageView} from "../lib/utils/gtm";
 import {useRouter} from "next/router";
 import {useEffect} from "react";
+import {Modal} from "../components/reboot/Modal";
 
 const apolloClient = new ApolloClient({
     uri: "https://service.melamori-mebel.ru/graphql",
@@ -57,10 +58,11 @@ function MyApp({Component, pageProps, sub_data}) {
                 }}
             />
             <GeneralCtx props={{main: {sub_data}}}>
-
-                <ApolloProvider client={apolloClient}>
-                    <Component {...pageProps} />
-                </ApolloProvider>
+                <Modal>
+                    <ApolloProvider client={apolloClient}>
+                        <Component {...pageProps} />
+                    </ApolloProvider>
+                </Modal>
             </GeneralCtx>
         </>
 

@@ -6,6 +6,9 @@ export const initState = {
     favorites: [],
     cart: [],
     sub_data: {},
+    modal: {
+        show: false
+    }
 };
 
 
@@ -57,5 +60,21 @@ export const reducer = {
             cart: []
         }
     },
-
+    [`${actions.openModal}`]: (state) => {
+        return {
+            ...state,
+            modal: {
+                ...state.modal,
+                show: true
+            }
+        }
+    },
+    [`${actions.closeModal}`]: (state) => {
+        return {
+            ...state,
+            modal: {
+                show: false
+            }
+        }
+    },
 }
