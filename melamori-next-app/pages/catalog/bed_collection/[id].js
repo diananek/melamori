@@ -23,7 +23,7 @@ const BedItem = (props) => {
 
     const [submitted, setSubmitted] = useState(false)
 
-    const [calcPrice] = useState(minPrice(props.price_list).bed_prices_id)
+    const [calcPrice, setCalc] = useState(minPrice(props.price_list).bed_prices_id)
     const [pricing, setPricing] = useState(calcPrice.price)
     const [sale, setSale] = useState(calcPrice.price * (1 - calcPrice.sale_percentage / 100))
 
@@ -112,6 +112,8 @@ const BedItem = (props) => {
 
             console.log(priceId.price * (1 - priceId.sale_percentage / 100), priceId)
 
+            setCalc(priceId)
+
             setSale(addToPrice(priceId.price * (1 - priceId.sale_percentage / 100)))
             setPricing(addToPrice(priceId.price))
 
@@ -141,7 +143,8 @@ const BedItem = (props) => {
 
 
     const decorator = fp.filter(['additional_options_id.option_type', 'decoration'], props.additional_options)
-    const currentSize = fp.find(['bed_prices_id.id', getValues('price')], props.price_list).bed_prices_id.bed_size_relation
+
+    const currentSize = fp.find(['bed_prices_id.id', calcPrice.id], props.price_list).bed_prices_id.bed_size_relation
 
 
     return (<Layout hideSlider>
