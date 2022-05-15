@@ -83,7 +83,7 @@ const SoftId = props => {
         <Layout hideSlider>
             <form onSubmit={handleSubmit(onAdd)} className="product">
                 <div className={'back'}>
-                    <BackIcon />
+                    <BackIcon/>
                 </div>
                 <div className="container product__grid product__grid_sofa">
                     <div className="product__img" style={{position: 'relative', width: '100%', height: '100%'}}>
@@ -117,7 +117,7 @@ const SoftId = props => {
                                     </div>
                                 </>}
                             </div>
-                            <div className={'product__prices'} style={{ marginTop: '80px'}}>
+                            <div className={'product__prices'} style={{marginTop: '80px'}}>
                                 {props.sale_remaining > 0 && `Осталось по акции: ${props.sale_remaining}`}
                             </div>
                             <div className="product__actions">
@@ -146,7 +146,9 @@ const SoftId = props => {
                         <div className="info__container ">
                             <p>18 месяцев гарантия</p>
                             <p>Срок изготовления: от 2 недель</p>
-                            <p className="product__offer link "> Бесплатная консультация с менеджером</p>
+                            <p className="product__offer link" onClick={() => dp(actions.openModal())}>
+                                Бесплатная консультация с менеджером
+                            </p>
                         </div>
                     </div>
                     <div className="product__features features">

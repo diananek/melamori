@@ -237,7 +237,7 @@ const MattressesId = (props) => {
                             <p>
                                 Срок изготовления: от 2 недель
                             </p>
-                            <p className="product__offer link">
+                            <p className="product__offer link" onClick={() => dp(actions.openModal())}>
                                 Бесплатная консультация с менеджером
                             </p>
                         </div>
