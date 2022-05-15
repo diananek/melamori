@@ -6,8 +6,7 @@
             "Default GraphQL Endpoint": {
                 "url": "https://service.melamori-mebel.ru/graphql",
                 "headers": {
-                    "user-agent": "JS GraphQL",
-                    "Authorization": "Bearer tokkkk"
+                    "user-agent": "JS GraphQL"
                 },
                 "introspect": false
             }

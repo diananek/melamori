@@ -1,0 +1,26 @@
+query GET_ACCESSORIES_BY_ID(
+    $id: ID! = "e835f9f8-44ff-4228-a39e-11c8070d2c9f"
+) {
+    mattresses_accessories_by_id(id: $id) {
+        id
+        title
+        description
+        accessory_type
+        image {
+            id
+            title
+        }
+        price_list{
+            accessories_prices_id(limit: -1){
+                id
+                price
+                sale_percentage
+                status
+                accessory_size_relation{
+                    length
+                    width
+                }
+            }
+        }
+    }
+}

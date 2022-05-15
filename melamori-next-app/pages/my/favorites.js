@@ -44,10 +44,16 @@ function Favorites() {
     ('s', 'mattresses_prices_id')
     ({data: {s: rawData?.mattresses || []}})
 
+    const mattresses_accessories = bedMapper
+    ('s', 'accessories_prices_id')
+    ({data: {s: rawData?.mattresses_accessories || []}})
+
+
     const items = {
         bed_collection,
         soft_furniture,
         mattresses,
+        mattresses_accessories
     }
 
 

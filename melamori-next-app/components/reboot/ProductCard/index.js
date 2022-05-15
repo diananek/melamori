@@ -50,7 +50,11 @@ export const price_getter = {
     bed_collection: {
         price: 'bed_prices_id',
         size: 'bed_size_relation'
-    }
+    },
+    mattresses_accessories: {
+        price: 'accessories_prices_id',
+        size: 'accessory_size_relation'
+    },
 }
 
 

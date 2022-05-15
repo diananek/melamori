@@ -4,10 +4,12 @@ import GET_BEDS from '../../graphql/schemas/getBeds.graphql'
 import GET_SOFA from '../../graphql/schemas/getSofa.graphql'
 import GET_MATTRESSES from '../../graphql/schemas/getMattresses.graphql'
 import GET_BY_MATTRESS_ID from '../../graphql/schemas/getMattressesById.graphql'
+import GET_ACCESSORIES_BY_ID from '../../graphql/schemas/getAccessoriesById.graphql'
 import GET_BED_BY_ID from '../../graphql/schemas/getBedById.graphql'
 import GET_SOFA_BY_ID from '../../graphql/schemas/getSofaById.graphql'
 import GET_META from '../../graphql/schemas/getMeta.graphql'
 import GET_MAIN_ITEMS from '../../graphql/schemas/getMainItems.graphql'
+import GET_ACCESSORIES from '../../graphql/schemas/getAccessories.graphql'
 import fp from "lodash/fp";
 import axios from 'axios'
 
@@ -144,6 +146,30 @@ const dataGetter = {
             meta: (await meta).data.meta,
         }
         return response
+    },
+    mattresses_accessories: async (params = {}) => {
+        const remapped = fp.mapValues(fp.toInteger, params)
+        let response = client.query({
+            query: GET_ACCESSORIES,
+            fetchPolicy: 'network-only',
+            ssrMode: true,
+            variables: remapped
+        })
+        let meta = axios.get('https://service.melamori-mebel.ru/items/mattresses_accessories?meta=*&limit=0')
+
+        response = {
+            items: bedMapper('mattresses_accessories', 'accessories_prices_id')(await response),
+            meta: (await meta).data.meta,
+        }
+        return response
+    },
+    mattresses_accessories_by_id: async (param = {}) =>{
+        return (await client.query({
+            query: GET_ACCESSORIES_BY_ID,
+            variables: param,
+            fetchPolicy: 'network-only',
+            ssrMode: true,
+        })).data.mattresses_accessories_by_id
     },
     mattresses_by_id: async (param = {}) => {
         return (await client.query({

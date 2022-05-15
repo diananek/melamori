@@ -13,6 +13,7 @@ const nameType = {
     bed_collection: "Кровати",
     mattresses: "Матрацы",
     soft_furniture: "Мягкая мебель",
+    mattresses_accessories: "Мягкая мебель",
 }
 
 

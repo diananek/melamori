@@ -38,6 +38,7 @@ const types = {
     mattresses: 'size',
     soft_furniture: 'category',
     bed_collection: 'price',
+    mattresses_accessories: 'price',
 }
 
 function declOfNum(number, titles) {
@@ -49,6 +50,7 @@ export const toPrices = {
     mattresses: "mattresses_prices",
     soft_furniture: "soft_furniture_prices",
     bed_collection: "bed_prices",
+    mattresses_accessories: "accessories_prices",
 }
 
 const validator = yup.object({
@@ -95,6 +97,10 @@ const Cart = () => {
                     case 'mattresses':
                         remappedItems.prices.push(item.size)
                         break;
+                    case 'mattresses_accessories':
+                        remappedItems.prices.push(item.price)
+                        break;
+
                 }
             })
             if (!data) {
@@ -118,11 +124,16 @@ const Cart = () => {
     ('soft_furniture', 'soft_furniture_prices_id', data?.soft_furniture, 'category')
     (cartItems)
 
+    const mattresses_accessories = cartMapper
+    ('mattresses_accessories', 'accessories_prices_id', data?.mattresses_accessories, 'price')
+    (cartItems)
+
 
     const items = {
         bed_collection,
         mattresses,
         soft_furniture,
+        mattresses_accessories
     }
 
     const calculatedResult = () => {
@@ -226,7 +237,6 @@ const Cart = () => {
         cartItems.forEach(({type}, i) => {
             if (type === index.collection) {
                 if (index.index === iterate) {
-                    debugger
                     dp(actions.deleteFromCart(i))
                 } else
                     iterate += 1
@@ -272,6 +282,15 @@ const Cart = () => {
                                             )}
                                             {cartMapper
                                             ('soft_furniture', 'soft_furniture_prices_id', data?.soft_furniture, 'category')
+                                            (cartItems).map((card, key) => <ProductCard
+                                                    style={styles.item}
+                                                    item={card}
+                                                    key={key}
+                                                    deleteCallback={deleteItem(card.key)}
+                                                />
+                                            )}
+                                            {cartMapper
+                                            ('mattresses_accessories', 'accessories_prices_id', data?.mattresses_accessories, 'price')
                                             (cartItems).map((card, key) => <ProductCard
                                                     style={styles.item}
                                                     item={card}

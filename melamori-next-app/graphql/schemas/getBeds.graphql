@@ -1,6 +1,6 @@
 query GET_BEDS (
-    $limit: Int = 16
-    $page: Int = 1
+        $limit: Int = 16
+        $page: Int = 1
 ){
     bed_collection (limit: $limit, page: $page){
         id

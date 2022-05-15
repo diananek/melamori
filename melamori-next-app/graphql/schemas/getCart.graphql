@@ -152,4 +152,53 @@ query GET_CART_ITEMS(
             }
         }
     }
+    mattresses_accessories(
+        limit: -1,
+        filter: {
+            id: {
+                _in: $ids
+            }
+        }
+    ){
+        additional_options(
+            filter: {
+                additional_options_id: {
+                    id: {
+                        _in: $options
+                    }
+                }
+            }
+        ) {
+            additional_options_id {
+                price
+                percentage
+            }
+        }
+        id
+        title
+        image {
+            id
+            title
+        }
+        price_list(
+            filter: {
+                accessories_prices_id: {
+                    id: {
+                        _in: $prices
+                    }
+                }
+            }
+        ) {
+            accessories_prices_id {
+                id
+                price
+                sale_percentage
+                status
+                accessory_size_relation {
+                    length
+                    width
+                }
+            }
+        }
+    }
 }

@@ -67,6 +67,13 @@ export const Header = () => {
                                 </a>
                             </Link>
                         </li>
+                        <li className="menu__item ">
+                            <Link href={'/catalog/mattresses_accessories'}>
+                                <a href={'/catalog/mattresses_accessories'} className="menu__link ">
+                                    Уход за матрацем
+                                </a>
+                            </Link>
+                        </li>
                         <li/>
                         <li/>
                         <li/>
