@@ -22,6 +22,7 @@ const minPrice = fp.minBy((item) => {
 const BedItem = (props) => {
 
     const [submitted, setSubmitted] = useState(false)
+    const [fClick, setFClick] = useState(false)
 
     const [calcPrice, setCalc] = useState(minPrice(props.price_list).bed_prices_id)
     const [pricing, setPricing] = useState(calcPrice.price)
@@ -188,7 +189,7 @@ const BedItem = (props) => {
                             {props.sale_remaining > 0 && `Осталось по акции: ${props.sale_remaining}`}
                         </div>
                         <div className="product__actions">
-                            <button className="product__btn">
+                            <button className="product__btn" disabled={!fClick} title={fClick || 'Выберите фильтр'}>
                                 {submitted ? 'В корзине' : 'Добавить в заказ'}
                             </button>
                             <button
@@ -225,10 +226,14 @@ const BedItem = (props) => {
                                 return (<button
                                     key={i.id}
                                     type={'button'}
-                                    className={clsx("features__option", current === i.relation ? 'features__option_selected' : '')}
+                                    className={clsx(
+                                        "features__option",
+                                        current === i.relation && fClick ? 'features__option_selected' : ''
+                                    )}
                                     onClick={() => {
                                         // setValue('price', i.id)
                                         setValue('size', i.relation)
+                                        setFClick(true)
                                     }}
                                 >
                                     {i.name}
@@ -244,9 +249,13 @@ const BedItem = (props) => {
                                 return (<button
                                     key={i.id}
                                     type={'button'}
-                                    className={clsx("features__option", current === i.relation ? 'features__option_selected' : '')}
+                                    className={clsx(
+                                        "features__option",
+                                        current === i.relation && fClick ? 'features__option_selected' : ''
+                                    )}
                                     onClick={() => {
                                         setValue('category', i.relation)
+                                        setFClick(true)
                                     }}
                                 >
                                     {i.name}

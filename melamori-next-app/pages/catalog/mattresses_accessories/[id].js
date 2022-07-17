@@ -46,7 +46,6 @@ const MattressesAccessories = (props) => {
 
     const onAdd = () => {
         setSubmitted(true)
-        debugger
         dp(mainState.actions.addToCart({
             price: calcPrice.id,
             id: props.id,

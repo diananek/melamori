@@ -46,6 +46,8 @@ const minPrice = fp.minBy(
 const MattressesId = (props) => {
 
     const [submitted, setSubmitted] = useState(false)
+    const [fClick, setFClick] = useState(false)
+
 
     const [calcPrice, setCalcPrice] = useState(minPrice(props.price_list).mattresses_prices_id)
     const [pricing, setPricing] = useState(calcPrice.price)
@@ -166,7 +168,7 @@ const MattressesId = (props) => {
                 onSubmit={handleSubmit(onAdd)}
             >
                 <div className={'back'}>
-                    <BackIcon />
+                    <BackIcon/>
                 </div>
                 <div className="container  product__grid_mattr product__grid">
                     <div className="product__img" style={{position: 'relative', width: '100%', height: '100%'}}>
@@ -203,11 +205,15 @@ const MattressesId = (props) => {
                                     </div>
                                 </>}
                             </div>
-                            <div className={'product__prices'} style={{ marginTop: '80px'}}>
+                            <div className={'product__prices'} style={{marginTop: '80px'}}>
                                 {props.sale_remaining > 0 && `Осталось по акции: ${props.sale_remaining}`}
                             </div>
                             <div className="product__actions">
-                                <button className="product__btn" type={'submit'}>
+                                <button
+                                    type='submit'
+                                    className="product__btn"
+                                    disabled={!fClick}
+                                    title={fClick || 'Выберите фильтр'}>
                                     {
                                         submitted ? 'В корзине' : 'Добавить в заказ'
                                     }
@@ -249,7 +255,7 @@ const MattressesId = (props) => {
                             </div>
                             <div className="features__options">
                                 {
-                                    filterSizes(selectL, 'length', props.price_list).map(({
+                                    filterSizes(fClick && selectL, 'length', props.price_list).map(({
                                                                                               mattresses_prices_id: {
                                                                                                   id,
                                                                                                   mattress_size_relation
@@ -260,13 +266,18 @@ const MattressesId = (props) => {
                                             type={'button'}
                                             className={clsx(
                                                 "features__option",
-                                                mattress_size_relation.width === selectW ? 'features__option_selected' : ''
+                                                mattress_size_relation.width === selectW && fClick  ? 'features__option_selected' : ''
                                             )}
                                             onClick={() => {
                                                 // const newVal = selectedWidth === id
                                                 setValue('width', mattress_size_relation.width)
+                                                if (getValues('length') !== mattress_size_relation.length) {
+                                                    setValue('length', mattress_size_relation.length)
+                                                    setSelectedLength(id)
+                                                }
                                                 // setValue('size', id)
                                                 setSelectedWidth(id);
+                                                setFClick(true)
                                             }}
                                         >
                                             {mattress_size_relation.width}
@@ -280,7 +291,7 @@ const MattressesId = (props) => {
                                 Длина
                             </div>
                             <div className="features__options">
-                                {filterSizes(selectW, 'width', props.price_list).map(({
+                                {filterSizes(fClick && selectW, 'width', props.price_list).map(({
                                                                                           mattresses_prices_id: {
                                                                                               id,
                                                                                               mattress_size_relation
@@ -291,11 +302,16 @@ const MattressesId = (props) => {
                                         type={'button'}
                                         className={clsx(
                                             "features__option",
-                                            mattress_size_relation.length === selectL ? 'features__option_selected' : ''
+                                            mattress_size_relation.length === selectL && fClick ? 'features__option_selected' : ''
                                         )}
                                         onClick={() => {
                                             setValue('length', mattress_size_relation.length)
+                                            if (getValues('width') !== mattress_size_relation.width) {
+                                                setValue('width', mattress_size_relation.width)
+                                                setSelectedWidth(id)
+                                            }
                                             setSelectedLength(id);
+                                            setFClick(true)
                                         }}
                                     >
                                         {mattress_size_relation.length}
