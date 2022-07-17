@@ -9,31 +9,44 @@ export const Header = () => {
     const favoriteCounter = useSelector('main.favorites.length')
     const cartCounter = useSelector('main.cart.length')
 
+    const toggleMenu = () => {
+        const menuIcon = document.querySelector('.menu__icon');
+
+        if (menuIcon) {
+            const menuBody = document.querySelector('.menu__list');
+            document.body.classList.toggle('menu__list_lock');
+            menuIcon.classList.toggle('menu__icon_active');
+            menuBody.classList.toggle('menu__list_active');
+        }
+    }
+
     useEffect(() => {
+
+
         function selectMenuItem() {
             let menu = document.body.querySelector('.menu');
             if (menu) {
                 function menuHandler(e) {
                     if (e.target.classList.contains('menu__link') && document.querySelector('.menu__link_selected')) {
                         document.querySelector('.menu__link_selected').classList.remove('menu__link_selected');
-                        e.target.classList.add('menu__link_selected');
+                        // e.target.classList.add('menu__link_selected');
+                        // toggleMenu(menuIcon, menuBody)
                     }
+
                 }
+
                 menu.addEventListener('click', menuHandler);
             }
         }
+
         function menuBurger() {
             const menuIcon = document.querySelector('.menu__icon');
 
             if (menuIcon) {
-                const menuBody = document.querySelector('.menu__list');
-                menuIcon.addEventListener('click', function() {
-                    document.body.classList.toggle('menu__list_lock');
-                    menuIcon.classList.toggle('menu__icon_active');
-                    menuBody.classList.toggle('menu__list_active');
-                });
+                // menuIcon.addEventListener('click', toggleMenu);
             }
         }
+
         menuBurger()
         selectMenuItem()
     }, [])
@@ -41,34 +54,37 @@ export const Header = () => {
     return (
         <header className="header header_catalog">
             <div className="header__body container">
-                <nav className="header__nav menu">
+                <nav
+                    className="header__nav menu"
+                    onClick={toggleMenu}
+                >
                     <div className="menu__icon">
                         <span/>
                     </div>
                     <ul className="menu__list menu__list_catalog">
                         <li className="menu__item">
-                            <Link href={'/catalog/bed_collection'}>
+                            <Link href={'/catalog/bed_collection'} scroll={true}>
                                 <a href={'/catalog/bed_collection'} className=" menu__link menu__link_selected">
                                     Кровати
                                 </a>
                             </Link>
                         </li>
                         <li className="menu__item ">
-                            <Link href={'/catalog/mattresses'}>
+                            <Link href={'/catalog/mattresses'} scroll={true}>
                                 <a href={'/catalog/mattresses'} className="menu__link ">
                                     Матрацы
                                 </a>
                             </Link>
                         </li>
                         <li className="menu__item ">
-                            <Link href={'/catalog/soft_furniture'}>
+                            <Link href={'/catalog/soft_furniture'} scroll={true}>
                                 <a href={'/catalog/soft_furniture'} className="menu__link ">
                                     Мягкая мебель
                                 </a>
                             </Link>
                         </li>
                         <li className="menu__item ">
-                            <Link href={'/catalog/mattresses_accessories'}>
+                            <Link href={'/catalog/mattresses_accessories'} scroll={true}>
                                 <a href={'/catalog/mattresses_accessories'} className="menu__link ">
                                     Уход за матрацем
                                 </a>
@@ -80,14 +96,14 @@ export const Header = () => {
                         <li className="menu__item ">
                             <Link href="/">
                                 <a href={"/"} className="menu__link ">
-                        {/*            Одеяла и подушки*/}
+                                    {/*            Одеяла и подушки*/}
                                 </a>
                             </Link>
                         </li>
                         <li className="menu__item ">
                             <Link href="/">
                                 <a href={"/"} className="menu__link ">
-                        {/*            Уход за матрацем*/}
+                                    {/*            Уход за матрацем*/}
                                 </a>
                             </Link>
                         </li>
@@ -99,7 +115,8 @@ export const Header = () => {
                     </a>
                 </Link>
                 <Link href={'/my/favorites'}>
-                    <a href={'/my/favorites'} aria-label="favorites" className="header__favorites header__favorites_catalog">
+                    <a href={'/my/favorites'} aria-label="favorites"
+                       className="header__favorites header__favorites_catalog">
                         {favoriteCounter > 0 && <span>{favoriteCounter > 9 ? '9+' : favoriteCounter}</span>}
                     </a>
                 </Link>
