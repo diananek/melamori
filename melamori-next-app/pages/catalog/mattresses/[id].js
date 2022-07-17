@@ -184,8 +184,8 @@ const MattressesId = (props) => {
                                 {props.title}
                             </h2>
                             <div className="product__category">
-                                Матрац
-                                <a href="#" className="matr-hard">
+                                Жесткость
+                                <a className="matr-hard">
                                     {` ${props.hardness} ${props.other_hardness !== props.hardness ? `/ ${props.other_hardness}` : ''}`}
                                 </a>
                             </div>
