@@ -16,9 +16,12 @@ import axios from 'axios'
 const client = initializeApollo();
 
 
-export const priceResult = ({sale_percentage, price}) => fp.isNumber(fp.toInteger(sale_percentage))
-    ? fp.multiply(price, fp.divide(fp.subtract(100, sale_percentage), 100))
-    : price
+export const priceResult = (scope) => {
+
+    return fp.isNumber(fp.toInteger(scope?.sale_percentage))
+        ? fp.multiply(scope?.price, fp.divide(fp.subtract(100, scope?.sale_percentage), 100))
+        : scope?.price;
+}
 
 export const bedMapper = (collection, price_collection) => fp.pipe(
     fp.getOr([], `data.${collection}`),
@@ -50,9 +53,9 @@ export const pricer = fp.map((raw) => {
                 ...item,
                 price_list: fp.minBy(
                     (i) => {
-                        const {price, sale_percentage} = fp.get(colToPrice[raw.collection], i);
+                        const scope = fp.get(colToPrice[raw.collection], i);
 
-                        return priceResult({price, sale_percentage})
+                        return priceResult(scope)
                     },
                     item.price_list) || null
             });
